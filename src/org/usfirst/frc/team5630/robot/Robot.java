@@ -3,18 +3,13 @@ package org.usfirst.frc.team5630.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PWMTalonSRX;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5630.robot.commands.ExampleCommand;
-import org.usfirst.frc.team5630.robot.commands.MoveStraight;
-import org.usfirst.frc.team5630.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team5630.robot.subsystems.DriveTrain_Subsystem;
 import org.usfirst.frc.team5630.robot.RobotMap;
 
 /**
@@ -26,16 +21,15 @@ import org.usfirst.frc.team5630.robot.RobotMap;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public static final DriveTrain_Subsystem driveTrainSubsystem = new DriveTrain_Subsystem();
 	public static OI oi;
 
-	Command autonomousCommand;
+	Command autonomousCommand, driveRobot;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-	DifferentialDrive robotDrive;
-	SpeedControllerGroup m_left, m_right;
-	PWMTalonSRX srx_leftA, srx_leftB, srx_rightA, srx_rightB;
 	
 	Joystick stickDriver, stickOperator;
+	
+	double robot_xSpeed, robot_ySpeed;
 	
 	
 	/**
@@ -48,17 +42,8 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		srx_leftA = new PWMTalonSRX(RobotMap.leftMotorA);
-		srx_leftB = new PWMTalonSRX(RobotMap.leftMotorB);
-		srx_rightA = new PWMTalonSRX(RobotMap.rightMotorA);
-		srx_rightB = new PWMTalonSRX(RobotMap.rightMotorB);
 		
 		
-		m_left = new SpeedControllerGroup(srx_leftA, srx_leftB);
-		m_right = new SpeedControllerGroup(srx_rightA, srx_rightB);
-		
-		robotDrive = new DifferentialDrive(m_left, m_right);
-		robotDrive.setSafetyEnabled(true);
 		
 		stickDriver = new Joystick(RobotMap.joystickDriver);
 		stickOperator = new Joystick(RobotMap.joystickOperator);
@@ -94,14 +79,16 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-
+		
+		
+		
 		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
 		case "Right Side":
-			autonomousCommand = new MoveStraight(1,1);
+			//autonomousCommand = new DriveRobot();
 		 	break;
 		case "Center Side": default:
-			autonomousCommand = new MoveStraight(2,1);
+			//autonomousCommand = new DriveRobot();
 			break;
 		case "Left Side":
 			autonomousCommand = new ExampleCommand();
@@ -109,8 +96,9 @@ public class Robot extends IterativeRobot {
 		}
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
+		if (autonomousCommand != null) {
 			autonomousCommand.start();
+		}
 	}
 
 	/**
@@ -119,8 +107,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		
-		
 		
 		
 	}
@@ -141,10 +127,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		robotDrive.arcadeDrive(stickDriver.getRawAxis(5), stickDriver.getRawAxis(1));	//Move forward with right joystick,
-																						//turn with left
 		
-		
+
 		
 	}
 
@@ -153,6 +137,21 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
+		//LiveWindow.run();   What the hell is this?
 	}
+	
+	
+	
+	
+	public void getInputs() {
+		robot_xSpeed = stickDriver.getRawAxis(5);
+		robot_ySpeed = stickDriver.getRawAxis(1);
+		
+		
+		
+	}
+	
+	
+	
+	
 }

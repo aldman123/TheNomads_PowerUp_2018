@@ -7,10 +7,12 @@ import org.usfirst.frc.team5630.robot.Robot;
 /**
  *
  */
-public class MoveStraight extends Command {
-	public MoveStraight(double distance, double speed) {
+
+public class DriveRobot extends Command {
+	
+	public DriveRobot() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.exampleSubsystem);
+		requires(Robot.driveTrainSubsystem);
 	}
 
 	
@@ -23,6 +25,7 @@ public class MoveStraight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		Robot.driveTrainSubsystem.teleopDrive(Robot.oi.getJoystickDriver());
 	}
 
 	
