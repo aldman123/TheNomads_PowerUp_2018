@@ -7,8 +7,8 @@ import org.usfirst.frc.team5630.robot.Robot;
 /**
  *
  */
-public class ExampleCommand extends Command {
-	public ExampleCommand() {
+public class MoveStraight extends Command {
+	public MoveStraight(double distance, double speed) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.exampleSubsystem);
 	}

@@ -2,14 +2,19 @@
 package org.usfirst.frc.team5630.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PWMTalonSRX;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5630.robot.commands.ExampleCommand;
+import org.usfirst.frc.team5630.robot.commands.MoveStraight;
 import org.usfirst.frc.team5630.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team5630.robot.RobotMap;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,7 +30,11 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-
+	DifferentialDrive robotDrive;
+	SpeedControllerGroup m_left, m_right;
+	PWMTalonSRX srx_leftA, srx_leftB, srx_rightA, srx_rightB;
+	
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -36,6 +45,18 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		srx_leftA = new PWMTalonSRX(RobotMap.leftMotorA);
+		srx_leftB = new PWMTalonSRX(RobotMap.leftMotorB);
+		srx_rightA = new PWMTalonSRX(RobotMap.rightMotorA);
+		srx_rightB = new PWMTalonSRX(RobotMap.rightMotorB);
+		
+		
+		m_left = new SpeedControllerGroup(srx_leftA, srx_leftB);
+		m_right = new SpeedControllerGroup(srx_rightA, srx_rightB);
+		
+		robotDrive = new DifferentialDrive(m_left, m_right);
+		robotDrive.setSafetyEnabled(true);
+		
 	}
 
 	/**
@@ -68,12 +89,18 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
 
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
+		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+		switch(autoSelected) {
+		case "Right Side":
+			autonomousCommand = new MoveStraight(1,1);
+		 	break;
+		case "Center Side": default:
+			autonomousCommand = new MoveStraight(2,1);
+			break;
+		case "Left Side":
+			autonomousCommand = new ExampleCommand();
+			break;
+		}
 
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
@@ -86,6 +113,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
+		
+		
+		
 	}
 
 	@Override
