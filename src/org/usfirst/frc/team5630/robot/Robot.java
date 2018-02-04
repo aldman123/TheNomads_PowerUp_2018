@@ -2,14 +2,15 @@
 package org.usfirst.frc.team5630.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5630.robot.commands.ExampleCommand;
-import org.usfirst.frc.team5630.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team5630.robot.subsystems.DriveTrain_Subsystem;
+import org.usfirst.frc.team5630.robot.RobotMap;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,12 +21,17 @@ import org.usfirst.frc.team5630.robot.subsystems.ExampleSubsystem;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public static final DriveTrain_Subsystem driveTrainSubsystem = new DriveTrain_Subsystem();
 	public static OI oi;
 
-	Command autonomousCommand;
+	Command autonomousCommand, driveRobot;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-
+	
+	Joystick stickDriver, stickOperator;
+	
+	double robot_xSpeed, robot_ySpeed;
+	
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -36,6 +42,12 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		
+		
+		stickDriver = new Joystick(RobotMap.joystickDriver);
+		stickOperator = new Joystick(RobotMap.joystickOperator);
+		
 	}
 
 	/**
@@ -67,17 +79,26 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
+		
+		
+		
+		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+		switch(autoSelected) {
+		case "Right Side":
+			//autonomousCommand = new DriveRobot();
+		 	break;
+		case "Center Side": default:
+			//autonomousCommand = new DriveRobot();
+			break;
+		case "Left Side":
+			autonomousCommand = new ExampleCommand();
+			break;
+		}
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
+		if (autonomousCommand != null) {
 			autonomousCommand.start();
+		}
 	}
 
 	/**
@@ -86,6 +107,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
+		
 	}
 
 	@Override
@@ -104,6 +127,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+
+		
 	}
 
 	/**
@@ -111,6 +137,21 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
+		//LiveWindow.run();   What the hell is this?
 	}
+	
+	
+	
+	
+	public void getInputs() {
+		robot_xSpeed = stickDriver.getRawAxis(5);
+		robot_ySpeed = stickDriver.getRawAxis(1);
+		
+		
+		
+	}
+	
+	
+	
+	
 }

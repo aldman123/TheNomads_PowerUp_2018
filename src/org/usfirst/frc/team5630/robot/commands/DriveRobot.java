@@ -7,8 +7,10 @@ import org.usfirst.frc.team5630.robot.Robot;
 /**
  *
  */
-public class ExampleCommand extends Command {
-	public ExampleCommand() {
+
+public class DriveRobot extends Command {
+	
+	public DriveRobot() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrainSubsystem);
 	}
@@ -23,6 +25,7 @@ public class ExampleCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		Robot.driveTrainSubsystem.teleopDrive(Robot.oi.getJoystickDriver());
 	}
 
 	
