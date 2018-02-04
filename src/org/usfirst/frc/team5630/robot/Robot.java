@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5630.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Command;
@@ -34,6 +35,8 @@ public class Robot extends IterativeRobot {
 	SpeedControllerGroup m_left, m_right;
 	PWMTalonSRX srx_leftA, srx_leftB, srx_rightA, srx_rightB;
 	
+	Joystick stickDriver, stickOperator;
+	
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -56,6 +59,9 @@ public class Robot extends IterativeRobot {
 		
 		robotDrive = new DifferentialDrive(m_left, m_right);
 		robotDrive.setSafetyEnabled(true);
+		
+		stickDriver = new Joystick(RobotMap.joystickDriver);
+		stickOperator = new Joystick(RobotMap.joystickOperator);
 		
 	}
 
@@ -135,6 +141,11 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		robotDrive.arcadeDrive(stickDriver.getRawAxis(5), stickDriver.getRawAxis(1));	//Move forward with right joystick,
+																						//turn with left
+		
+		
+		
 	}
 
 	/**

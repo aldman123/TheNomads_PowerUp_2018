@@ -24,6 +24,9 @@ public class RobotMap {
 	public static int intakeMotorRight = 5;
 	public static int intakeMotorLeft = 6;
 	
+	public static int joystickDriver = 0;
+	public static int joystickOperator = 1;
+	
 	
 	
 }
