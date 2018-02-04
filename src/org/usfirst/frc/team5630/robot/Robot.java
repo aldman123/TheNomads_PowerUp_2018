@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team5630.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
@@ -30,6 +31,8 @@ public class Robot extends IterativeRobot {
 	Joystick stickDriver, stickOperator;
 	
 	double robot_xSpeed, robot_ySpeed;
+	
+	String gameData;
 	
 	
 	/**
@@ -80,12 +83,20 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
 		
-		
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		
 		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
 		case "Right Side":
 			//autonomousCommand = new DriveRobot();
+			if (gameData.charAt(0) == 'R') {
+				// Add psudo code here!
+			} else {
+				
+			}
+			
+			
+			
 		 	break;
 		case "Center Side": default:
 			//autonomousCommand = new DriveRobot();

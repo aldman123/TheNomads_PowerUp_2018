@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5630.robot.subsystems;
 
 import org.usfirst.frc.team5630.robot.RobotMap;
+import org.usfirst.frc.team5630.robot.commands.DriveRobot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
@@ -43,6 +44,6 @@ public class DriveTrain_Subsystem extends Subsystem {
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new DriveRobot());
 	}
 }
