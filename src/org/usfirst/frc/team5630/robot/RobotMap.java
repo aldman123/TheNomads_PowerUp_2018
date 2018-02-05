@@ -1,5 +1,10 @@
 package org.usfirst.frc.team5630.robot;
 
+/*
+ * Modified by Alexander Aldridge
+ *  of Team 5630 for the 2018 FRC Season
+ */
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking

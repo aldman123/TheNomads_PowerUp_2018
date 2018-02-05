@@ -13,6 +13,11 @@ import org.usfirst.frc.team5630.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrain_Subsystem;
 import org.usfirst.frc.team5630.robot.RobotMap;
 
+/*
+ * Modified by Alexander Aldridge
+ *  of Team 5630 for the 2018 FRC Season
+ */
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -90,19 +95,59 @@ public class Robot extends IterativeRobot {
 		case "Right Side":
 			//autonomousCommand = new DriveRobot();
 			if (gameData.charAt(0) == 'R') {
-				// Add psudo code here!
+				/* 
+				 * Go forwards until you cross the auto line
+				 *  Go forwards some more
+				 *  Turn to the left 90 degrees
+				 *  Go forwards until you hit the wall
+				 * Place the cube
+				 */
 			} else {
-				
+				/*
+				 * Cross the auto line
+				 * Go much further
+				 * Turn 90 degrees left
+				 * go forward past two red lines
+				 * Turn 90 degrees left
+				 * Go forwards a little
+				 * Turn 90 degrees left
+				 * Go forwards until you hit the wall
+				 * Place cube
+				 */
 			}
-			
-			
-			
 		 	break;
+		 	
 		case "Center Side": default:
 			//autonomousCommand = new DriveRobot();
+			/*
+			 * Go forwards until you hit the wall
+			 * Place Cube
+			 */
 			break;
+			
 		case "Left Side":
 			autonomousCommand = new ExampleCommand();
+			if (gameData.charAt(0) == 'L') {
+				/* 
+				 * Go forwards until you cross the auto line
+				 *  Go forwards some more
+				 *  Turn to the right 90 degrees
+				 *  Go forwards until you hit the wall
+				 * Place the cube
+				 */
+			} else {
+				/*
+				 * Cross the auto line
+				 * Go much further
+				 * Turn 90 degrees right
+				 * go forward past two red lines
+				 * Turn 90 degrees right
+				 * Go forwards a little
+				 * Turn 90 degrees right
+				 * Go forwards until you hit the wall
+				 * Place cube
+				 */
+			}
 			break;
 		}
 
@@ -128,8 +173,9 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
+		if (autonomousCommand != null) {
 			autonomousCommand.cancel();
+		}
 	}
 
 	/**
@@ -137,6 +183,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		oi.teleop();
 		Scheduler.getInstance().run();
 		
 
@@ -150,19 +197,4 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		//LiveWindow.run();   What the hell is this?
 	}
-	
-	
-	
-	
-	public void getInputs() {
-		robot_xSpeed = stickDriver.getRawAxis(5);
-		robot_ySpeed = stickDriver.getRawAxis(1);
-		
-		
-		
-	}
-	
-	
-	
-	
 }

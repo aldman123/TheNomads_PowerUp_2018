@@ -4,8 +4,9 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5630.robot.Robot;
 
-/**
- *
+/*
+ * Modified by Alexander Aldridge
+ *  of Team 5630 for the 2018 FRC Season
  */
 
 public class DriveRobot extends Command {

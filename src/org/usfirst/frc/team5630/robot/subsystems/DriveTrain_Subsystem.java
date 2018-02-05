@@ -9,8 +9,14 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
+/*
+ * Modified by Alexander Aldridge
+ *  of Team 5630 for the 2018 FRC Season
+ */
+
 /**
- *
+ * @author Alexander Aldridge
+ * Used to control our robot's drive train
  */
 public class DriveTrain_Subsystem extends Subsystem {
 	// Put methods for controlling this subsystem
@@ -36,11 +42,9 @@ public class DriveTrain_Subsystem extends Subsystem {
 	}
 	
 	public void teleopDrive(Joystick stick) {
-		robotDrive.arcadeDrive(stick.getRawAxis(1), stick.getRawAxis(5));	//Move forward with right joystick, turn with left
-		
-		
-		
+		robotDrive.arcadeDrive(stick.getRawAxis(1), stick.getRawAxis(5));	//Move forward with right joystick, turn with left	
 	}
+	
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
