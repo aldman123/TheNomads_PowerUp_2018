@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team5630.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
@@ -46,6 +47,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		CameraServer.getInstance().startAutomaticCapture();
 		oi = new OI();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -95,11 +97,14 @@ public class Robot extends IterativeRobot {
 		case "Right Side":
 			//autonomousCommand = new DriveRobot();
 			if (gameData.charAt(0) == 'R') {
+				
+				
+				
 				/* 
 				 * Go forwards until you cross the auto line
-				 *  Go forwards some more
-				 *  Turn to the left 90 degrees
-				 *  Go forwards until you hit the wall
+				 * Go forwards some more
+				 * Turn to the left 90 degrees
+				 * Go forwards until you hit the wall
 				 * Place the cube
 				 */
 			} else {
@@ -176,6 +181,10 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null) {
 			autonomousCommand.cancel();
 		}
+		
+		
+		
+		Scheduler.getInstance().add(driveRobot);
 	}
 
 	/**
