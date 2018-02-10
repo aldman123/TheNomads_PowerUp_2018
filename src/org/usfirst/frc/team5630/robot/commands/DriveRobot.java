@@ -13,7 +13,7 @@ public class DriveRobot extends Command {
 	
 	public DriveRobot() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.driveTrainSubsystem);
+		requires(Robot.driveTrainTeleop);
 	}
 
 	
@@ -26,7 +26,7 @@ public class DriveRobot extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.driveTrainSubsystem.teleopDrive(Robot.oi.getJoystickDriver());
+		Robot.driveTrainTeleop.teleopDrive(Robot.oi.getJoystickDriver());
 	}
 
 	
@@ -47,5 +47,6 @@ public class DriveRobot extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		Robot.driveTrainTeleop.stop();
 	}
 }

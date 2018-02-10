@@ -5,14 +5,22 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team5630.robot.commands.DriveRobot;
 import org.usfirst.frc.team5630.robot.commands.ExampleCommand;
-import org.usfirst.frc.team5630.robot.subsystems.DriveTrain_Subsystem;
+import org.usfirst.frc.team5630.robot.subsystems.DriveTrainAutoSubsystem;
+import org.usfirst.frc.team5630.robot.subsystems.DriveTrainTeleopSubsystem;
+
+import com.kauailabs.navx.frc.AHRS;
+
 import org.usfirst.frc.team5630.robot.RobotMap;
+
+//import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /*
  * Modified by Alexander Aldridge
@@ -28,7 +36,8 @@ import org.usfirst.frc.team5630.robot.RobotMap;
  */
 public class Robot extends IterativeRobot {
 
-	public static final DriveTrain_Subsystem driveTrainSubsystem = new DriveTrain_Subsystem();
+	public static final DriveTrainTeleopSubsystem driveTrainTeleop = new DriveTrainTeleopSubsystem();
+	public static final DriveTrainAutoSubsystem driveTrainAuto = new DriveTrainAutoSubsystem();
 	public static OI oi;
 
 	Command autonomousCommand, driveRobot;
@@ -40,7 +49,7 @@ public class Robot extends IterativeRobot {
 	
 	String gameData;
 	
-	
+	public AHRS navx = new AHRS(SPI.Port.kMXP);
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -49,9 +58,10 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		CameraServer.getInstance().startAutomaticCapture();
 		oi = new OI();
-		chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		chooser.addObject("DriveRobot", new DriveRobot());
+		chooser.addObject("Example Command", new ExampleCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
 		
 		
 		
@@ -178,11 +188,10 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null) {
-			autonomousCommand.cancel();
-		}
+		autonomousCommand.cancel();
 		
-		
+		navx.reset();
+		navx.resetDisplacement();
 		
 		Scheduler.getInstance().add(driveRobot);
 	}
@@ -192,7 +201,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		oi.teleop();
+		SmartDashboard.putNumber("NavX Angle?", navx.getAngle());
+		//oi.teleop();
 		Scheduler.getInstance().run();
 		
 
