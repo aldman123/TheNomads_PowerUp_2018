@@ -32,7 +32,7 @@ public class AutoDrive_UntilColor extends Command {
     	
     	pidController.setSetpoint(0); //At what angle?
     	Robot.driveTrainAuto.setForwardSpeed(speed); //How fast forwards?
-    	pidController.setAbsoluteTolerance(3); //How percise should you be? (degrees)
+    	pidController.setAbsoluteTolerance(3); //How precise should you be? (degrees)
     }
 
     // Called repeatedly when this Command is scheduled to run
