@@ -36,6 +36,13 @@ public class RightAutonomous extends CommandGroup {
 			 * Go forwards until you hit the wall
 			 * Place the cube
 			 */
+    		
+    		//Values were guessed.
+    		addSequential(new AutoDrive(3, 0.5));
+    		addSequential(new AutoDrive(3, 0.3));
+    		addSequential(new AutoTurn(90));
+    		
+    		
 		} else {
 			/*
 			 * Cross the auto line

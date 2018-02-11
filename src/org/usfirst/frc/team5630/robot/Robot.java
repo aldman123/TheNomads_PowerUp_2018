@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5630.robot.commands.DriveRobot;
 import org.usfirst.frc.team5630.robot.commands.ExampleCommand;
+import org.usfirst.frc.team5630.robot.commands.RightAutonomous;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainAutoSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainTeleopSubsystem;
 
@@ -62,12 +63,6 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Example Command", new ExampleCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
-		
-		
-		
-		stickDriver = new Joystick(RobotMap.joystickDriver);
-		stickOperator = new Joystick(RobotMap.joystickOperator);
-		
 	}
 
 	/**
@@ -105,64 +100,13 @@ public class Robot extends IterativeRobot {
 		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
 		case "Right Side":
-			//autonomousCommand = new DriveRobot();
-			if (gameData.charAt(0) == 'R') {
-				
-				
-				
-				/* 
-				 * Go forwards until you cross the auto line
-				 * Go forwards some more
-				 * Turn to the left 90 degrees
-				 * Go forwards until you hit the wall
-				 * Place the cube
-				 */
-			} else {
-				/*
-				 * Cross the auto line
-				 * Go much further
-				 * Turn 90 degrees left
-				 * go forward past two red lines
-				 * Turn 90 degrees left
-				 * Go forwards a little
-				 * Turn 90 degrees left
-				 * Go forwards until you hit the wall
-				 * Place cube
-				 */
-			}
+			Scheduler.getInstance().add(new RightAutonomous());
 		 	break;
 		 	
 		case "Center Side": default:
-			//autonomousCommand = new DriveRobot();
-			/*
-			 * Go forwards until you hit the wall
-			 * Place Cube
-			 */
 			break;
 			
 		case "Left Side":
-			autonomousCommand = new ExampleCommand();
-			if (gameData.charAt(0) == 'L') {
-				/* 
-				 * Go forwards until you cross the auto line
-				 *  Go forwards some more
-				 *  Turn to the right 90 degrees
-				 *  Go forwards until you hit the wall
-				 * Place the cube
-				 */
-			} else {
-				/*
-				 * Cross the auto line
-				 * Go much further
-				 * Turn 90 degrees right
-				 * go forward past two red lines
-				 * Turn 90 degrees right
-				 * Go forwards a little
-				 * Turn 90 degrees right
-				 * Go forwards until you hit the wall
-				 * Place cube
-				 */
-			}
 			break;
 		}
 

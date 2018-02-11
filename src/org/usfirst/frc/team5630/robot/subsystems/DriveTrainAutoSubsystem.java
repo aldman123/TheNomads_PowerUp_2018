@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 
@@ -33,9 +34,11 @@ public class DriveTrainAutoSubsystem extends Subsystem {
 	AHRS navx = new AHRS(SPI.Port.kMXP);
 	
 	PIDOutput pidOutput;
-	PIDController pidcontrol;
+	PIDController pidController;
 	
 	double forwardSpeed = 0.0;
+	private double distanceTravled = 0.0;
+	private AnalogInput colorSensor = new AnalogInput(RobotMap.colorSensor);
 	
 	public void init() {
 		srx_leftA = new WPI_TalonSRX(RobotMap.leftMotorA);
@@ -65,15 +68,25 @@ public class DriveTrainAutoSubsystem extends Subsystem {
 				
 			}
 		};
-		pidcontrol = new PIDController(5, 0.0001, 0, navx, pidOutput);
-		
-
+		pidController = new PIDController(5, 0.0001, 0, navx, pidOutput);	//Caculus values that Charlie
+																			//told me to put in
 	}
 	
 	public void stop() {
 		robotDrive.arcadeDrive(0, 0);
 		robotDrive.stopMotor();	//Safety. It's probably helpful
 	}
+	
+	public double getDistanceTravled() {
+		return navx.getDisplacementX();
+		//TODO this should return the distance traveled by the robot
+	}
+	
+	
+	public AnalogInput getColorSensor() {
+		return colorSensor;
+	}
+	
 	
 	public AHRS getNavx() {
 		return navx;
@@ -83,12 +96,12 @@ public class DriveTrainAutoSubsystem extends Subsystem {
 		this.navx = navx;
 	}
 
-	public PIDController getPidcontrol() {
-		return pidcontrol;
+	public PIDController getPidController() {
+		return pidController;
 	}
 
-	public void setPidcontrol(PIDController pidcontrol) {
-		this.pidcontrol = pidcontrol;
+	public void setPidController(PIDController pidcontrol) {
+		this.pidController = pidcontrol;
 	}
 
 	public double getForwardSpeed() {

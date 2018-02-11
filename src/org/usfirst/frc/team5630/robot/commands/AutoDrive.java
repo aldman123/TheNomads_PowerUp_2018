@@ -8,44 +8,40 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoTurn extends Command {
+public class AutoDrive extends Command {
 	
-	private double turnAngle;
+	private double distance, speed;
 	PIDController pidController = Robot.driveTrainAuto.getPidController();
 	
 	
-    public AutoTurn(double turnAngle) {
+    public AutoDrive(double distance, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrainAuto);
     	
-    	this.turnAngle = turnAngle;
+    	this.distance = distance;
+    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.driveTrainAuto.getNavx().reset();
+    	Robot.driveTrainAuto.getNavx().resetDisplacement();
     	
-    	pidController.setSetpoint(turnAngle); //What is your angle goal?
-    	Robot.driveTrainAuto.setForwardSpeed(0); //How fast forwards?
-    	pidController.setAbsoluteTolerance(2); //How percise should you be? (degrees)
+    	pidController.setSetpoint(0); //At what angle?
+    	Robot.driveTrainAuto.setForwardSpeed(speed); //How fast forwards?
+    	pidController.setAbsoluteTolerance(3); //How percise should you be? (degrees)
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	pidController.enable(); //GO!
-
-    	// TODO
-    	// Set turn directions dependant on which direction is required
-    	// ie: turn 90 degrees right rather than 270 degrees leftMotorA
-    	
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	
-    	return pidController.onTarget();
+    	distance = Robot.driveTrainAuto.getDistanceTravled();
+    	return false;
     }
 
     // Called once after isFinished returns true

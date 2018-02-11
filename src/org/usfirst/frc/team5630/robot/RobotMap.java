@@ -22,15 +22,26 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
-	public static int leftMotorA = 1;
-	public static int leftMotorB = 2;
-	public static int rightMotorA = 3;
-	public static int rightMotorB = 4;
-	public static int intakeMotorRight = 5;
-	public static int intakeMotorLeft = 6;
+	//PWM Inputs
+	final public static int intakeMotorRight = 0;
+	final public static int intakeMotorLeft = 1;
 	
-	public static int joystickDriver = 0;
-	public static int joystickOperator = 1;
+	//SRX Inputs
+	final public static int leftMotorA = 1;
+	final public static int leftMotorB = 2;
+	final public static int rightMotorA = 3;
+	final public static int rightMotorB = 4;
+	
+	
+	//Joystick Inputs
+	final public static int joystickDriver = 0;
+	final public static int joystickOperator = 1;
+	
+	//Analog Inputs
+	final public static int colorSensor = 0;
+	
+	final public static double colorSensorThreshhold = 3;	//Carpet should read more than this
+															//and lines should read less
 	
 	
 	
