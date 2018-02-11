@@ -15,16 +15,17 @@ public class AutoDrive_UntilColor extends Command {
 	private double distance, brightness;
 	final private double maxDistance, speed;
 	PIDController pidController = Robot.driveTrainAuto.getPidController();
-	AnalogInput colorSensor = new AnalogInput(RobotMap.colorSensor);
+	AnalogInput colorSensor = Robot.sensorSubsystem.getColorSensor();
 	
 	
 	public AutoDrive_UntilColor(double maxDistance, double speed) {
     	requires(Robot.driveTrainAuto);
+    	requires(Robot.sensorSubsystem);
     	
     	this.maxDistance = maxDistance;
     	this.speed = speed;
-    }
 
+	}
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.driveTrainAuto.getNavx().reset();
@@ -43,7 +44,7 @@ public class AutoDrive_UntilColor extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	distance = Robot.driveTrainAuto.getDistanceTravled();
-    	brightness = Robot.driveTrainAuto.getColorSensor().getVoltage();
+    	brightness = colorSensor.getVoltage();
     	
     	return brightness < RobotMap.colorSensorThreshhold || distance >= maxDistance;
     }

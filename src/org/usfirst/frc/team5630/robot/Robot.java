@@ -11,15 +11,13 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5630.robot.commands.DriveRobot;
-import org.usfirst.frc.team5630.robot.commands.ExampleCommand;
+import org.usfirst.frc.team5630.robot.commands.LeftAutonomous;
 import org.usfirst.frc.team5630.robot.commands.RightAutonomous;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainAutoSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainTeleopSubsystem;
+import org.usfirst.frc.team5630.robot.subsystems.SensorSubsystem;
 
 import com.kauailabs.navx.frc.AHRS;
-
-import org.usfirst.frc.team5630.robot.RobotMap;
 
 //import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -39,6 +37,7 @@ public class Robot extends IterativeRobot {
 
 	public static final DriveTrainTeleopSubsystem driveTrainTeleop = new DriveTrainTeleopSubsystem();
 	public static final DriveTrainAutoSubsystem driveTrainAuto = new DriveTrainAutoSubsystem();
+	public static final SensorSubsystem sensorSubsystem = new SensorSubsystem();
 	public static OI oi;
 
 	Command autonomousCommand, driveRobot;
@@ -59,9 +58,9 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		CameraServer.getInstance().startAutomaticCapture();
 		oi = new OI();
-		chooser.addObject("DriveRobot", new DriveRobot());
-		chooser.addObject("Example Command", new ExampleCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		chooser.addObject("RightAutonomous", new RightAutonomous());
+		chooser.addObject("LeftAutonomous", new LeftAutonomous());
+		SmartDashboard.putData("Auto Selector", chooser);
 		
 	}
 
@@ -107,6 +106,7 @@ public class Robot extends IterativeRobot {
 			break;
 			
 		case "Left Side":
+			Scheduler.getInstance().add(new LeftAutonomous());
 			break;
 		}
 

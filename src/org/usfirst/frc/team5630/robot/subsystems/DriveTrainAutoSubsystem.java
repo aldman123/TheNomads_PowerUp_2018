@@ -1,13 +1,13 @@
 package org.usfirst.frc.team5630.robot.subsystems;
 
 import org.usfirst.frc.team5630.robot.RobotMap;
+import org.usfirst.frc.team5630.robot.commands.AutoDrive;
 import org.usfirst.frc.team5630.robot.commands.DriveRobot;
 
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 
@@ -38,7 +38,6 @@ public class DriveTrainAutoSubsystem extends Subsystem {
 	
 	double forwardSpeed = 0.0;
 	private double distanceTravled = 0.0;
-	private AnalogInput colorSensor = new AnalogInput(RobotMap.colorSensor);
 	
 	public void init() {
 		srx_leftA = new WPI_TalonSRX(RobotMap.leftMotorA);
@@ -83,11 +82,6 @@ public class DriveTrainAutoSubsystem extends Subsystem {
 	}
 	
 	
-	public AnalogInput getColorSensor() {
-		return colorSensor;
-	}
-	
-	
 	public AHRS getNavx() {
 		return navx;
 	}
@@ -114,6 +108,6 @@ public class DriveTrainAutoSubsystem extends Subsystem {
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new DriveRobot());
+		setDefaultCommand(new AutoDrive(0, 0));
 	}
 }
