@@ -37,16 +37,22 @@ public class LeftAutonomous extends CommandGroup {
 			 * Place the cube
 			 */
     		
-    		//Values were guessed.
-    		addSequential(new AutoDrive(3, 0.5));
+    		//Values were guessed
+    		
+    		//Go forwards past the auto line
     		addSequential(new AutoDrive(3, 0.3));
+    		
+    		//Turn right and then hit the wall
     		addSequential(new AutoTurn(-90));
+    		addSequential(new AutoDrive(1, 0.2));
+    		//Place Cube
+    		
     		
     		
 		} else {
 			/*
-			 * Cross the auto line
-			 * Go much further
+			 * Go forward until you hit the white line
+			 * Reverse a little
 			 * Turn 90 degrees right
 			 * go forward past two red/blue lines
 			 * Turn 90 degrees right
@@ -55,6 +61,26 @@ public class LeftAutonomous extends CommandGroup {
 			 * Go forwards until you hit the wall
 			 * Place cube
 			 */
+			
+			//Values were guessed
+			//Go forward until you hit the white line
+			addSequential(new AutoDrive(4, 0.5));
+			addSequential(new AutoDrive_UntilColor(4, 0.3));
+			
+			//Reverse and then turn right
+			addSequential(new AutoDrive(-2, 0.5));
+			addSequential(new AutoTurn(-90));
+			
+			//Go past two red/blue lines
+			addSequential(new AutoDrive_UntilColor(4, 0.3));
+			addSequential(new AutoDrive(1, 0.5));
+			addSequential(new AutoDrive_UntilColor(4, 0.3));
+			
+			//Turn and then hit the wall
+			addSequential(new AutoTurn(-90));
+			addSequential(new AutoDrive(1, 0.2));
+			
+			//Place cube
 		}
     }
 }
