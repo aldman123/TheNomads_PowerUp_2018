@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5630.robot.subsystems;
 
 import org.usfirst.frc.team5630.robot.RobotMap;
+import org.usfirst.frc.team5630.robot.commands.AutoDrive;
 import org.usfirst.frc.team5630.robot.commands.DriveRobot;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -57,6 +58,6 @@ public class DriveTrainTeleopSubsystem extends Subsystem {
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new DriveRobot());
+		setDefaultCommand(new AutoDrive(0, 0));
 	}
 }
