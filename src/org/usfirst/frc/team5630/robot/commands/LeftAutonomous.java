@@ -76,6 +76,10 @@ public class LeftAutonomous extends CommandGroup {
 			addSequential(new AutoDrive(1, 0.5));
 			addSequential(new AutoDrive_UntilColor(4, 0.3));
 			
+			//Turn and go forwards a little
+			addSequential(new AutoTurn(-90));
+			addSequential(new AutoDrive(1, 0.2));
+			
 			//Turn and then hit the wall
 			addSequential(new AutoTurn(-90));
 			addSequential(new AutoDrive(1, 0.2));
