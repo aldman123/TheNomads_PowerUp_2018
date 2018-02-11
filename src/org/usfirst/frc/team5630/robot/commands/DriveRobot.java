@@ -40,6 +40,7 @@ public class DriveRobot extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		Robot.driveTrainTeleop.stop();
 	}
 
 	
