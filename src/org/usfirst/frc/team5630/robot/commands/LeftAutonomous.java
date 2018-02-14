@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5630.robot.commands;
 
+import org.usfirst.frc.team5630.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -40,11 +42,11 @@ public class LeftAutonomous extends CommandGroup {
     		//Values were guessed
     		
     		//Go forwards past the auto line
-    		addSequential(new AutoDrive(3, 0.3));
+    		addSequential(new AutoDrive(3, RobotMap.speedSlow));
     		
     		//Turn right and then hit the wall
     		addSequential(new AutoTurn(-90));
-    		addSequential(new AutoDrive(1, 0.2));
+    		addSequential(new AutoDrive(1, RobotMap.speedSuperSlow));
     		//Place Cube
     		
     		
@@ -64,25 +66,25 @@ public class LeftAutonomous extends CommandGroup {
 			
 			//Values were guessed
 			//Go forward until you hit the white line
-			addSequential(new AutoDrive(4, 0.5));
-			addSequential(new AutoDrive_UntilColor(4, 0.3));
+			addSequential(new AutoDrive(4, RobotMap.speedMedium));
+			addSequential(new AutoDrive_UntilColor(4, RobotMap.speedSlow));
 			
 			//Reverse and then turn right
-			addSequential(new AutoDrive(-2, 0.5));
+			addSequential(new AutoDrive(-2, RobotMap.speedMedium));
 			addSequential(new AutoTurn(-90));
 			
 			//Go past two red/blue lines
-			addSequential(new AutoDrive_UntilColor(4, 0.3));
+			addSequential(new AutoDrive_UntilColor(4, RobotMap.speedSlow));
 			addSequential(new AutoDrive(1, 0.5));
-			addSequential(new AutoDrive_UntilColor(4, 0.3));
+			addSequential(new AutoDrive_UntilColor(4, RobotMap.speedSlow));
 			
 			//Turn and go forwards a little
 			addSequential(new AutoTurn(-90));
-			addSequential(new AutoDrive(1, 0.2));
+			addSequential(new AutoDrive(1, RobotMap.speedSuperSlow));
 			
 			//Turn and then hit the wall
 			addSequential(new AutoTurn(-90));
-			addSequential(new AutoDrive(1, 0.2));
+			addSequential(new AutoDrive(1, RobotMap.speedSuperSlow));
 			
 			//Place cube
 		}

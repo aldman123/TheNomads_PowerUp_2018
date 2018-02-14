@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5630.robot.commands;
 
+import org.usfirst.frc.team5630.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -35,9 +37,9 @@ public class CenterAutonomous extends CommandGroup {
 			 */
     		
     		//Values were guessed.
-    		addSequential(new AutoDrive(1.5, 0.5));
+    		addSequential(new AutoDrive(1.5, RobotMap.speedMedium));
     		addSequential(new AutoTurn(90));
-    		addSequential(new AutoDrive(1.5, 0.3));
+    		addSequential(new AutoDrive(1.5, RobotMap.speedSlow));
     	}
     	else {
     		/* 
@@ -48,9 +50,9 @@ public class CenterAutonomous extends CommandGroup {
 			 */
     		
     		//Values were guessed.
-    		addSequential(new AutoDrive(1.5, 0.5));
+    		addSequential(new AutoDrive(1.5, RobotMap.speedMedium));
     		addSequential(new AutoTurn(-90));
-    		addSequential(new AutoDrive(1.5, 0.3));
+    		addSequential(new AutoDrive(1.5, RobotMap.speedSlow));
     	}
     }
 }

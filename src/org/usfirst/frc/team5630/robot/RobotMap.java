@@ -52,5 +52,13 @@ public class RobotMap {
 	//Digital Inputs
 	final public static DigitalInput ultrasonicIn = new DigitalInput(0);
 	
+	//Robot Speeds
+	final public static double speedFast = 0.7;
+	final public static double speedMedium = 0.5;
+	final public static double speedSlow = 0.25;
+	final public static double speedSuperSlow = 0.15;
+	final public static double fourFeet = 3.14159268;
+	
+	
 	
 }
