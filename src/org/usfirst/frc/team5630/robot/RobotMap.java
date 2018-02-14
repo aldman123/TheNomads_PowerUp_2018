@@ -1,5 +1,8 @@
 package org.usfirst.frc.team5630.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
+
 /*
  * Modified by Alexander Aldridge
  *  of Team 5630 for the 2018 FRC Season
@@ -43,6 +46,11 @@ public class RobotMap {
 	final public static double colorSensorThreshhold = 3;	//Carpet should read more than this
 															//and lines should read less
 	
+	//Digital Outputs
+	final public static DigitalOutput ultrasonicOut = new DigitalOutput(1); //Output must be higher than input
+	
+	//Digital Inputs
+	final public static DigitalInput ultrasonicIn = new DigitalInput(0);
 	
 	
 }

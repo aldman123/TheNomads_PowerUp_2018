@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5630.robot.commands.LeftAutonomous;
 import org.usfirst.frc.team5630.robot.commands.RightAutonomous;
+import org.usfirst.frc.team5630.robot.commands.Teleop;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainAutoSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainTeleopSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.SensorSubsystem;
@@ -40,7 +41,7 @@ public class Robot extends IterativeRobot {
 	public static final SensorSubsystem sensorSubsystem = new SensorSubsystem();
 	public static OI oi;
 
-	Command autonomousCommand, driveRobot;
+	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	Joystick stickDriver, stickOperator;
@@ -137,7 +138,7 @@ public class Robot extends IterativeRobot {
 		navx.reset();
 		navx.resetDisplacement();
 		
-		Scheduler.getInstance().add(driveRobot);
+		Scheduler.getInstance().add(new Teleop());
 	}
 
 	/**
@@ -146,7 +147,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		SmartDashboard.putNumber("NavX Angle?", navx.getAngle());
-		//oi.teleop();
 		Scheduler.getInstance().run();
 		
 

@@ -51,29 +51,6 @@ public class OI {
 		
 	}
 	
-	
-	
-	/*
-	 * Is called in teleop before the scheduler runs commands
-	 */
-	public void teleop() {
-		
-		//Intake Arm
-		if (stickOperator.getRawButton(5) && !stickOperator.getRawButton(4)) {
-			//Intake pulls cube in
-		} else if (!stickOperator.getRawButton(5) && stickOperator.getRawButton(4)) {
-			//Intake pushes cube out
-		} else {
-			//Intake stops
-		}
-		
-		
-		//Intake lift
-		liftDirection = stickOperator.getRawAxis(2) - stickOperator.getRawAxis(3); //Compares values of triggers
-		
-		
-	}
-	
 	public Joystick getJoystickDriver() {
 		return stickDriver;
 	}
