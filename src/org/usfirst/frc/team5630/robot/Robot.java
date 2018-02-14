@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -17,8 +16,6 @@ import org.usfirst.frc.team5630.robot.commands.Teleop;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainAutoSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainTeleopSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.SensorSubsystem;
-
-import com.kauailabs.navx.frc.AHRS;
 
 //import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -50,7 +47,6 @@ public class Robot extends IterativeRobot {
 	
 	String gameData;
 	
-	public AHRS navx = new AHRS(SPI.Port.kMXP);
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -135,8 +131,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		autonomousCommand.cancel();
 		
-		navx.reset();
-		navx.resetDisplacement();
+		sensorSubsystem.navXReset();
 		
 		Scheduler.getInstance().add(new Teleop());
 	}
@@ -146,7 +141,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		SmartDashboard.putNumber("NavX Angle?", navx.getAngle());
+		SmartDashboard.putNumber("NavX Angle?", sensorSubsystem.getNavXAngle());
 		Scheduler.getInstance().run();
 		
 

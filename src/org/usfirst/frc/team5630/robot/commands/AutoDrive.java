@@ -25,8 +25,7 @@ public class AutoDrive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrainAuto.getNavx().reset();
-    	Robot.driveTrainAuto.getNavx().resetDisplacement();
+    	Robot.sensorSubsystem.navXReset();
     	
     	pidController.setSetpoint(0); //At what angle?
     	Robot.driveTrainAuto.setForwardSpeed(speed); //How fast forwards?
@@ -40,8 +39,7 @@ public class AutoDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	distance = Robot.driveTrainAuto.getDistanceTravled();
-    	return false;
+    	return distance >= Robot.sensorSubsystem.getNavXDistanceX();
     }
 
     // Called once after isFinished returns true
