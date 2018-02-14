@@ -47,10 +47,10 @@ public class RobotMap {
 															//and lines should read less
 	
 	//Digital Outputs
-	final public static DigitalOutput ultrasonicOut = new DigitalOutput(0);
+	final public static DigitalOutput ultrasonicOut = new DigitalOutput(1); //Output must be higher than input
 	
 	//Digital Inputs
-	final public static DigitalInput ultrasonicIn = new DigitalInput(1);
+	final public static DigitalInput ultrasonicIn = new DigitalInput(0);
 	
 	
 }
