@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5630.robot.commands;
 
 import org.usfirst.frc.team5630.robot.Robot;
+import org.usfirst.frc.team5630.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
@@ -13,13 +14,17 @@ public class AutoDrive extends Command {
 	private double distance, speed;
 	PIDController pidController = Robot.driveTrainAuto.getPidController();
 	
-	
+	/**
+	 * Drives the robot forwards until it reaches the distance in feet
+	 * @param distance
+	 * @param speed
+	 */
     public AutoDrive(double distance, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrainAuto);
     	
-    	this.distance = distance;
+    	this.distance = distance * RobotMap.fourFeet / 4;
     	this.speed = speed;
     }
 
@@ -39,7 +44,7 @@ public class AutoDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return distance >= Robot.sensorSubsystem.getNavXDistanceX();
+    	return distance >= Robot.sensorSubsystem.getNavXDistanceForwards();
     }
 
     // Called once after isFinished returns true

@@ -39,7 +39,7 @@ public class RightAutonomous extends CommandGroup {
 			 * Place the cube
 			 */
     		
-    		//Values were guessed.
+    		//Values were guessed.  Distance is in feet, and speed is in percent.
     		addSequential(new AutoDrive(3, RobotMap.speedMedium));
     		addSequential(new AutoDrive(3, RobotMap.speedSlow));
     		addSequential(new AutoTurn(90));

@@ -35,18 +35,15 @@ public class SensorSubsystem extends Subsystem {
     	return vexUltrasonic;
     }
     
-    public double getNavXDistanceX() {
-    	return navx.getDisplacementX();
-    }
-    
-    public double getNavXDistanceY() {
+    public double getNavXDistanceForwards() {
     	return navx.getDisplacementY();
     }
     
-    public double getNavXDistanceZ() {
-    	return navx.getDisplacementZ();
-    }
-    
+    /**
+     * WARNING: The navX's angle may drift an average of 1 degree a minute!
+     * Reset the navX periodically to prevent this
+     * @return The navX's current angle
+     */
     public double getNavXAngle() {
     	return navx.getAngle();
     }

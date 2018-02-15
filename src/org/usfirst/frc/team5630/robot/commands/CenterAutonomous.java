@@ -36,7 +36,7 @@ public class CenterAutonomous extends CommandGroup {
 			 * Place the cube
 			 */
     		
-    		//Values were guessed.
+    		//Values were guessed.  Distance is in feet, and speed is in percent.
     		addSequential(new AutoDrive(1.5, RobotMap.speedMedium));
     		addSequential(new AutoTurn(90));
     		addSequential(new AutoDrive(1.5, RobotMap.speedSlow));

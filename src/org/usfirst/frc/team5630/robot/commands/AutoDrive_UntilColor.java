@@ -17,19 +17,22 @@ public class AutoDrive_UntilColor extends Command {
 	PIDController pidController = Robot.driveTrainAuto.getPidController();
 	AnalogInput colorSensor = Robot.sensorSubsystem.getColorSensor();
 	
-	
+	/**
+	 * Drives the robot forwards until the brightness sensor is activated
+	 * @param maxDistance The maximum distance to travel in feet 
+	 * @param speed The Speed of the Robot
+	 */
 	public AutoDrive_UntilColor(double maxDistance, double speed) {
     	requires(Robot.driveTrainAuto);
     	requires(Robot.sensorSubsystem);
     	
-    	this.maxDistance = maxDistance;
+    	this.maxDistance = maxDistance * RobotMap.fourFeet / 4;
     	this.speed = speed;
 
 	}
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrainAuto.getNavx().reset();
-    	Robot.driveTrainAuto.getNavx().resetDisplacement();
+    	Robot.sensorSubsystem.navXReset();
     	
     	pidController.setSetpoint(0); //At what angle?
     	Robot.driveTrainAuto.setForwardSpeed(speed); //How fast forwards?
@@ -43,7 +46,7 @@ public class AutoDrive_UntilColor extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	distance = Robot.driveTrainAuto.getDistanceTravled();
+    	distance = Robot.sensorSubsystem.getNavXDistanceForwards();
     	brightness = colorSensor.getVoltage();
     	
     	return brightness < RobotMap.colorSensorThreshhold || distance >= maxDistance;
