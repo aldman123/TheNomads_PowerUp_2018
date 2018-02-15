@@ -24,7 +24,7 @@ public class AutoDrive extends Command {
         // eg. requires(chassis);
     	requires(Robot.driveTrainAuto);
     	
-    	this.distance = distance * RobotMap.fourFeet / 4;
+    	this.distance = distance * RobotMap.feet;
     	this.speed = speed;
     }
 

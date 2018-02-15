@@ -29,30 +29,21 @@ public class CenterAutonomous extends CommandGroup {
         // arm.
     	
     	if ((DriverStation.getInstance().getGameSpecificMessage()).charAt(0) == 'L') {
-    		/* 
-			 * Go forwards a little 
-			 * Turn to the left 90 degrees
-			 * Go forwards some more
-			 * Place the cube
-			 */
     		
-    		//Values were guessed.  Distance is in feet, and speed is in percent.
-    		addSequential(new AutoDrive(1.5, RobotMap.speedMedium));
-    		addSequential(new AutoTurn(90));
-    		addSequential(new AutoDrive(1.5, RobotMap.speedSlow));
+    		//Distance is in feet, and speed is in percent.
+    		//AutoLine is 10 feet away from Alliance Station
+    		//Switch is 14 feet away
+    		addSequential(new AutoDrive(10, RobotMap.speedMedium)); 
+    		//DO NOT PLACE THE CUBE
     	}
     	else {
-    		/* 
-			 * Go forwards a little 
-			 * Turn to the right 90 degrees
-			 * Go forwards some more
-			 * Place the cube
-			 */
-    		
-    		//Values were guessed.
-    		addSequential(new AutoDrive(1.5, RobotMap.speedMedium));
-    		addSequential(new AutoTurn(-90));
-    		addSequential(new AutoDrive(1.5, RobotMap.speedSlow));
+
+    		//Distance is in feet, and speed is in percent.
+    		//AutoLine is 10 feet away from Alliance Station
+    		//Switch is 14 feet away
+    		addSequential(new AutoDrive(10, RobotMap.speedMedium)); 
+    		addSequential(new AutoDrive(4 - RobotMap.robotLength, RobotMap.speedSuperSlow)); //Allocates for robot size
+    		//TODO Place the cube
     	}
     }
 }

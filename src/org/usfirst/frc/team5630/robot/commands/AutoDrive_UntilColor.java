@@ -26,7 +26,7 @@ public class AutoDrive_UntilColor extends Command {
     	requires(Robot.driveTrainAuto);
     	requires(Robot.sensorSubsystem);
     	
-    	this.maxDistance = maxDistance * RobotMap.fourFeet / 4;
+    	this.maxDistance = maxDistance * RobotMap.feet;
     	this.speed = speed;
 
 	}
