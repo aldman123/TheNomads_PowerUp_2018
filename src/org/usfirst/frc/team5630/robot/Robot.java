@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5630.robot.commands.LeftAutonomous;
 import org.usfirst.frc.team5630.robot.commands.RightAutonomous;
-import org.usfirst.frc.team5630.robot.commands.Teleop;
+import org.usfirst.frc.team5630.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainAutoSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainTeleopSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.SensorSubsystem;
@@ -36,6 +36,7 @@ public class Robot extends IterativeRobot {
 	public static final DriveTrainTeleopSubsystem driveTrainTeleop = new DriveTrainTeleopSubsystem();
 	public static final DriveTrainAutoSubsystem driveTrainAuto = new DriveTrainAutoSubsystem();
 	public static final SensorSubsystem sensorSubsystem = new SensorSubsystem();
+	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -132,8 +133,6 @@ public class Robot extends IterativeRobot {
 		autonomousCommand.cancel();
 		
 		sensorSubsystem.navXReset();
-		
-		Scheduler.getInstance().add(new Teleop());
 	}
 
 	/**

@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5630.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
 /*
@@ -45,7 +47,23 @@ public class OI {
 	Joystick stickDriver = new Joystick(0);
 	Joystick stickOperator = new Joystick(1);
 	
-	double liftDirection;
+	//TODO Get rid of most of these
+	Button	button1Driver = new JoystickButton(stickDriver, 1),
+			button2Driver = new JoystickButton(stickDriver, 2),
+			button3Driver = new JoystickButton(stickDriver, 3),
+			button4Driver = new JoystickButton(stickDriver, 4),
+			button5Driver = new JoystickButton(stickDriver, 5),
+			button6Driver = new JoystickButton(stickDriver, 6),
+			button7Driver = new JoystickButton(stickDriver, 7),
+			button8Driver = new JoystickButton(stickDriver, 8),
+			button1Opperator = new JoystickButton(stickDriver, 1),
+			button2Opperator = new JoystickButton(stickDriver, 2),
+			button3Opperator = new JoystickButton(stickDriver, 3),
+			button4Opperator = new JoystickButton(stickDriver, 4),
+			button5Opperator = new JoystickButton(stickDriver, 5),
+			button6Opperator = new JoystickButton(stickDriver, 6),
+			button7Opperator = new JoystickButton(stickDriver, 7),
+			button8Opperator = new JoystickButton(stickDriver, 8);
 	
 	public OI() {
 		

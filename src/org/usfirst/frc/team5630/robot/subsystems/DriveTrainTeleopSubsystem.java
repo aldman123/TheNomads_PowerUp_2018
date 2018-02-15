@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5630.robot.subsystems;
 
 import org.usfirst.frc.team5630.robot.RobotMap;
-import org.usfirst.frc.team5630.robot.commands.AutoDrive;
 import org.usfirst.frc.team5630.robot.commands.DriveRobot;
 
 import edu.wpi.first.wpilibj.Joystick;
