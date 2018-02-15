@@ -1,10 +1,9 @@
 package org.usfirst.frc.team5630.robot.subsystems;
 
+import org.usfirst.frc.team5630.robot.Robot;
 import org.usfirst.frc.team5630.robot.RobotMap;
 import org.usfirst.frc.team5630.robot.commands.AutoDrive;
-import org.usfirst.frc.team5630.robot.commands.DriveRobot;
 
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -12,7 +11,6 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.kauailabs.navx.frc.AHRS;
 
 /*
  * Modified by Alexander Aldridge
@@ -31,13 +29,10 @@ public class DriveTrainAutoSubsystem extends Subsystem {
 	WPI_TalonSRX srx_leftA, srx_leftB, srx_rightA, srx_rightB;
 	DifferentialDrive robotDrive;
 	
-	AHRS navx = new AHRS(SPI.Port.kMXP);
-	
 	PIDOutput pidOutput;
 	PIDController pidController;
 	
 	double forwardSpeed = 0.0;
-	private double distanceTravled = 0.0;
 	
 	public void init() {
 		srx_leftA = new WPI_TalonSRX(RobotMap.leftMotorA);
@@ -67,27 +62,13 @@ public class DriveTrainAutoSubsystem extends Subsystem {
 				
 			}
 		};
-		pidController = new PIDController(5, 0.0001, 0, navx, pidOutput);	//Caculus values that Charlie
+		pidController = new PIDController(5, 0.0001, 0, Robot.sensorSubsystem.getNavX(), pidOutput);	//Caculus values that Charlie
 																			//told me to put in
 	}
 	
 	public void stop() {
 		robotDrive.arcadeDrive(0, 0);
 		robotDrive.stopMotor();	//Safety. It's probably helpful
-	}
-	
-	public double getDistanceTravled() {
-		return navx.getDisplacementX();
-		//TODO this should return the distance traveled by the robot
-	}
-	
-	
-	public AHRS getNavx() {
-		return navx;
-	}
-
-	public void setNavx(AHRS navx) {
-		this.navx = navx;
 	}
 
 	public PIDController getPidController() {

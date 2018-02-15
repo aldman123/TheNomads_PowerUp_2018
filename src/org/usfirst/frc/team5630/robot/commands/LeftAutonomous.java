@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5630.robot.commands;
 
+import org.usfirst.frc.team5630.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -29,60 +31,42 @@ public class LeftAutonomous extends CommandGroup {
     	
     	
     	if ((DriverStation.getInstance().getGameSpecificMessage()).charAt(0) == 'L') {
-			/* 
-			 * Go forwards until you cross the auto line
-			 * Go forwards some more
-			 * Turn to the right 90 degrees
-			 * Go forwards until you hit the wall
-			 * Place the cube
-			 */
-    		
-    		//Values were guessed
+    		//Distance is in feet, and speed is in percent.
     		
     		//Go forwards past the auto line
-    		addSequential(new AutoDrive(3, 0.3));
+    		addSequential(new AutoDrive(10, RobotMap.speedFast));
+    		addSequential(new AutoDrive(2, RobotMap.speedMedium));
     		
     		//Turn right and then hit the wall
     		addSequential(new AutoTurn(-90));
-    		addSequential(new AutoDrive(1, 0.2));
-    		//Place Cube
+    		addSequential(new AutoDrive(1.5, RobotMap.speedSuperSlow)); //TODO fix this guessed value
+    		//TODO Place Cube
     		
     		
     		
 		} else {
-			/*
-			 * Go forward until you hit the white line
-			 * Reverse a little
-			 * Turn 90 degrees right
-			 * go forward past two red/blue lines
-			 * Turn 90 degrees right
-			 * Go forwards a little
-			 * Turn 90 degrees right
-			 * Go forwards until you hit the wall
-			 * Place cube
-			 */
-			
-			//Values were guessed
-			//Go forward until you hit the white line
-			addSequential(new AutoDrive(4, 0.5));
-			addSequential(new AutoDrive_UntilColor(4, 0.3));
+			//Distance is in feet, and speed is in percent.
+			//Go forward until you hit the white line (24 feet)
+			addSequential(new AutoDrive(15, RobotMap.speedFast));
+			addSequential(new AutoDrive_UntilColor(11, RobotMap.speedSlow));
 			
 			//Reverse and then turn right
-			addSequential(new AutoDrive(-2, 0.5));
+			addSequential(new AutoDrive(-3, RobotMap.speedMedium));
 			addSequential(new AutoTurn(-90));
 			
 			//Go past two red/blue lines
-			addSequential(new AutoDrive_UntilColor(4, 0.3));
+			addSequential(new AutoDrive_UntilColor(16, RobotMap.speedFast));
 			addSequential(new AutoDrive(1, 0.5));
-			addSequential(new AutoDrive_UntilColor(4, 0.3));
+			addSequential(new AutoDrive_UntilColor(14, RobotMap.speedMedium));
 			
-			//Turn and go forwards a little
+			//Go Forwards, Turn, and Go Forwards a little
+			addSequential(new AutoDrive(2, RobotMap.speedMedium));
 			addSequential(new AutoTurn(-90));
-			addSequential(new AutoDrive(1, 0.2));
+			addSequential(new AutoDrive(4, RobotMap.speedSlow));
 			
 			//Turn and then hit the wall
 			addSequential(new AutoTurn(-90));
-			addSequential(new AutoDrive(1, 0.2));
+			addSequential(new AutoDrive(2, RobotMap.speedSuperSlow));	//TODO fix this guessed value
 			
 			//Place cube
 		}

@@ -52,5 +52,19 @@ public class RobotMap {
 	//Digital Inputs
 	final public static DigitalInput ultrasonicIn = new DigitalInput(0);
 	
+	//Robot Speeds (Percent Power)
+	final public static double speedFast = 0.7;
+	final public static double speedMedium = 0.5;
+	final public static double speedSlow = 0.25;
+	final public static double speedSuperSlow = 0.15;
+
+	
+	//Robot Dimensions (Inches converted to feet)
+	final public static double robotLength = 33 / 12;	//In feet = 2.75
+	final public static double robotWidth = 32 / 12;	//In feet = 2.66
+	final public static double eightFeet = 3.14159268;
+	final public static double feet = eightFeet / 4;
+	
+	
 	
 }
