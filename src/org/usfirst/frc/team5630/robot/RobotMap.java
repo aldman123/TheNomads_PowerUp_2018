@@ -28,12 +28,9 @@ public class RobotMap {
 	final public static int leftMotorB = 2;
 	final public static int rightMotorA = 3;
 	final public static int rightMotorB = 4;
-<<<<<<< HEAD
 	final public static int climberArm = 5;
 	final public static int winchA = 6;
 	final public static int winchB = 7;
-=======
->>>>>>> origin/LiftSubsystem
 	
 	//Joystick Inputs
 	final public static int joystickDriver = 0;
@@ -41,6 +38,8 @@ public class RobotMap {
 	
 	//Analog Inputs
 	final public static int colorSensor = 0;
+	final public static int limitSwitchTop = 1;
+	final public static int limitSwitchBottom = 2;
 	
 	//TODO: Test this out on the real field
 	final public static double colorSensorThreshhold = 3;	//Carpet should read more than this
