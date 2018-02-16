@@ -56,6 +56,6 @@ public class DriveTrainTeleopSubsystem extends Subsystem {
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new DriveRobot(0, 0));
+		setDefaultCommand(new DriveRobot());
 	}
 }

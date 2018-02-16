@@ -10,7 +10,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team5630.robot.commands.CenterAutonomous;
+import org.usfirst.frc.team5630.robot.commands.DriveRobot;
 import org.usfirst.frc.team5630.robot.commands.LeftAutonomous;
+import org.usfirst.frc.team5630.robot.commands.TurnClimberArm;
 import org.usfirst.frc.team5630.robot.commands.RightAutonomous;
 import org.usfirst.frc.team5630.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainAutoSubsystem;
@@ -58,6 +61,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		chooser.addObject("RightAutonomous", new RightAutonomous());
 		chooser.addObject("LeftAutonomous", new LeftAutonomous());
+		chooser.addObject("Center Autonomous", new CenterAutonomous());
 		SmartDashboard.putData("Auto Selector", chooser);
 		
 	}
@@ -133,6 +137,9 @@ public class Robot extends IterativeRobot {
 		autonomousCommand.cancel();
 		
 		sensorSubsystem.navXReset();
+		Scheduler.getInstance().add(new TurnClimberArm());
+		Scheduler.getInstance().add(new DriveRobot());
+		
 	}
 
 	/**
@@ -152,6 +159,5 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		//LiveWindow.run();   What the hell is this?
 	}
 }

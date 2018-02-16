@@ -13,12 +13,9 @@ import org.usfirst.frc.team5630.robot.Robot;
 public class DriveRobot extends Command {
 	
 	double speed, turnSpeed;
-	public DriveRobot(double speed, double turnSpeed) {
+	public DriveRobot() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrainTeleop);
-		
-		this.speed = speed;
-		this.turnSpeed = turnSpeed;
 	}
 
 	
@@ -31,7 +28,7 @@ public class DriveRobot extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.driveTrainTeleop.teleopDrive(speed, turnSpeed);
+		Robot.driveTrainTeleop.teleopDrive(Robot.oi.getJoystickDriver().getRawAxis(5), Robot.oi.getJoystickDriver().getRawAxis(0));
 	}
 
 	

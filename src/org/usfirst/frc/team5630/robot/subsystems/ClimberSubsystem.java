@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5630.robot.subsystems;
 
 import org.usfirst.frc.team5630.robot.RobotMap;
-import org.usfirst.frc.team5630.robot.commands.RaiseClimber;
+import org.usfirst.frc.team5630.robot.commands.TurnClimberArm;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -34,11 +34,19 @@ public class ClimberSubsystem extends Subsystem {
 		winch.set(speed);
 	}
 	
+	public void stopClimberArm() {
+		srx_climberArm.stopMotor();
+	}
+	
+	public void stopWinch() {
+		winch.set(0);
+		winch.stopMotor();
+	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new RaiseClimber());
+    	setDefaultCommand(new TurnClimberArm());
     }
 }
 

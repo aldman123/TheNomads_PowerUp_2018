@@ -33,12 +33,12 @@ public class TurnWinch extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.climberSubsystem.turnWinch(0);
+    	Robot.climberSubsystem.stopWinch();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.climberSubsystem.turnWinch(0);
+    	Robot.climberSubsystem.stopWinch();
     }
 }
