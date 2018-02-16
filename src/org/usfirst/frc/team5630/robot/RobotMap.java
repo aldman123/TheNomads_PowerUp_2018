@@ -15,15 +15,6 @@ import edu.wpi.first.wpilibj.DigitalOutput;
  * floating around.
  */
 public class RobotMap {
-	// For example to map the left and right motors, you could define the
-	// following variables to use with your drivetrain subsystem.
-	// public static int leftMotor = 1;
-	// public static int rightMotor = 2;
-
-	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
-	// public static int rangefinderPort = 1;
-	// public static int rangefinderModule = 1;
 	
 	//PWM Inputs
 	final public static int intakeMotorRight = 0;
@@ -38,7 +29,6 @@ public class RobotMap {
 	final public static int winchA = 6;
 	final public static int winchB = 7;
 	
-	
 	//Joystick Inputs
 	final public static int joystickDriver = 0;
 	final public static int joystickOperator = 1;
@@ -46,6 +36,7 @@ public class RobotMap {
 	//Analog Inputs
 	final public static int colorSensor = 0;
 	
+	//TODO: Test this out on the real field
 	final public static double colorSensorThreshhold = 3;	//Carpet should read more than this
 															//and lines should read less
 	
@@ -63,9 +54,14 @@ public class RobotMap {
 	final public static double climbingSpeed = 0.5;
 
 	
-	//Robot Dimensions (Inches converted to feet)
+	//Measurements
 	final public static double robotLength = 33 / 12;	//In feet = 2.75
 	final public static double robotWidth = 32 / 12;	//In feet = 2.66
+	
+	/**
+	 * At the competition, we will trial and error this number, until the robot drives
+	 * exactly eight feet. This will allow us to have precise measurements in autonomous.
+	 */
 	final public static double eightFeet = 3.14159268;
 	final public static double feet = eightFeet / 4;
 	

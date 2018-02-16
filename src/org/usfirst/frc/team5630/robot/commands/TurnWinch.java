@@ -7,7 +7,8 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * @author Alexander Aldridge
+ * This command turn on the winch so that it can climb up the rope.
  */
 public class TurnWinch extends Command {
 

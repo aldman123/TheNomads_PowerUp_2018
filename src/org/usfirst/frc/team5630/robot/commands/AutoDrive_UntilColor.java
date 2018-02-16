@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * @author Alexander Aldridge
+ * Drives the robot forwards in a straight line until
+ *  the brightness sensor hits a line
  */
 public class AutoDrive_UntilColor extends Command {
 	

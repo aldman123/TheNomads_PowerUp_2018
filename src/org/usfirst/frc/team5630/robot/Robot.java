@@ -20,20 +20,12 @@ import org.usfirst.frc.team5630.robot.subsystems.DriveTrainAutoSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainTeleopSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.SensorSubsystem;
 
-//import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
-/*
- * Modified by Alexander Aldridge
- *  of Team 5630 for the 2018 FRC Season
- */
 
 /**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
+ * @author Alexander Aldridge and Caelan Kan
+ * Created for the 2018 FIRST Robotics Season
  */
+
 public class Robot extends IterativeRobot {
 
 	public static final DriveTrainTeleopSubsystem driveTrainTeleop = new DriveTrainTeleopSubsystem();
@@ -94,6 +86,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		//TODO: actually figure the fuck out how we're choosing autonomous
 		autonomousCommand = chooser.getSelected();
 		
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
@@ -147,7 +140,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		SmartDashboard.putNumber("NavX Angle?", sensorSubsystem.getNavXAngle());
 		Scheduler.getInstance().run();
 		
 

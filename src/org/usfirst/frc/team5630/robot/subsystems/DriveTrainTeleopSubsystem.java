@@ -9,19 +9,13 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-/*
- * Modified by Alexander Aldridge
- *  of Team 5630 for the 2018 FRC Season
- */
 
 /**
  * @author Alexander Aldridge
  * Used to control our robot's drive train
+ * during the TeleOp mode
  */
 public class DriveTrainTeleopSubsystem extends Subsystem {
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
-	
 	SpeedControllerGroup m_left, m_right;
 	WPI_TalonSRX srx_leftA, srx_leftB, srx_rightA, srx_rightB;
 	DifferentialDrive robotDrive;
@@ -39,8 +33,6 @@ public class DriveTrainTeleopSubsystem extends Subsystem {
 		
 		robotDrive = new DifferentialDrive(m_left, m_right);
 		robotDrive.setSafetyEnabled(true);
-		
-
 	}
 	
 	public void teleopDrive(double speed, double turnSpeed) {
@@ -51,8 +43,6 @@ public class DriveTrainTeleopSubsystem extends Subsystem {
 		robotDrive.arcadeDrive(0, 0);
 		robotDrive.stopMotor();	//Safety. It's probably helpful
 	}
-	
-	
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.

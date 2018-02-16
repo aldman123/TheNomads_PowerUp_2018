@@ -69,7 +69,7 @@ public class OI {
 	
 	public OI() {
 		button8Opperator.whileHeld(new TurnWinch());
-		
+		//TODO: add intake and lift controls
 	}
 	
 	public Joystick getJoystickOpperator() {

@@ -5,7 +5,9 @@ import org.usfirst.frc.team5630.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * @author Alexander Aldridge
+ * This command rotates the Climber Arm based
+ * upon the opperator's joystick input
  */
 public class TurnClimberArm extends Command {
 

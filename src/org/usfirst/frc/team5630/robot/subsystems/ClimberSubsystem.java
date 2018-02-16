@@ -9,7 +9,9 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * @author Alexander Aldridge
+ * It really should be two seperate subsystems.
+ * TODO: Split these up
  */
 public class ClimberSubsystem extends Subsystem {
 

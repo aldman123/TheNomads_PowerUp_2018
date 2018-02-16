@@ -20,6 +20,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 /**
  * @author Alexander Aldridge
  * Used to control our robot's drive train
+ * during the Auto mode
  */
 public class DriveTrainAutoSubsystem extends Subsystem {
 	// Put methods for controlling this subsystem
@@ -51,19 +52,13 @@ public class DriveTrainAutoSubsystem extends Subsystem {
 		pidOutput = new PIDOutput() {
 			@Override
 			public void pidWrite(double output) {
-				/*
-				 * srx_leftA.set(ControlMode.Velocity, forwardSpeed + output);
-				 * srx_leftB.set(ControlMode.Velocity, forwardSpeed + output);
-				 * srx_rightA.set(ControlMode.Velocity, forwardSpeed - output);
-				 * srx_rightB.set(ControlMode.Velocity, forwardSpeed - output);
-				 */
-				
 				robotDrive.arcadeDrive(forwardSpeed, output);
 				
 			}
 		};
-		pidController = new PIDController(5, 0.0001, 0, Robot.sensorSubsystem.getNavX(), pidOutput);	//Caculus values that Charlie
-																			//told me to put in
+		
+		//These are caculus values that Charlie told Alexander to put in
+		pidController = new PIDController(5, 0.0001, 0, Robot.sensorSubsystem.getNavX(), pidOutput);
 	}
 	
 	public void stop() {

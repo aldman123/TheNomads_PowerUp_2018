@@ -11,20 +11,16 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * @author Alexander Aldridge
+ * This subsystem controls all the sensor inputs from the roboRIO's ports
  */
 public class SensorSubsystem extends Subsystem {
-
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	private AnalogInput colorSensor = new AnalogInput(RobotMap.colorSensor);
 	private Ultrasonic vexUltrasonic = new Ultrasonic(RobotMap.ultrasonicOut, RobotMap.ultrasonicIn);
 	private AHRS navx = new AHRS(SPI.Port.kMXP);
 	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new AutoDrive_UntilColor(999, 0.1));
+    	setDefaultCommand(new AutoDrive_UntilColor(0, RobotMap.speedSuperSlow));
     }
     
     public AnalogInput getColorSensor() {

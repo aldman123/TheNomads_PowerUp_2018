@@ -6,17 +6,18 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * @author Alexander Aldridge
+ * Turns the robot without moving.
  */
 public class AutoTurn extends Command {
 	
 	private double turnAngle;
 	PIDController pidController = Robot.driveTrainAuto.getPidController();
 	
-	
+	/**
+	 * @param turnAngle The angle at which the robot will end at.
+	 */
     public AutoTurn(double turnAngle) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.driveTrainAuto);
     	
     	this.turnAngle = turnAngle;

@@ -6,29 +6,13 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ * @author Alexander Aldridge
+ * The autonomous command group that we use when
+ * the robot is placed on the left.
  */
 public class LeftAutonomous extends CommandGroup {
 
     public LeftAutonomous() {
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
-    	
-    	
     	
     	if ((DriverStation.getInstance().getGameSpecificMessage()).charAt(0) == 'L') {
     		//Distance is in feet, and speed is in percent.
@@ -40,9 +24,7 @@ public class LeftAutonomous extends CommandGroup {
     		//Turn right and then hit the wall
     		addSequential(new AutoTurn(-90));
     		addSequential(new AutoDrive(1.5, RobotMap.speedSuperSlow)); //TODO fix this guessed value
-    		//TODO Place Cube
-    		
-    		
+    		//TODO: Place Cube
     		
 		} else {
 			//Distance is in feet, and speed is in percent.
@@ -68,7 +50,7 @@ public class LeftAutonomous extends CommandGroup {
 			addSequential(new AutoTurn(-90));
 			addSequential(new AutoDrive(2, RobotMap.speedSuperSlow));	//TODO fix this guessed value
 			
-			//Place cube
+			//TODO: Place cube
 		}
     }
 }

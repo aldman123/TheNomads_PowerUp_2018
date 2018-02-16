@@ -7,7 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * @author Alexander Aldridge
+ * This command should be used to test values
+ * and to test the robot in general.
  */
 public class testFunction extends Command {
 	

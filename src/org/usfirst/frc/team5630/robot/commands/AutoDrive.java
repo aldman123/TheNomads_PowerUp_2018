@@ -7,7 +7,8 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * @author Alexander Aldridge
+ * Drives the robot forwards in a straight line
  */
 public class AutoDrive extends Command {
 	
@@ -16,12 +17,10 @@ public class AutoDrive extends Command {
 	
 	/**
 	 * Drives the robot forwards until it reaches the distance in feet
-	 * @param distance
-	 * @param speed
+	 * @param distance to drive
+	 * @param speed from -1.0 to 1.0
 	 */
     public AutoDrive(double distance, double speed) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.driveTrainAuto);
     	
     	this.distance = distance * RobotMap.feet;

@@ -5,14 +5,14 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5630.robot.Robot;
 
-/*
- * Modified by Alexander Aldridge
- *  of Team 5630 for the 2018 FRC Season
+/**
+ * @author Alexander Aldridge
+ * The autonomous command group that we use when
+ * the robot is placed in the center.
  */
 
 public class DriveRobot extends Command {
 	
-	double speed, turnSpeed;
 	public DriveRobot() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrainTeleop);
