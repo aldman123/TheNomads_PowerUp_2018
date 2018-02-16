@@ -13,7 +13,8 @@ public class LiftTeleop extends Command {
 
 	private int direction;
     public LiftTeleop(int direction) {
-        // Use requires() here to declare subsystem dependencies
+    	requires(Robot.liftSubsystem);
+    	requires(Robot.limitSwitchSubsystem);
     	if (direction > 0) {
     		this.direction = 1;
     	} else if (direction < 0) {
@@ -21,7 +22,7 @@ public class LiftTeleop extends Command {
     	} else {
     		this.direction = 0;
     	}
-        requires(Robot.liftSubsystem);
+        
     }
 
     // Called just before this Command runs the first time
@@ -35,7 +36,14 @@ public class LiftTeleop extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return DriverStation.getInstance().isOperatorControl() == false;
+    	if (this.direction == 1) {
+    		return Robot.limitSwitchSubsystem.isTopPushed();
+    	} else if (this.direction == -1) {
+    		return Robot.limitSwitchSubsystem.isBottomPushed();
+    	} else {
+    		return false;
+    	}
+        
     }
 
     // Called once after isFinished returns true
