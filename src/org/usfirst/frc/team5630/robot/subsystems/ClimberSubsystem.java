@@ -3,7 +3,6 @@ package org.usfirst.frc.team5630.robot.subsystems;
 import org.usfirst.frc.team5630.robot.RobotMap;
 import org.usfirst.frc.team5630.robot.commands.RaiseClimber;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -31,8 +30,8 @@ public class ClimberSubsystem extends Subsystem {
 		srx_climberArm.set(speed);
 	}
 	
-	public void activateWinch() {
-		winch.set(RobotMap.climbingSpeed);
+	public void turnWinch(double speed) {
+		winch.set(speed);
 	}
 	
 

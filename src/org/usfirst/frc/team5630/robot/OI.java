@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5630.robot;
 
+import org.usfirst.frc.team5630.robot.commands.TurnWinch;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -45,7 +47,7 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 
 	Joystick stickDriver = new Joystick(0);
-	Joystick stickOperator = new Joystick(1);
+	Joystick stickOpperator = new Joystick(1);
 	
 	//TODO Get rid of most of these
 	Button	button1Driver = new JoystickButton(stickDriver, 1),
@@ -66,16 +68,15 @@ public class OI {
 			button8Opperator = new JoystickButton(stickDriver, 8);
 	
 	public OI() {
+		button8Opperator.whileHeld(new TurnWinch());
 		
+	}
+	
+	public Joystick getJoystickOpperator() {
+		return stickOpperator;
 	}
 	
 	public Joystick getJoystickDriver() {
 		return stickDriver;
 	}
-	
-	public Joystick getJoystickOperator() {
-		return stickOperator;
-	}
-	
-	
 }

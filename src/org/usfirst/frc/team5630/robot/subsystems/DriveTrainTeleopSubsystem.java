@@ -3,7 +3,6 @@ package org.usfirst.frc.team5630.robot.subsystems;
 import org.usfirst.frc.team5630.robot.RobotMap;
 import org.usfirst.frc.team5630.robot.commands.DriveRobot;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -44,8 +43,8 @@ public class DriveTrainTeleopSubsystem extends Subsystem {
 
 	}
 	
-	public void teleopDrive(Joystick stick) {
-		robotDrive.arcadeDrive(stick.getRawAxis(1), stick.getRawAxis(5));	//Move forward with right joystick, turn with left	
+	public void teleopDrive(double speed, double turnSpeed) {
+		robotDrive.arcadeDrive(speed, turnSpeed);
 	}
 	
 	public void stop() {
@@ -57,6 +56,6 @@ public class DriveTrainTeleopSubsystem extends Subsystem {
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new DriveRobot());
+		setDefaultCommand(new DriveRobot(0, 0));
 	}
 }

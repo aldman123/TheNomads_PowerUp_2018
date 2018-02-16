@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5630.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5630.robot.Robot;
@@ -11,9 +12,13 @@ import org.usfirst.frc.team5630.robot.Robot;
 
 public class DriveRobot extends Command {
 	
-	public DriveRobot() {
+	double speed, turnSpeed;
+	public DriveRobot(double speed, double turnSpeed) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrainTeleop);
+		
+		this.speed = speed;
+		this.turnSpeed = turnSpeed;
 	}
 
 	
@@ -26,14 +31,14 @@ public class DriveRobot extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.driveTrainTeleop.teleopDrive(Robot.oi.getJoystickDriver());
+		Robot.driveTrainTeleop.teleopDrive(speed, turnSpeed);
 	}
 
 	
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return DriverStation.getInstance().isOperatorControl() != true;
 	}
 
 	
