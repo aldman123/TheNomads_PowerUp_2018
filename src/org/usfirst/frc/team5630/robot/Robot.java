@@ -22,6 +22,7 @@ import org.usfirst.frc.team5630.robot.subsystems.DriveTrainTeleopSubsystem;
 <<<<<<< HEAD
 import org.usfirst.frc.team5630.robot.subsystems.LiftSubsystem;
 =======
+import org.usfirst.frc.team5630.robot.subsystems.LimitSwitchSubsystem;
 >>>>>>> limitSwitch
 import org.usfirst.frc.team5630.robot.subsystems.NavXSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.UltrasonicSubsystem;
@@ -46,6 +47,7 @@ public class Robot extends IterativeRobot {
 	public static final LiftSubsystem liftSubsystem = new LiftSubsystem();
 	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 =======
+	public static final LimitSwitchSubsystem limitSwitchSubsystem = new LimitSwitchSubsystem();
 >>>>>>> limitSwitch
 	public static OI oi;
 

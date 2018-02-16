@@ -38,6 +38,8 @@ public class RobotMap {
 	
 	//Analog Inputs
 	final public static int colorSensor = 0;
+	final public static int limitSwitchTop = 1;
+	final public static int limitSwitchBottom = 2;
 	
 	//TODO: Test this out on the real field
 	final public static double colorSensorThreshhold = 3;	//Carpet should read more than this
