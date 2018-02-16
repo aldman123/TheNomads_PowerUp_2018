@@ -40,7 +40,9 @@ public class LiftSubsystem extends Subsystem {
 		 lift.set(speed);
 	 }
 	 
-	 public void stop ()
+	 public void stop () {
+		 lift.set(0);
+	 }
 	 
 	public void teleopDrive(Joystick button) {
 		button.whileHeld(new LiftTeleop());
