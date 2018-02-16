@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  *@author Caelan Hennig
- *This 
+ *This is for intake.
  */
 public class IntakeSubsystem extends Subsystem {
 
