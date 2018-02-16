@@ -34,6 +34,9 @@ public class RobotMap {
 	final public static int leftMotorB = 2;
 	final public static int rightMotorA = 3;
 	final public static int rightMotorB = 4;
+	final public static int climberArm = 5;
+	final public static int winchA = 6;
+	final public static int winchB = 7;
 	
 	
 	//Joystick Inputs
@@ -57,6 +60,7 @@ public class RobotMap {
 	final public static double speedMedium = 0.5;
 	final public static double speedSlow = 0.25;
 	final public static double speedSuperSlow = 0.15;
+	final public static double climbingSpeed = 0.5;
 
 	
 	//Robot Dimensions (Inches converted to feet)
