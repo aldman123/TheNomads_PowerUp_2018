@@ -19,7 +19,10 @@ import org.usfirst.frc.team5630.robot.commands.RightAutonomous;
 import org.usfirst.frc.team5630.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainAutoSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainTeleopSubsystem;
+<<<<<<< HEAD
 import org.usfirst.frc.team5630.robot.subsystems.LiftSubsystem;
+=======
+>>>>>>> limitSwitch
 import org.usfirst.frc.team5630.robot.subsystems.NavXSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.UltrasonicSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.BrightnessSensorSubsystem;
@@ -39,8 +42,11 @@ public class Robot extends IterativeRobot {
 	public static final NavXSubsystem navXSubsystem = new NavXSubsystem();
 	public static final BrightnessSensorSubsystem colorSensorSubsystem = new BrightnessSensorSubsystem();
 	public static final UltrasonicSubsystem ultrasonicSubsystem = new UltrasonicSubsystem();
+<<<<<<< HEAD
 	public static final LiftSubsystem liftSubsystem = new LiftSubsystem();
 	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+=======
+>>>>>>> limitSwitch
 	public static OI oi;
 
 	Command autonomousCommand;

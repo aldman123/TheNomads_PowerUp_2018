@@ -28,12 +28,9 @@ public class RobotMap {
 	final public static int leftMotorB = 2;
 	final public static int rightMotorA = 3;
 	final public static int rightMotorB = 4;
-<<<<<<< HEAD
 	final public static int climberArm = 5;
 	final public static int winchA = 6;
 	final public static int winchB = 7;
-=======
->>>>>>> origin/LiftSubsystem
 	
 	//Joystick Inputs
 	final public static int joystickDriver = 0;
