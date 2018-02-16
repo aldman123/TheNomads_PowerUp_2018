@@ -1,11 +1,10 @@
 package org.usfirst.frc.team5630.robot.subsystems;
 
 import org.usfirst.frc.team5630.robot.RobotMap;
-import org.usfirst.frc.team5630.robot.commands.DriveRobot;
+import org.usfirst.frc.team5630.robot.commands.LiftTeleop;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -33,25 +32,16 @@ public class LiftSubsystem extends Subsystem {
 		robotDrive.setSafetyEnabled(true);
 	}
 	
-	public void liftUp (double speed) {
+	public void moveLift (double speed) {
 		lift.set(speed);
 	}
-	 public void liftDown (double speed) {
-		 lift.set(speed);
-	 }
 	 
 	 public void stop () {
 		 lift.set(0);
 	 }
-	 
-	public void teleopDrive(Joystick button) {
-		button.whileHeld(new LiftTeleop());
-		//Use a button? Two buttons for both ways?
-	}
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new LiftTeleop());
+		setDefaultCommand(new LiftTeleop(0));
 	}
 }
-

@@ -3,8 +3,6 @@ package org.usfirst.frc.team5630.robot.commands;
 import org.usfirst.frc.team5630.robot.Robot;
 import org.usfirst.frc.team5630.robot.RobotMap;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -13,9 +11,18 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class LiftTeleop extends Command {
 
-    public LiftTeleop() {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.liftSubsystem);
+	private int direction;
+    public LiftTeleop(int direction) {
+    	requires(Robot.liftSubsystem);
+    	requires(Robot.limitSwitchSubsystem);
+    	if (direction > 0) {
+    		this.direction = 1;
+    	} else if (direction < 0) {
+    		this.direction = -1;
+    	} else {
+    		this.direction = 0;
+    	}
+        
     }
 
     // Called just before this Command runs the first time
@@ -24,12 +31,19 @@ public class LiftTeleop extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.liftSubsystem.liftUp(RobotMap.liftSpeed);
+    	Robot.liftSubsystem.moveLift(RobotMap.liftSpeed * this.direction);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return DriverStation.getInstance().isOperatorControl() == false;
+    	if (this.direction == 1) {
+    		return Robot.limitSwitchSubsystem.isTopPushed();
+    	} else if (this.direction == -1) {
+    		return Robot.limitSwitchSubsystem.isBottomPushed();
+    	} else {
+    		return false;
+    	}
+        
     }
 
     // Called once after isFinished returns true

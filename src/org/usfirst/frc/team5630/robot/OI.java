@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5630.robot;
 
+import org.usfirst.frc.team5630.robot.commands.LiftTeleop;
 import org.usfirst.frc.team5630.robot.commands.TurnWinch;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -69,7 +70,10 @@ public class OI {
 	
 	public OI() {
 		button8Opperator.whileHeld(new TurnWinch());
-		//TODO: add intake and lift controls
+		
+		//TODO: add intake controls
+		button5Opperator.whenPressed(new LiftTeleop(-1));
+		button6Opperator.whenPressed(new LiftTeleop(1));
 	}
 	
 	public Joystick getJoystickOpperator() {

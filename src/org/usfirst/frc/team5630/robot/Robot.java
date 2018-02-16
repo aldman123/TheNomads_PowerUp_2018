@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -20,6 +19,7 @@ import org.usfirst.frc.team5630.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainAutoSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainTeleopSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.LiftSubsystem;
+import org.usfirst.frc.team5630.robot.subsystems.LimitSwitchSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.NavXSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.UltrasonicSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.BrightnessSensorSubsystem;
@@ -41,6 +41,9 @@ public class Robot extends IterativeRobot {
 	public static final UltrasonicSubsystem ultrasonicSubsystem = new UltrasonicSubsystem();
 	public static final LiftSubsystem liftSubsystem = new LiftSubsystem();
 	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+
+	public static final LimitSwitchSubsystem limitSwitchSubsystem = new LimitSwitchSubsystem();
+
 	public static OI oi;
 
 	Command autonomousCommand;
