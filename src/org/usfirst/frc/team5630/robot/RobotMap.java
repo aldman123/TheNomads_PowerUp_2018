@@ -20,14 +20,20 @@ public class RobotMap {
 	final public static int intakeMotorRight = 0;
 	final public static int intakeMotorLeft = 1;
 	
+	final public static int liftMotorLeft = 2;
+	final public static int liftMotorRight = 3;
+	
 	//SRX Inputs
 	final public static int leftMotorA = 1;
 	final public static int leftMotorB = 2;
 	final public static int rightMotorA = 3;
 	final public static int rightMotorB = 4;
+<<<<<<< HEAD
 	final public static int climberArm = 5;
 	final public static int winchA = 6;
 	final public static int winchB = 7;
+=======
+>>>>>>> origin/LiftSubsystem
 	
 	//Joystick Inputs
 	final public static int joystickDriver = 0;
@@ -64,6 +70,8 @@ public class RobotMap {
 	 */
 	final public static double eightFeet = 3.14159268;
 	final public static double feet = eightFeet / 4;
+	
+	
 	
 	
 	
