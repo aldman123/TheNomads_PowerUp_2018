@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class InTakeTeleop extends Command {
+public class OutTake extends Command {
 
-    public InTakeTeleop() {
+    public OutTake() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.intakeSubsystem);
     }
@@ -22,7 +22,7 @@ public class InTakeTeleop extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intakeSubsystem.inTake(RobotMap.intakeSpeed);
+    	Robot.intakeSubsystem.outTake(RobotMap.intakeSpeed*-1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
