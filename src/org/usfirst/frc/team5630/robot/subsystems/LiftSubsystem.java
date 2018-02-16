@@ -18,7 +18,7 @@ public class LiftSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	SpeedControllerGroup m_left, m_right;
+	SpeedControllerGroup lift;
 	WPI_TalonSRX srx_left, srx_right;
 	DifferentialDrive robotDrive;
 
@@ -26,22 +26,30 @@ public class LiftSubsystem extends Subsystem {
 		srx_left = new WPI_TalonSRX(RobotMap.liftMotorLeft);
 		srx_right = new WPI_TalonSRX(RobotMap.liftMotorRight);
 		
+		srx_right.setInverted(true);
 		
-		m_left = new SpeedControllerGroup(srx_left);
-		m_right = new SpeedControllerGroup(srx_right);
+		lift = new SpeedControllerGroup(srx_left, srx_right);
 		
-		robotDrive = new DifferentialDrive(m_left, m_right);
 		robotDrive.setSafetyEnabled(true);
 	}
 	
+	public void liftUp (double speed) {
+		lift.set(speed);
+	}
+	 public void liftDown (double speed) {
+		 lift.set(speed);
+	 }
+	 
+	 public void stop ()
+	 
 	public void teleopDrive(Joystick button) {
-		button.whileHeld(new LiftingThing());// TODO: Name command.
+		button.whileHeld(new LiftTeleop());
 		//Use a button? Two buttons for both ways?
 	}
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		//setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new LiftTeleop());
 	}
 }
 
