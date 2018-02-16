@@ -1,34 +1,21 @@
 package org.usfirst.frc.team5630.robot.subsystems;
 
-import org.usfirst.frc.team5630.robot.RobotMap;
-import org.usfirst.frc.team5630.robot.commands.AutoDrive_UntilColor;
+import org.usfirst.frc.team5630.robot.commands.AutoDrive;
 
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * @author Alexander Aldridge
- * This subsystem controls all the sensor inputs from the roboRIO's ports
+ * This subsystem controls the navX
  */
-public class SensorSubsystem extends Subsystem {
-	private AnalogInput colorSensor = new AnalogInput(RobotMap.colorSensor);
-	private Ultrasonic vexUltrasonic = new Ultrasonic(RobotMap.ultrasonicOut, RobotMap.ultrasonicIn);
+public class NavXSubsystem extends Subsystem {
 	private AHRS navx = new AHRS(SPI.Port.kMXP);
 	
     public void initDefaultCommand() {
-    	setDefaultCommand(new AutoDrive_UntilColor(0, RobotMap.speedSuperSlow));
-    }
-    
-    public AnalogInput getColorSensor() {
-    	return colorSensor;
-    }
-    
-    public Ultrasonic getUltrasonic() {
-    	return vexUltrasonic;
+    	setDefaultCommand(new AutoDrive(0, 0));
     }
     
     public double getNavXDistanceForwards() {

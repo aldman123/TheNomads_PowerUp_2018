@@ -22,6 +22,7 @@ public class AutoDrive extends Command {
 	 */
     public AutoDrive(double distance, double speed) {
     	requires(Robot.driveTrainAuto);
+    	requires(Robot.navXSubsystem);
     	
     	this.distance = distance * RobotMap.feet;
     	this.speed = speed;
@@ -29,7 +30,7 @@ public class AutoDrive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.sensorSubsystem.navXReset();
+    	Robot.navXSubsystem.navXReset();
     	
     	pidController.setSetpoint(0); //At what angle?
     	Robot.driveTrainAuto.setForwardSpeed(speed); //How fast forwards?
@@ -43,7 +44,7 @@ public class AutoDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return distance >= Robot.sensorSubsystem.getNavXDistanceForwards();
+    	return distance >= Robot.navXSubsystem.getNavXDistanceForwards();
     }
 
     // Called once after isFinished returns true

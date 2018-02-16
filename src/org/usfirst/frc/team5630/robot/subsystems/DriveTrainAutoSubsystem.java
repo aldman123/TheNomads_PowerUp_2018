@@ -58,7 +58,7 @@ public class DriveTrainAutoSubsystem extends Subsystem {
 		};
 		
 		//These are caculus values that Charlie told Alexander to put in
-		pidController = new PIDController(5, 0.0001, 0, Robot.sensorSubsystem.getNavX(), pidOutput);
+		pidController = new PIDController(5, 0.0001, 0, Robot.navXSubsystem.getNavX(), pidOutput);
 	}
 	
 	public void stop() {

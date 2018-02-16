@@ -15,12 +15,12 @@ public class testFunction extends Command {
 	
 	Ultrasonic ultrasonic;
     public testFunction() {
-        requires(Robot.sensorSubsystem);
+        requires(Robot.colorSensorSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	ultrasonic = Robot.sensorSubsystem.getUltrasonic();
+    	ultrasonic = Robot.ultrasonicSubsystem.getUltrasonic();
     }
 
     // Called repeatedly when this Command is scheduled to run

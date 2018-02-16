@@ -18,7 +18,9 @@ import org.usfirst.frc.team5630.robot.commands.RightAutonomous;
 import org.usfirst.frc.team5630.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainAutoSubsystem;
 import org.usfirst.frc.team5630.robot.subsystems.DriveTrainTeleopSubsystem;
-import org.usfirst.frc.team5630.robot.subsystems.SensorSubsystem;
+import org.usfirst.frc.team5630.robot.subsystems.NavXSubsystem;
+import org.usfirst.frc.team5630.robot.subsystems.UltrasonicSubsystem;
+import org.usfirst.frc.team5630.robot.subsystems.BrightnessSensorSubsystem;
 
 
 /**
@@ -30,8 +32,10 @@ public class Robot extends IterativeRobot {
 
 	public static final DriveTrainTeleopSubsystem driveTrainTeleop = new DriveTrainTeleopSubsystem();
 	public static final DriveTrainAutoSubsystem driveTrainAuto = new DriveTrainAutoSubsystem();
-	public static final SensorSubsystem sensorSubsystem = new SensorSubsystem();
 	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
+	public static final NavXSubsystem navXSubsystem = new NavXSubsystem();
+	public static final BrightnessSensorSubsystem colorSensorSubsystem = new BrightnessSensorSubsystem();
+	public static final UltrasonicSubsystem ultrasonicSubsystem = new UltrasonicSubsystem();
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -129,7 +133,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		autonomousCommand.cancel();
 		
-		sensorSubsystem.navXReset();
+		navXSubsystem.navXReset();
 		Scheduler.getInstance().add(new TurnClimberArm());
 		Scheduler.getInstance().add(new DriveRobot());
 		

@@ -25,7 +25,7 @@ public class AutoTurn extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.sensorSubsystem.navXReset();
+    	Robot.navXSubsystem.navXReset();
     	
     	pidController.setSetpoint(turnAngle); //What is your angle goal?
     	Robot.driveTrainAuto.setForwardSpeed(0); //How fast forwards?
