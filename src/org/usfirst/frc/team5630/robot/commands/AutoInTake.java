@@ -7,11 +7,12 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *@author Caelan Hennig
+ *This command takes things into the intake.
  */
-public class OutTakeTeleop extends Command {
+public class AutoInTake extends Command {
 
-    public OutTakeTeleop() {
+    public AutoInTake() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.intakeSubsystem);
     }
@@ -22,12 +23,12 @@ public class OutTakeTeleop extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intakeSubsystem.outTake(RobotMap.intakeSpeed*-1);
+    	Robot.intakeSubsystem.inTake(RobotMap.intakeSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return DriverStation.getInstance().isOperatorControl() == false;
+    	return DriverStation.getInstance().isOperatorControl() == false;
     }
 
     // Called once after isFinished returns true
