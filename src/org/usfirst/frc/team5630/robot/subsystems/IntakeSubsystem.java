@@ -9,26 +9,37 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
- *
+ *@author Caelan Hennig
+ *This 
  */
 public class IntakeSubsystem extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	SpeedControllerGroup m_left, m_right;
+	SpeedControllerGroup intake;
 	WPI_TalonSRX srx_left, srx_right;
 	DifferentialDrive robotDrive;
 
 	public void init() {
 		srx_left = new WPI_TalonSRX(RobotMap.intakeMotorLeft);
 		srx_right = new WPI_TalonSRX(RobotMap.intakeMotorRight);
-				
-		m_left = new SpeedControllerGroup(srx_left);
-		m_right = new SpeedControllerGroup(srx_right);
 		
-		robotDrive = new DifferentialDrive(m_left, m_right);
+		intake = new SpeedControllerGroup(srx_left, srx_right);
+		
 		robotDrive.setSafetyEnabled(true);
+	}
+	
+	public void inTake(double speed) {
+		intake.set(speed);
+	}
+	
+	public void outTake(double speed) {
+		intake.set(speed);
+	}
+	
+	public void stopTake() {
+		intake.set(0);
 	}
 	
 	public void initDefaultCommand() {

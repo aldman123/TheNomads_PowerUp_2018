@@ -45,4 +45,3 @@ public class LiftSubsystem extends Subsystem {
 		setDefaultCommand(new LiftTeleop(0));
 	}
 }
-
