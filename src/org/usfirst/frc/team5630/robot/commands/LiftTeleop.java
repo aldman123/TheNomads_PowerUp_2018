@@ -3,8 +3,6 @@ package org.usfirst.frc.team5630.robot.commands;
 import org.usfirst.frc.team5630.robot.Robot;
 import org.usfirst.frc.team5630.robot.RobotMap;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -13,8 +11,16 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class LiftTeleop extends Command {
 
-    public LiftTeleop() {
+	private int direction;
+    public LiftTeleop(int direction) {
         // Use requires() here to declare subsystem dependencies
+    	if (direction > 0) {
+    		this.direction = 1;
+    	} else if (direction < 0) {
+    		this.direction = -1;
+    	} else {
+    		this.direction = 0;
+    	}
         requires(Robot.liftSubsystem);
     }
 
@@ -24,7 +30,7 @@ public class LiftTeleop extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.liftSubsystem.liftUp(RobotMap.liftSpeed);
+    	Robot.liftSubsystem.moveLift(RobotMap.liftSpeed * this.direction);
     }
 
     // Make this return true when this Command no longer needs to run execute()
