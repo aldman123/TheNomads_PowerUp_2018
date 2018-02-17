@@ -10,21 +10,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5630.robot.commands.CenterAutonomous;
-import org.usfirst.frc.team5630.robot.commands.DriveRobot;
-import org.usfirst.frc.team5630.robot.commands.LeftAutonomous;
-import org.usfirst.frc.team5630.robot.commands.TurnClimberArm;
-import org.usfirst.frc.team5630.robot.commands.RightAutonomous;
-import org.usfirst.frc.team5630.robot.subsystems.ClimberSubsystem;
-import org.usfirst.frc.team5630.robot.subsystems.DriveTrainAutoSubsystem;
-import org.usfirst.frc.team5630.robot.subsystems.DriveTrainTeleopSubsystem;
-import org.usfirst.frc.team5630.robot.subsystems.LiftSubsystem;
-import org.usfirst.frc.team5630.robot.subsystems.LimitSwitchSubsystem;
-import org.usfirst.frc.team5630.robot.subsystems.NavXSubsystem;
-import org.usfirst.frc.team5630.robot.subsystems.UltrasonicSubsystem;
-import org.usfirst.frc.team5630.robot.subsystems.BrightnessSensorSubsystem;
-import org.usfirst.frc.team5630.robot.subsystems.IntakeSubsystem;
-
+import org.usfirst.frc.team5630.robot.commands.*;
+import org.usfirst.frc.team5630.robot.subsystems.*;
 
 /**
  * @author Alexander Aldridge and Caelan Kan
@@ -38,7 +25,6 @@ public class Robot extends IterativeRobot {
 	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 	public static final NavXSubsystem navXSubsystem = new NavXSubsystem();
 	public static final BrightnessSensorSubsystem colorSensorSubsystem = new BrightnessSensorSubsystem();
-	public static final UltrasonicSubsystem ultrasonicSubsystem = new UltrasonicSubsystem();
 	public static final LiftSubsystem liftSubsystem = new LiftSubsystem();
 	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
