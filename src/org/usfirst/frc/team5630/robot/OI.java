@@ -2,8 +2,8 @@ package org.usfirst.frc.team5630.robot;
 
 import org.usfirst.frc.team5630.robot.commands.LiftTeleop;
 import org.usfirst.frc.team5630.robot.commands.TurnWinch;
-import org.usfirst.frc.team5630.robot.commands.InTakeTeleop;
-import org.usfirst.frc.team5630.robot.commands.OutTakeTeleop;
+import org.usfirst.frc.team5630.robot.commands.InTake;
+import org.usfirst.frc.team5630.robot.commands.OutTake;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -73,8 +73,13 @@ public class OI {
 	public OI() {
 		button8Opperator.whileHeld(new TurnWinch());		//Start button
 		
+<<<<<<< HEAD
 		button2Opperator.whileHeld(new InTakeTeleop());		//B button
 		button1Opperator.whenPressed(new OutTakeTeleop());	//A Button
+=======
+		button2Opperator.whileHeld(new InTake());
+		button1Opperator.whileHeld(new OutTake());
+>>>>>>> origin/Renaming_and_Others
 		
 		button5Opperator.whenPressed(new LiftTeleop(-1));	//Left bumper
 		button6Opperator.whenPressed(new LiftTeleop(1));	//Right bumper

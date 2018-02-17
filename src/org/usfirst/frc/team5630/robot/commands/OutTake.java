@@ -9,25 +9,33 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class InTakeTeleop extends Command {
+<<<<<<< HEAD:src/org/usfirst/frc/team5630/robot/commands/OutTakeTeleop.java
+public class OutTakeTeleop extends Command {
+	
+	double startTime;
+    public OutTakeTeleop() {
+=======
+public class OutTake extends Command {
 
-    public InTakeTeleop() {
+    public OutTake() {
+>>>>>>> origin/Renaming_and_Others:src/org/usfirst/frc/team5630/robot/commands/OutTake.java
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.intakeSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	startTime = DriverStation.getInstance().getMatchTime();	//In seconds
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intakeSubsystem.inTake(RobotMap.intakeSpeed);
+    	Robot.intakeSubsystem.outTake(RobotMap.intakeSpeed*-1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return DriverStation.getInstance().isOperatorControl() == false;
+        return (DriverStation.getInstance().getMatchTime() - startTime) >= RobotMap.outTakeTime;	//In seconds
     }
 
     // Called once after isFinished returns true
