@@ -28,7 +28,10 @@ public class DriveRobot extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.driveTrainTeleop.teleopDrive(Robot.oi.getJoystickDriver().getRawAxis(5), Robot.oi.getJoystickDriver().getRawAxis(0));
+		Robot.driveTrainTeleop.teleopDrive(
+				Robot.oi.getJoystickDriver().getRawAxis(5), //Right Joystick to go forwards
+				Robot.oi.getJoystickDriver().getRawAxis(0)	//Left Joystick to turn
+				);
 	}
 
 	

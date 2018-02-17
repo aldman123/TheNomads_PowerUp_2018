@@ -35,6 +35,8 @@ public class RobotMap {
 	//Joystick Inputs
 	final public static int joystickDriver = 0;
 	final public static int joystickOperator = 1;
+	final public static int raiseArmAxis = 3;	//Right trigger
+	final public static int lowerArmAxis = 2;	//Left trigger
 	
 	//Analog Inputs
 	final public static int colorSensor = 0;
@@ -64,6 +66,7 @@ public class RobotMap {
 	//Measurements
 	final public static double robotLength = 33 / 12;	//In feet = 2.75
 	final public static double robotWidth = 32 / 12;	//In feet = 2.66
+	final public static double outTakeTime = 3;			//In seconds
 	
 	/**
 	 * At the competition, we will trial and error this number, until the robot drives

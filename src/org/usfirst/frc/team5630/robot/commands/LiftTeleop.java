@@ -3,7 +3,6 @@ package org.usfirst.frc.team5630.robot.commands;
 import org.usfirst.frc.team5630.robot.Robot;
 import org.usfirst.frc.team5630.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**

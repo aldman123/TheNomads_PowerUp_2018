@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class OutTakeTeleop extends Command {
-
+	
+	double startTime;
     public OutTakeTeleop() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.intakeSubsystem);
@@ -18,6 +19,7 @@ public class OutTakeTeleop extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	startTime = DriverStation.getInstance().getMatchTime();	//In seconds
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,7 +29,7 @@ public class OutTakeTeleop extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return DriverStation.getInstance().isOperatorControl() == false;
+        return (DriverStation.getInstance().getMatchTime() - startTime) >= RobotMap.outTakeTime;	//In seconds
     }
 
     // Called once after isFinished returns true

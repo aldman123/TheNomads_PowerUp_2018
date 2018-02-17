@@ -71,13 +71,13 @@ public class OI {
 			button8Opperator = new JoystickButton(stickDriver, 8);
 	
 	public OI() {
-		button8Opperator.whileHeld(new TurnWinch());
+		button8Opperator.whileHeld(new TurnWinch());		//Start button
 		
-		button2Opperator.whileHeld(new InTakeTeleop());
-		button1Opperator.whileHeld(new OutTakeTeleop());
+		button2Opperator.whileHeld(new InTakeTeleop());		//B button
+		button1Opperator.whenPressed(new OutTakeTeleop());	//A Button
 		
-		button5Opperator.whenPressed(new LiftTeleop(-1));
-		button6Opperator.whenPressed(new LiftTeleop(1));
+		button5Opperator.whenPressed(new LiftTeleop(-1));	//Left bumper
+		button6Opperator.whenPressed(new LiftTeleop(1));	//Right bumper
 	}
 	
 	public Joystick getJoystickOpperator() {
