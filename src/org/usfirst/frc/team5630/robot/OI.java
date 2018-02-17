@@ -72,14 +72,9 @@ public class OI {
 	
 	public OI() {
 		button8Opperator.whileHeld(new TurnWinch());		//Start button
-		
-<<<<<<< HEAD
-		button2Opperator.whileHeld(new InTakeTeleop());		//B button
-		button1Opperator.whenPressed(new OutTakeTeleop());	//A Button
-=======
+
 		button2Opperator.whileHeld(new InTake());
 		button1Opperator.whileHeld(new OutTake());
->>>>>>> origin/Renaming_and_Others
 		
 		button5Opperator.whenPressed(new LiftTeleop(-1));	//Left bumper
 		button6Opperator.whenPressed(new LiftTeleop(1));	//Right bumper

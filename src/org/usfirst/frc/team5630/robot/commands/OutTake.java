@@ -9,21 +9,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-<<<<<<< HEAD:src/org/usfirst/frc/team5630/robot/commands/OutTakeTeleop.java
-public class OutTakeTeleop extends Command {
-	
-	double startTime;
-    public OutTakeTeleop() {
-=======
+
 public class OutTake extends Command {
 
     public OutTake() {
->>>>>>> origin/Renaming_and_Others:src/org/usfirst/frc/team5630/robot/commands/OutTake.java
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.intakeSubsystem);
     }
 
     // Called just before this Command runs the first time
+    double startTime;
     protected void initialize() {
     	startTime = DriverStation.getInstance().getMatchTime();	//In seconds
     }

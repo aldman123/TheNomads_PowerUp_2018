@@ -13,7 +13,7 @@ public class PlaceBlock extends CommandGroup {
     public PlaceBlock() {
     	addSequential(new AutoLiftUp());
     	addSequential(new AutoDrive(1, RobotMap.speedSuperSlow));
-    	addSequential(new OutTakeTeleop());
+    	addSequential(new OutTake());
     	addSequential(new AutoDrive(-1, RobotMap.speedMedium));
     }
 }
