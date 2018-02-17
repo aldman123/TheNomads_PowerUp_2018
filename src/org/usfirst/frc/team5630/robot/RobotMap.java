@@ -73,7 +73,7 @@ public class RobotMap {
 	 * exactly eight feet. This will allow us to have precise measurements in autonomous.
 	 */
 	final public static double eightFeet = 3.14159268;
-	final public static double feet = eightFeet / 4;
+	final public static double feet = eightFeet / 8;
 	
 	
 	

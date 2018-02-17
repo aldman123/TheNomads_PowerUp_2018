@@ -34,13 +34,13 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-	
+
 	Joystick stickDriver, stickOperator;
-	
+
 	double robot_xSpeed, robot_ySpeed;
-	
+
 	String gameData;
-	
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -48,12 +48,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		CameraServer.getInstance().startAutomaticCapture();
+		CameraServer.getInstance().
 		oi = new OI();
 		chooser.addObject("RightAutonomous", new RightAutonomous());
 		chooser.addObject("LeftAutonomous", new LeftAutonomous());
-		chooser.addObject("Center Autonomous", new CenterAutonomous());
+		chooser.addDefault("Center Autonomous", new CenterAutonomous());
 		SmartDashboard.putData("Auto Selector", chooser);
-		
+
 	}
 
 	/**
@@ -84,29 +85,14 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		//TODO: actually figure the fuck out how we're choosing autonomous
 		autonomousCommand = chooser.getSelected();
-		
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		
-		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "Right Side":
-			Scheduler.getInstance().add(new RightAutonomous());
-		 	break;
-		 	
-		case "Center Side": default:
-			break;
-			
-		case "Left Side":
-			Scheduler.getInstance().add(new LeftAutonomous());
-			break;
-		}
 
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null) {
-			autonomousCommand.start();
+		} else {
+			autonomousCommand = new CenterAutonomous();
 		}
+		autonomousCommand.start();
 	}
 
 	/**
@@ -115,8 +101,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		
-		
+
+
 	}
 
 	@Override
@@ -126,11 +112,11 @@ public class Robot extends IterativeRobot {
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		autonomousCommand.cancel();
-		
+
 		navXSubsystem.navXReset();
 		Scheduler.getInstance().add(new TurnClimberArm());
 		Scheduler.getInstance().add(new DriveRobot());
-		
+
 	}
 
 	/**
@@ -139,9 +125,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		
-
-		
 	}
 
 	/**

@@ -11,12 +11,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  * the robot is placed on the right.
  */
 public class RightAutonomous extends CommandGroup {
-
+	
+	char gameData;
     public RightAutonomous() {
-
-    	if ((DriverStation.getInstance().getGameSpecificMessage()).charAt(0) == 'R') {
+    }
+    
+    public void start() {
+    	gameData = DriverStation.getInstance().getGameSpecificMessage().charAt(0);
+    	if (gameData == 'R') {
     		//Distance is in feet, and speed is in percent.
-    		
     		//Go forwards past the auto line
     		addSequential(new AutoDrive(10, RobotMap.speedFast));
     		addSequential(new AutoDrive(2, RobotMap.speedMedium));
@@ -24,8 +27,7 @@ public class RightAutonomous extends CommandGroup {
     		//Turn right and then hit the wall
     		addSequential(new AutoTurn(90));
     		addSequential(new AutoDrive(1.5, RobotMap.speedSuperSlow));	//TODO fix this guessed value
-    		//TODO Place Cube
-    		
+    		addSequential(new AutoPlaceBlock());
     		
 		} else {
 			//Distance is in feet, and speed is in percent.
@@ -51,7 +53,8 @@ public class RightAutonomous extends CommandGroup {
 			addSequential(new AutoTurn(90));
 			addSequential(new AutoDrive(2, RobotMap.speedSuperSlow));	//TODO fix this guessed value
 			
-			//Place cube
+			addSequential(new AutoPlaceBlock());
 		}
+    	super.start();
     }
 }
