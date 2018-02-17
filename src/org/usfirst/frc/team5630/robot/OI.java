@@ -73,8 +73,8 @@ public class OI {
 	public OI() {
 		button8Opperator.whileHeld(new TurnWinch());		//Start button
 
-		button2Opperator.whileHeld(new InTake());
-		button1Opperator.whileHeld(new OutTake());
+		button2Opperator.whileHeld(new InTake());			//B Button
+		button1Opperator.whileHeld(new OutTake());			//A Button
 		
 		button5Opperator.whenPressed(new LiftTeleop(-1));	//Left bumper
 		button6Opperator.whenPressed(new LiftTeleop(1));	//Right bumper

@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  * @author Alexander Aldridge
  * This command group places a cube in autonomous.
  */
-public class PlaceBlock extends CommandGroup {
+public class AutoPlaceBlock extends CommandGroup {
 
-    public PlaceBlock() {
+    public AutoPlaceBlock() {
     	addSequential(new AutoLiftUp());
     	addSequential(new AutoDrive(1, RobotMap.speedSuperSlow));
     	addSequential(new OutTake());
