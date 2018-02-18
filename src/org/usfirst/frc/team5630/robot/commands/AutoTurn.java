@@ -12,13 +12,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoTurn extends Command {
 	
 	private double turnAngle;
-	PIDController pidController = Robot.driveTrainAuto.getPidController();
+	PIDController pidController = Robot.driveTrainSubsystem.getPidController();
 	
 	/**
 	 * @param turnAngle The angle at which the robot will end at.
 	 */
     public AutoTurn(double turnAngle) {
-    	requires(Robot.driveTrainAuto);
+    	requires(Robot.driveTrainSubsystem);
     	
     	this.turnAngle = turnAngle;
     }
@@ -28,7 +28,7 @@ public class AutoTurn extends Command {
     	Robot.navXSubsystem.navXReset();
     	
     	pidController.setSetpoint(turnAngle); //What is your angle goal?
-    	Robot.driveTrainAuto.setForwardSpeed(0); //How fast forwards?
+    	Robot.driveTrainSubsystem.setForwardSpeed(0); //How fast forwards?
     	pidController.setAbsoluteTolerance(2); //How percise should you be? (degrees)
     }
 
@@ -52,13 +52,13 @@ public class AutoTurn extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	pidController.disable();
-    	Robot.driveTrainAuto.stop();
+    	Robot.driveTrainSubsystem.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	pidController.disable();
-    	Robot.driveTrainAuto.stop();
+    	Robot.driveTrainSubsystem.stop();
     }
 }

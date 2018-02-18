@@ -16,7 +16,7 @@ public class AutoDrive_UntilColor extends Command {
 	
 	private double distance, brightness;
 	final private double maxDistance, speed;
-	PIDController pidController = Robot.driveTrainAuto.getPidController();
+	PIDController pidController = Robot.driveTrainSubsystem.getPidController();
 	AnalogInput colorSensor = Robot.colorSensorSubsystem.getColorSensor();
 	
 	/**
@@ -25,7 +25,7 @@ public class AutoDrive_UntilColor extends Command {
 	 * @param speed The Speed of the Robot
 	 */
 	public AutoDrive_UntilColor(double maxDistance, double speed) {
-    	requires(Robot.driveTrainAuto);
+    	requires(Robot.driveTrainSubsystem);
     	requires(Robot.colorSensorSubsystem);
     	requires(Robot.navXSubsystem);
     	
@@ -38,7 +38,7 @@ public class AutoDrive_UntilColor extends Command {
     	Robot.navXSubsystem.navXReset();
     	
     	pidController.setSetpoint(0); //At what angle?
-    	Robot.driveTrainAuto.setForwardSpeed(speed); //How fast forwards?
+    	Robot.driveTrainSubsystem.setForwardSpeed(speed); //How fast forwards?
     	pidController.setAbsoluteTolerance(3); //How precise should you be? (degrees)
     }
 
@@ -58,13 +58,13 @@ public class AutoDrive_UntilColor extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	pidController.disable();
-    	Robot.driveTrainAuto.stop();
+    	Robot.driveTrainSubsystem.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	pidController.disable();
-    	Robot.driveTrainAuto.stop();
+    	Robot.driveTrainSubsystem.stop();
     }
 }

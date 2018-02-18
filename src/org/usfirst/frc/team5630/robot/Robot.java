@@ -4,6 +4,7 @@ package org.usfirst.frc.team5630.robot;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -21,7 +22,7 @@ public class Robot extends IterativeRobot {
 
 //	public static final DriveTrainTeleopSubsystem driveTrainTeleop = new DriveTrainTeleopSubsystem();
 	public static NavXSubsystem navXSubsystem = new NavXSubsystem();
-	public static DriveTrainSubsystem driveTrainAuto = new DriveTrainSubsystem();
+	public static DriveTrainSubsystem driveTrainSubsystem = new DriveTrainSubsystem();
 	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 	public static final BrightnessSensorSubsystem colorSensorSubsystem = new BrightnessSensorSubsystem();
 	public static final LiftSubsystem liftSubsystem = new LiftSubsystem();
@@ -67,7 +68,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
 	}
 
 	/**
@@ -83,14 +83,14 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
-
-		// schedule the autonomous command (example)
-		if (autonomousCommand != null) {
-		} else {
-			autonomousCommand = new CenterAutonomous();
-		}
-		autonomousCommand.start();
+//		autonomousCommand = chooser.getSelected();
+//
+//		// schedule the autonomous command (example)
+//		if (autonomousCommand != null) {
+//		} else {
+//			autonomousCommand = new CenterAutonomous();
+//		}
+//		autonomousCommand.start();
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		Scheduler.getInstance().run();
+//		Scheduler.getInstance().run();
 
 
 	}
@@ -112,13 +112,23 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null) {
 			autonomousCommand.cancel();
 		}
-		
-		driveTrainAuto.getPidController().disable();
+		Scheduler.getInstance().removeAll();
+		Scheduler.getInstance().enable();
+		driveTrainSubsystem.getPidController().disable();
 		
 
 		navXSubsystem.navXReset();
 		//Scheduler.getInstance().add(new TurnClimberArm());
-		Scheduler.getInstance().add(new DriveRobot());
+		DriveRobot drive = new DriveRobot();
+		Scheduler.getInstance().add(drive);
+		System.out.println("Added drive to scheduler");
+		oi.button8Opperator.whileHeld(new TurnWinch());		//Start button
+
+		oi.button2Opperator.whileHeld(new InTake());			//B Button
+		oi.button1Opperator.whileHeld(new OutTake());			//A Button
+		
+		oi.button5Opperator.whenPressed(new LiftTeleop(-1));	//Left bumper
+		oi.button6Opperator.whenPressed(new LiftTeleop(1));	//Right bumper
 
 	}
 
@@ -127,6 +137,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		System.out.println("teleopPeriodic");
+		Scheduler sched = Scheduler.getInstance();
 		Scheduler.getInstance().run();
 	}
 

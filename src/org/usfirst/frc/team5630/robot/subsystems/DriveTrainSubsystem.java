@@ -3,6 +3,7 @@ package org.usfirst.frc.team5630.robot.subsystems;
 import org.usfirst.frc.team5630.robot.Robot;
 import org.usfirst.frc.team5630.robot.RobotMap;
 import org.usfirst.frc.team5630.robot.commands.AutoDrive;
+import org.usfirst.frc.team5630.robot.commands.DriveRobot;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -64,6 +65,7 @@ public class DriveTrainSubsystem extends Subsystem {
 	
 	public void teleopDrive(double speed, double turnSpeed) {
 		robotDrive.arcadeDrive(speed, turnSpeed);
+		System.out.println(speed);
 		
 	}
 	
@@ -91,6 +93,6 @@ public class DriveTrainSubsystem extends Subsystem {
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new AutoDrive(0, 0));
+		setDefaultCommand(new DriveRobot());
 	}
 }
