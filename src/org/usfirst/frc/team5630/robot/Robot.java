@@ -4,7 +4,6 @@ package org.usfirst.frc.team5630.robot;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -90,7 +89,9 @@ public class Robot extends IterativeRobot {
 		} else {
 			autonomousCommand = new CenterAutonomous();
 		}
+		
 		autonomousCommand.start();
+		
 	}
 
 	/**
@@ -120,13 +121,13 @@ public class Robot extends IterativeRobot {
 		navXSubsystem.navXReset();
 		Scheduler.getInstance().add(new TurnClimberArm());
 		Scheduler.getInstance().add(new DriveRobot());
-		oi.button8Opperator.whileHeld(new TurnWinch());		//Start button
+		oi.button8Opperator.whileHeld(new TurnWinch());			//Start button
 
 		oi.button2Opperator.whileHeld(new InTake());			//B Button
 		oi.button1Opperator.whileHeld(new OutTake());			//A Button
 		
 		oi.button5Opperator.whenPressed(new LiftTeleop(-1));	//Left bumper
-		oi.button6Opperator.whenPressed(new LiftTeleop(1));	//Right bumper
+		oi.button6Opperator.whenPressed(new LiftTeleop(1));		//Right bumper
 
 	}
 
