@@ -19,7 +19,6 @@ public class NavXSubsystem extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-    	setDefaultCommand(new AutoDrive(0, 0));
     }
     
     public double getNavXDistanceForwards() {

@@ -37,7 +37,6 @@ public class DriveTrainSubsystem extends Subsystem {
 	double forwardSpeed = 0.0;
 	
 	public DriveTrainSubsystem() {
-		System.out.println("Hello?");
 		srx_leftA = new WPI_TalonSRX(RobotMap.leftMotorA);
 		srx_leftB = new WPI_TalonSRX(RobotMap.leftMotorB);
 		srx_rightA = new WPI_TalonSRX(RobotMap.rightMotorA);
@@ -58,8 +57,6 @@ public class DriveTrainSubsystem extends Subsystem {
 		};
 		System.out.println("Hello!");
 		//These are caculus values that Charlie told Alexander to put in
-		System.out.println(Robot.navXSubsystem.getNavXAngle());
-		System.out.println(pidOutput.toString());
 		pidController = new PIDController(5, 0.0001, 0, Robot.navXSubsystem.getNavX(), pidOutput);
 	}
 	

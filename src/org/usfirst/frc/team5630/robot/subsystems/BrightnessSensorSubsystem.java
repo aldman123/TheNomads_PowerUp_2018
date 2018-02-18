@@ -14,7 +14,6 @@ public class BrightnessSensorSubsystem extends Subsystem {
 	private AnalogInput colorSensor = new AnalogInput(RobotMap.colorSensor);
 	
     public void initDefaultCommand() {
-    	setDefaultCommand(new AutoDrive_UntilColor(0, RobotMap.speedSuperSlow));
     }
     
     public AnalogInput getColorSensor() {

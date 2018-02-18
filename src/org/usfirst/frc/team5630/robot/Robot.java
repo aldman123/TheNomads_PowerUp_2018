@@ -119,9 +119,7 @@ public class Robot extends IterativeRobot {
 
 		navXSubsystem.navXReset();
 		//Scheduler.getInstance().add(new TurnClimberArm());
-		DriveRobot drive = new DriveRobot();
-		Scheduler.getInstance().add(drive);
-		System.out.println("Added drive to scheduler");
+		Scheduler.getInstance().add(new DriveRobot());
 		oi.button8Opperator.whileHeld(new TurnWinch());		//Start button
 
 		oi.button2Opperator.whileHeld(new InTake());			//B Button

@@ -29,7 +29,6 @@ public class DriveRobot extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		System.out.println("DriveRobot");
 		Robot.driveTrainSubsystem.teleopDrive(
 				Robot.oi.getJoystickDriver().getRawAxis(5), //Right Joystick to go forwards
 				Robot.oi.getJoystickDriver().getRawAxis(0)	//Left Joystick to turn
@@ -40,7 +39,6 @@ public class DriveRobot extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		System.out.println("Finished? " + DriverStation.getInstance().isOperatorControl());
 		return DriverStation.getInstance().isOperatorControl() != true;
 	}
 
