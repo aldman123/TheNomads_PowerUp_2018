@@ -29,20 +29,20 @@ public class ClimberSubsystem extends Subsystem {
 	}
 	
 	public void turnClimberArm(double speed) {
-		srx_climberArm.set(speed);
+		//srx_climberArm.set(speed);
 	}
 	
 	public void turnWinch(double speed) {
-		winch.set(speed);
+		//winch.set(speed);
 	}
 	
 	public void stopClimberArm() {
-		srx_climberArm.stopMotor();
+		//srx_climberArm.stopMotor();
 	}
 	
 	public void stopWinch() {
-		winch.set(0);
-		winch.stopMotor();
+		//winch.set(0);
+		//winch.stopMotor();
 	}
 
     public void initDefaultCommand() {

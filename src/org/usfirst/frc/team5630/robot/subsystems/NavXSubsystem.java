@@ -12,14 +12,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * This subsystem controls the navX
  */
 public class NavXSubsystem extends Subsystem {
-	private AHRS navx = new AHRS(SPI.Port.kMXP);
+	private AHRS navx;
+	
+	public NavXSubsystem() {
+		navx = new AHRS(SPI.Port.kMXP);
+	}
 	
     public void initDefaultCommand() {
     	setDefaultCommand(new AutoDrive(0, 0));
     }
     
     public double getNavXDistanceForwards() {
-    	return navx.getDisplacementY();
+    	return this.navx.getDisplacementY();
     }
     
     /**
@@ -28,16 +32,16 @@ public class NavXSubsystem extends Subsystem {
      * @return The navX's current angle
      */
     public double getNavXAngle() {
-    	return navx.getAngle();
+    	return this.navx.getAngle();
     }
     
     public void navXReset() {
-    	navx.reset();
-    	navx.resetDisplacement();
+    	this.navx.reset();
+    	this.navx.resetDisplacement();
     }
     
     public AHRS getNavX() {
-    	return navx;
+    	return this.navx;
     }
     
 }

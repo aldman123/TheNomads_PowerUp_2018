@@ -24,10 +24,10 @@ public class RobotMap {
 	final public static int liftMotorRight = 3;
 	
 	//SRX Inputs
-	final public static int leftMotorA = 1;
-	final public static int leftMotorB = 2;
-	final public static int rightMotorA = 3;
-	final public static int rightMotorB = 4;
+	final public static int leftMotorA = 2;
+	final public static int leftMotorB = 3;
+	final public static int rightMotorA = 10;
+	final public static int rightMotorB = 11;
 	final public static int climberArm = 5;
 	final public static int winchA = 6;
 	final public static int winchB = 7;

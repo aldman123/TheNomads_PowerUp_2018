@@ -13,7 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CenterAutonomous extends CommandGroup {
 
 	public CenterAutonomous() {
-
+	}
+	
+	public void start() {
 		if ((DriverStation.getInstance().getGameSpecificMessage()).charAt(0) == 'L') {
 
 			/* 
@@ -31,7 +33,9 @@ public class CenterAutonomous extends CommandGroup {
 			//Switch is 14 feet away
 			addSequential(new AutoDrive(10, RobotMap.speedMedium)); 
 			addSequential(new AutoDrive(4 - RobotMap.robotLength, RobotMap.speedSuperSlow)); //Allocates for robot size
-			//TODO Place the cube
+			addSequential(new AutoPlaceBlock());
 		}
+		
+		super.start();
 	}
 }

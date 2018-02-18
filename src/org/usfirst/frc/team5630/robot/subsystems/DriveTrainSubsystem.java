@@ -22,7 +22,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  * Used to control our robot's drive train
  * during the Auto mode
  */
-public class DriveTrainAutoSubsystem extends Subsystem {
+public class DriveTrainSubsystem extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	
@@ -30,24 +30,23 @@ public class DriveTrainAutoSubsystem extends Subsystem {
 	WPI_TalonSRX srx_leftA, srx_leftB, srx_rightA, srx_rightB;
 	DifferentialDrive robotDrive;
 	
-	PIDOutput pidOutput;
-	PIDController pidController;
+	private PIDOutput pidOutput;
+	private PIDController pidController;
 	
 	double forwardSpeed = 0.0;
 	
-	public void init() {
+	public DriveTrainSubsystem() {
+		System.out.println("Hello?");
 		srx_leftA = new WPI_TalonSRX(RobotMap.leftMotorA);
 		srx_leftB = new WPI_TalonSRX(RobotMap.leftMotorB);
 		srx_rightA = new WPI_TalonSRX(RobotMap.rightMotorA);
 		srx_rightB = new WPI_TalonSRX(RobotMap.rightMotorB);
-		
 		
 		m_left = new SpeedControllerGroup(srx_leftA, srx_leftB);
 		m_right = new SpeedControllerGroup(srx_rightA, srx_rightB);
 		
 		robotDrive = new DifferentialDrive(m_left, m_right);
 		robotDrive.setSafetyEnabled(true);
-		
 		
 		pidOutput = new PIDOutput() {
 			@Override
@@ -56,14 +55,22 @@ public class DriveTrainAutoSubsystem extends Subsystem {
 				
 			}
 		};
-		
+		System.out.println("Hello!");
 		//These are caculus values that Charlie told Alexander to put in
+		System.out.println(Robot.navXSubsystem.getNavXAngle());
+		System.out.println(pidOutput.toString());
 		pidController = new PIDController(5, 0.0001, 0, Robot.navXSubsystem.getNavX(), pidOutput);
+	}
+	
+	public void teleopDrive(double speed, double turnSpeed) {
+		robotDrive.arcadeDrive(speed, turnSpeed);
+		
 	}
 	
 	public void stop() {
 		robotDrive.arcadeDrive(0, 0);
 		robotDrive.stopMotor();	//Safety. It's probably helpful
+		pidController.disable();
 	}
 
 	public PIDController getPidController() {
@@ -75,7 +82,7 @@ public class DriveTrainAutoSubsystem extends Subsystem {
 	}
 
 	public double getForwardSpeed() {
-		return forwardSpeed;
+		return this.forwardSpeed;
 	}
 
 	public void setForwardSpeed(double forwardSpeed) {
