@@ -83,14 +83,14 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-//		autonomousCommand = chooser.getSelected();
-//
-//		// schedule the autonomous command (example)
-//		if (autonomousCommand != null) {
-//		} else {
-//			autonomousCommand = new CenterAutonomous();
-//		}
-//		autonomousCommand.start();
+		autonomousCommand = chooser.getSelected();
+
+		// schedule the autonomous command (example)
+		if (autonomousCommand != null) {
+		} else {
+			autonomousCommand = new CenterAutonomous();
+		}
+		autonomousCommand.start();
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-//		Scheduler.getInstance().run();
+		Scheduler.getInstance().run();
 
 
 	}
@@ -118,7 +118,7 @@ public class Robot extends IterativeRobot {
 		
 
 		navXSubsystem.navXReset();
-		//Scheduler.getInstance().add(new TurnClimberArm());
+		Scheduler.getInstance().add(new TurnClimberArm());
 		Scheduler.getInstance().add(new DriveRobot());
 		oi.button8Opperator.whileHeld(new TurnWinch());		//Start button
 
@@ -135,8 +135,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		System.out.println("teleopPeriodic");
-		Scheduler sched = Scheduler.getInstance();
 		Scheduler.getInstance().run();
 	}
 

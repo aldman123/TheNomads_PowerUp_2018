@@ -23,8 +23,8 @@ public class LeftAutonomous extends CommandGroup {
     		
     		//Turn right and then hit the wall
     		addSequential(new AutoTurn(-90));
-    		addSequential(new AutoDrive(1.5, RobotMap.speedSuperSlow)); //TODO fix this guessed value
-    		//TODO: Place Cube
+    		//addSequential(new AutoDrive(1.5, RobotMap.speedSuperSlow)); //TODO fix this guessed value
+    		addSequential(new AutoPlaceBlock());
     		
 		} else {
 			//Distance is in feet, and speed is in percent.
@@ -48,9 +48,9 @@ public class LeftAutonomous extends CommandGroup {
 			
 			//Turn and then hit the wall
 			addSequential(new AutoTurn(-90));
-			addSequential(new AutoDrive(2, RobotMap.speedSuperSlow));	//TODO fix this guessed value
+			//addSequential(new AutoDrive(2, RobotMap.speedSuperSlow));	//TODO fix this guessed value
 			
-			//TODO: Place cube
+			addSequential(new AutoPlaceBlock());
 		}
     }
 }

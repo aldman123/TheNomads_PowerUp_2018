@@ -1,10 +1,5 @@
 	package org.usfirst.frc.team5630.robot;
 
-import org.usfirst.frc.team5630.robot.commands.LiftTeleop;
-import org.usfirst.frc.team5630.robot.commands.TurnWinch;
-import org.usfirst.frc.team5630.robot.commands.InTake;
-import org.usfirst.frc.team5630.robot.commands.OutTake;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

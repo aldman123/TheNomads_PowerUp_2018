@@ -1,7 +1,5 @@
 package org.usfirst.frc.team5630.robot.subsystems;
 
-import org.usfirst.frc.team5630.robot.commands.AutoDrive;
-
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SPI;
