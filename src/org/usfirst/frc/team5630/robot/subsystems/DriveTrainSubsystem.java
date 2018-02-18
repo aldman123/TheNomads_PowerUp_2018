@@ -54,14 +54,12 @@ public class DriveTrainSubsystem extends Subsystem {
 				
 			}
 		};
-		System.out.println("Hello!");
 		//These are caculus values that Charlie told Alexander to put in
 		pidController = new PIDController(5, 0.0001, 0, Robot.navXSubsystem.getNavX(), pidOutput);
 	}
 	
 	public void teleopDrive(double speed, double turnSpeed) {
 		robotDrive.arcadeDrive(speed, turnSpeed);
-		System.out.println(speed);
 		
 	}
 	

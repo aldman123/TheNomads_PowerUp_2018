@@ -13,7 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftAutonomous extends CommandGroup {
 
     public LeftAutonomous() {
-    	
+    }
+    
+    public void start() {
     	if ((DriverStation.getInstance().getGameSpecificMessage()).charAt(0) == 'L') {
     		//Distance is in feet, and speed is in percent.
     		
@@ -24,7 +26,7 @@ public class LeftAutonomous extends CommandGroup {
     		//Turn right and then hit the wall
     		addSequential(new AutoTurn(-90));
     		//addSequential(new AutoDrive(1.5, RobotMap.speedSuperSlow)); //TODO fix this guessed value
-    		addSequential(new AutoPlaceBlock());
+    		//addSequential(new AutoPlaceBlock());
     		
 		} else {
 			//Distance is in feet, and speed is in percent.
@@ -50,7 +52,7 @@ public class LeftAutonomous extends CommandGroup {
 			addSequential(new AutoTurn(-90));
 			//addSequential(new AutoDrive(2, RobotMap.speedSuperSlow));	//TODO fix this guessed value
 			
-			addSequential(new AutoPlaceBlock());
+			//addSequential(new AutoPlaceBlock());
 		}
     }
 }

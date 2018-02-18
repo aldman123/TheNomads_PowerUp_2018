@@ -54,13 +54,13 @@ public class RobotMap {
 	final public static DigitalInput ultrasonicIn = new DigitalInput(0);
 	
 	//Robot Speeds (Percent Power)
-	final public static double speedFast = 0.7;
-	final public static double speedMedium = 0.5;
-	final public static double speedSlow = 0.25;
-	final public static double speedSuperSlow = 0.15;
-	final public static double climbingSpeed = 0.5;
+	final public static double speedFast = 0.50;
+	final public static double speedMedium = 0.35;
+	final public static double speedSlow = 0.15;
+	final public static double speedSuperSlow = 0.05;
+	final public static double climbingSpeed = 0.50;
 	final public static double liftSpeed = 0.15;
-	final public static double intakeSpeed = 0.5;
+	final public static double intakeSpeed = 0.50;
 
 	
 	//Measurements

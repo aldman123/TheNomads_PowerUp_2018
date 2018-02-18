@@ -23,6 +23,7 @@ public class CenterAutonomous extends CommandGroup {
 			 * AutoLine is 10 feet away from Alliance Station
 			 * Switch is 14 feet away
 			 */
+			
 			addSequential(new AutoDrive(12 - RobotMap.robotLength, RobotMap.speedMedium)); 
 			//DO NOT PLACE THE CUBE
 		}
