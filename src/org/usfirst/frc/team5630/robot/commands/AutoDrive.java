@@ -32,9 +32,9 @@ public class AutoDrive extends Command {
     protected void initialize() {
     	Robot.navXSubsystem.navXReset();
     	
-    	pidController.setSetpoint(0); //At what angle?
-    	Robot.driveTrainSubsystem.setForwardSpeed(speed); //How fast forwards?
-    	pidController.setAbsoluteTolerance(3); //How percise should you be? (degrees)
+    	pidController.setSetpoint(0);						//At what angle?
+    	Robot.driveTrainSubsystem.setForwardSpeed(speed);	//How fast forwards?
+    	pidController.setAbsoluteTolerance(3); 				//How percise should you be? (degrees)
     }
 
     // Called repeatedly when this Command is scheduled to run

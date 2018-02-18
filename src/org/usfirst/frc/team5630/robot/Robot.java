@@ -99,6 +99,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		Scheduler sched = Scheduler.getInstance();
 		Scheduler.getInstance().run();
 
 
