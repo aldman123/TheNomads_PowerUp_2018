@@ -50,7 +50,8 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		chooser.addObject("RightAutonomous", new RightAutonomous());
 		chooser.addObject("LeftAutonomous", new LeftAutonomous());
-		chooser.addDefault("Center Autonomous", new CenterAutonomous());
+		chooser.addObject("Center Autonomous", new CenterAutonomous());
+		chooser.addDefault("Eight Feet", new BaselineAuto());
 		SmartDashboard.putData("Auto Selector", chooser);
 
 	}
@@ -99,7 +100,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		Scheduler sched = Scheduler.getInstance();
 		Scheduler.getInstance().run();
 
 
