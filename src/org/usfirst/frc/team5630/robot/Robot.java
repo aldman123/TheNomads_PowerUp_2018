@@ -120,15 +120,15 @@ public class Robot extends IterativeRobot {
 		
 
 		navXSubsystem.navXReset();
-		Scheduler.getInstance().add(new TurnClimberArm());
+		//Scheduler.getInstance().add(new TurnClimberArm());
 		Scheduler.getInstance().add(new DriveRobot());
-		oi.button8Opperator.whileHeld(new TurnWinch());			//Start button
-
-		oi.button2Opperator.whileHeld(new InTake());			//B Button
-		oi.button1Opperator.whileHeld(new OutTake());			//A Button
+		//oi.button8Opperator.whileHeld(new TurnWinch());			//Start button
 		
-		oi.button5Opperator.whenPressed(new LiftTeleop(-1));	//Left bumper
-		oi.button6Opperator.whenPressed(new LiftTeleop(1));		//Right bumper
+		//oi.button2Opperator.whileHeld(new InTake());				//B Button
+		//oi.button1Opperator.whileHeld(new OutTake());				//A Button
+		
+		//oi.button5Opperator.whenPressed(new LiftTeleop(-1));		//Left bumper
+		//oi.button6Opperator.whenPressed(new LiftTeleop(1));		//Right bumper
 
 	}
 

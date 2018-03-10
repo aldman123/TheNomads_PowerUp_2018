@@ -18,14 +18,14 @@ public class OutTake extends Command {
     }
 
     // Called just before this Command runs the first time
-    double startTime;
+    private double startTime;
     protected void initialize() {
     	startTime = DriverStation.getInstance().getMatchTime();	//In seconds
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intakeSubsystem.outTake(RobotMap.intakeSpeed*-1);
+    	Robot.intakeSubsystem.outTake(RobotMap.intakeSpeed * -1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
