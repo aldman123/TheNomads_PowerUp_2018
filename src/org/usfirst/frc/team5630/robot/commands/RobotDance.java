@@ -10,12 +10,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * The autonomous command group that we use when
  * the robot is placed in the center.
  */
-public class BaselineAuto extends CommandGroup {
+public class RobotDance extends CommandGroup {
 	
-	public BaselineAuto() {
-		addSequential(new AutoTurn(-45));
-		addSequential(new AutoTurn(90));
-		addSequential(new AutoTurn(-45));
+	public RobotDance() {
+		addSequential(new AutoTurn(-90));
+//		addSequential(new AutoTurn(45));
+//		addSequential(new AutoTurn(-10));
+//		addSequential(new AutoTurn(55));
 	}
 	
 	public void start() {

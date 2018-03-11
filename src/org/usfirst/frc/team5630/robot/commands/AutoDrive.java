@@ -32,9 +32,9 @@ public class AutoDrive extends Command {
     protected void initialize() {
     	Robot.navXSubsystem.navXReset();
     	
-    	pidController.setSetpoint(0);						//At what angle?
-    	Robot.driveTrainSubsystem.setForwardSpeed(speed);	//How fast forwards?
-    	pidController.setAbsoluteTolerance(3); 				//How percise should you be? (degrees)
+    	pidController.setSetpoint(Robot.navXSubsystem.getTargetAngle());	//At what angle?
+    	Robot.driveTrainSubsystem.setForwardSpeed(speed);					//How fast forwards?
+    	pidController.setAbsoluteTolerance(3); 								//How percise should you be? (degrees)
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -44,6 +44,7 @@ public class AutoDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	
     	return distance >= Robot.navXSubsystem.getNavXDistanceForwards();
     }
 
@@ -59,4 +60,9 @@ public class AutoDrive extends Command {
     	pidController.disable();
     	Robot.driveTrainSubsystem.stop();
     }
+    
+    public double getFinalDistance() {
+    	return distance;
+    }
+    
 }

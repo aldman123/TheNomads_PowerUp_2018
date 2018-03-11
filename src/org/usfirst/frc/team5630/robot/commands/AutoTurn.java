@@ -4,42 +4,40 @@ import org.usfirst.frc.team5630.robot.Robot;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author Alexander Aldridge
  * Turns the robot without moving.
  */
 public class AutoTurn extends Command {
+	PIDController pidController = Robot.driveTrainSubsystem.getPidController();
 	
 	private double turnAngle;
-	PIDController pidController = Robot.driveTrainSubsystem.getPidController();
 	
 	/**
 	 * @param turnAngle The angle at which the robot will end at.
 	 */
     public AutoTurn(double turnAngle) {
     	requires(Robot.driveTrainSubsystem);
-    	
     	this.turnAngle = turnAngle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.navXSubsystem.navXReset();
-    	
-    	pidController.setSetpoint(turnAngle); //What is your angle goal?
+    	Robot.navXSubsystem.setTargetAngle(turnAngle);
+    	pidController.setSetpoint(Robot.navXSubsystem.getTargetAngle()); //What is your angle goal?
     	Robot.driveTrainSubsystem.setForwardSpeed(0); //How fast forwards?
-    	pidController.setAbsoluteTolerance(2); //How percise should you be? (degrees)
+    	pidController.setAbsoluteTolerance(1); //How percise should you be? (degrees)
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	pidController.enable(); //GO!
-
-    	// TODO
-    	// Set turn directions dependant on which direction is required
-    	// ie: turn 90 degrees right rather than 270 degrees leftMotorA
     	
+    	SmartDashboard.putNumber("Current Angle", Robot.navXSubsystem.getNavXAngle());
+    	SmartDashboard.putNumber("Target Angle", Robot.navXSubsystem.getTargetAngle());
+
     	
     }
 

@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
 
 	Joystick stickDriver, stickOperator;
 
-	double robot_xSpeed, robot_ySpeed;
+	double robot_ySpeed,robot_xSpeed; // Make a change to this (switched values)
 
 	String gameData;
 
@@ -51,6 +51,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("RightAutonomous", new RightAutonomous());
 		chooser.addObject("LeftAutonomous", new LeftAutonomous());
 		chooser.addObject("Center Autonomous", new CenterAutonomous());
+		chooser.addObject("Dance", new RobotDance());
 		chooser.addDefault("Eight Feet", new BaselineAuto());
 		SmartDashboard.putData("Auto Selector", chooser);
 
@@ -92,6 +93,9 @@ public class Robot extends IterativeRobot {
 		}
 		
 		autonomousCommand.start();
+		
+		navXSubsystem.navXResetAngle();
+		navXSubsystem.navXReset();
 		
 	}
 
@@ -138,6 +142,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
 	}
 
 	/**

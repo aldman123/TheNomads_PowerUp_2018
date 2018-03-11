@@ -4,6 +4,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author Alexander Aldridge
@@ -12,15 +13,26 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class NavXSubsystem extends Subsystem {
 	private AHRS navx;
 	
+	private int resets = 0;
+	private double targetAngle;
+	
 	public NavXSubsystem() {
 		navx = new AHRS(SPI.Port.kMXP);
+		navx.enableLogging(true);
+		navx.resetDisplacement();
+		navx.reset();
+		targetAngle = 0;
+		
 	}
 	
     public void initDefaultCommand() {
     }
     
     public double getNavXDistanceForwards() {
-    	return this.navx.getDisplacementY();
+    	SmartDashboard.putNumber("NavX X", navx.getVelocityX());
+    	SmartDashboard.putNumber("NavX Y", navx.getVelocityY());
+    	SmartDashboard.putNumber("NavX Z", navx.getVelocityZ());
+    	return navx.getDisplacementY();
     }
     
     /**
@@ -29,12 +41,24 @@ public class NavXSubsystem extends Subsystem {
      * @return The navX's current angle
      */
     public double getNavXAngle() {
-    	return this.navx.getAngle();
+    	return this.navx.getAngle() % 360;
     }
     
     public void navXReset() {
-    	this.navx.reset();
     	this.navx.resetDisplacement();
+    }
+    
+    public void navXResetAngle() {
+    	this.targetAngle = 0;
+    	navx.reset();
+    }
+    
+    public void setTargetAngle(double angle) {
+    	this.targetAngle = ( angle + targetAngle ) % 360;
+    }
+    
+    public double getTargetAngle() {
+    	return this.targetAngle;
     }
     
     public AHRS getNavX() {

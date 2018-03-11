@@ -16,21 +16,23 @@ import edu.wpi.first.wpilibj.DigitalOutput;
  */
 public class RobotMap {
 	
-	//PWM Inputs
-	final public static int intakeMotorRight = 23;
-	final public static int intakeMotorLeft = 22;
 	
-	final public static int liftMotorLeft = 20;
-	final public static int liftMotorRight = 21;
 	
 	//SRX Inputs
 	final public static int leftMotorA = 1;
 	final public static int leftMotorB = 2;
 	final public static int rightMotorA = 3;
 	final public static int rightMotorB = 4;
+	
 	final public static int climberArm = 5;
 	final public static int winchA = 6;
 	final public static int winchB = 7;
+	
+	final public static int intakeMotorRight = 23;
+	final public static int intakeMotorLeft = 22;
+	
+	final public static int liftMotorLeft = 20;
+	final public static int liftMotorRight = 21;
 	
 	//Joystick Inputs
 	final public static int joystickDriver = 0;
@@ -56,7 +58,7 @@ public class RobotMap {
 	
 	//Robot Speeds (Percent Power)
 	final public static double speedFast = 0.50;
-	final public static double speedMedium = 0.35;
+	final public static double speedMedium = 0.45;
 	final public static double speedSlow = 0.15;
 	final public static double speedSuperSlow = 0.05;
 	final public static double climbingSpeed = 0.50;
@@ -73,7 +75,7 @@ public class RobotMap {
 	 * At the competition, we will trial and error this number, until the robot drives
 	 * exactly eight feet. This will allow us to have precise measurements in autonomous.
 	 */
-	final public static double eightFeet = 3.14159268;
+	final public static double eightFeet = 0.1;
 	final public static double feet = eightFeet / 8;
 	
 	

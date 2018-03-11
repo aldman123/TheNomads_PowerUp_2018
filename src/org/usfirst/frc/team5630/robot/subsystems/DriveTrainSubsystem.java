@@ -51,15 +51,18 @@ public class DriveTrainSubsystem extends Subsystem {
 			@Override
 			public void pidWrite(double output) {
 				robotDrive.arcadeDrive(forwardSpeed, output);
-				
 			}
 		};
+		
 		//These are caculus values that Charlie told Alexander to put in
-		pidController = new PIDController(5, 0.0001, 0, Robot.navXSubsystem.getNavX(), pidOutput);
+		pidController = new PIDController(0.1, 0.000, 0, Robot.navXSubsystem.getNavX(), pidOutput);
+		pidController.setOutputRange(-0.6, 0.6);
+//		pidController.setInputRange(-360, 360);
+//		pidController.setContinuous();
 	}
 	
 	public void teleopDrive(double speed, double turnSpeed) {
-		robotDrive.arcadeDrive(speed, turnSpeed);
+		robotDrive.arcadeDrive(-turnSpeed, speed);
 		
 	}
 	

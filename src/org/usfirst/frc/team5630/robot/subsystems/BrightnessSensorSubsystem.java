@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class BrightnessSensorSubsystem extends Subsystem {
 	private AnalogInput colorSensorA = new AnalogInput(RobotMap.colorSensorA);
-	private AnalogInput colorSensorB = new AnalogInput(RobotMap.colorSensorA);
+	private AnalogInput colorSensorB = new AnalogInput(RobotMap.colorSensorB);
 	
     public void initDefaultCommand() {
     }

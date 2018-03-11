@@ -33,7 +33,7 @@ public class CenterAutonomous extends CommandGroup {
 			//AutoLine is 10 feet away from Alliance Station
 			//Switch is 14 feet away
 			addSequential(new AutoDrive(10, RobotMap.speedMedium)); 
-			addSequential(new AutoDrive(4 - RobotMap.robotLength, RobotMap.speedSuperSlow)); //Allocates for robot size
+			addSequential(new AutoDrive(4 - RobotMap.robotLength, RobotMap.speedSlow)); //Allocates for robot size
 			addSequential(new AutoPlaceBlock());
 		}
 		
