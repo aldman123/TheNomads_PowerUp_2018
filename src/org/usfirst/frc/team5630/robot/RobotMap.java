@@ -39,7 +39,8 @@ public class RobotMap {
 	final public static int lowerArmAxis = 2;	//Left trigger
 	
 	//Analog Inputs
-	final public static int colorSensor = 0;
+	final public static int colorSensorA = 5;
+	final public static int colorSensorB = 6;
 	final public static int limitSwitchTop = 1;
 	final public static int limitSwitchBottom = 2;
 	

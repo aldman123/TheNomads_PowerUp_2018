@@ -10,13 +10,23 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * This subsystem controls inputs from a Vex Line Tracker
  */
 public class BrightnessSensorSubsystem extends Subsystem {
-	private AnalogInput colorSensor = new AnalogInput(RobotMap.colorSensor);
+	private AnalogInput colorSensorA = new AnalogInput(RobotMap.colorSensorA);
+	private AnalogInput colorSensorB = new AnalogInput(RobotMap.colorSensorA);
 	
     public void initDefaultCommand() {
     }
     
-    public AnalogInput getColorSensor() {
-    	return colorSensor;
+    public boolean isActivated() {
+    	return isLeftTouching() || isRightTouching();
     }
+    
+    public boolean isLeftTouching() {
+    	return colorSensorA.getVoltage() < RobotMap.colorSensorThreshhold;
+    }
+    
+    public boolean isRightTouching() {
+    	return colorSensorB.getVoltage() < RobotMap.colorSensorThreshhold;
+    }
+    
 }
 
