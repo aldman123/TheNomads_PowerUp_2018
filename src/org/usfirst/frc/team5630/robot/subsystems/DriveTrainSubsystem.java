@@ -57,8 +57,6 @@ public class DriveTrainSubsystem extends Subsystem {
 		//These are caculus values that Charlie told Alexander to put in
 		pidController = new PIDController(0.1, 0.000, 0, Robot.navXSubsystem.getNavX(), pidOutput);
 		pidController.setOutputRange(-0.6, 0.6);
-//		pidController.setInputRange(-360, 360);
-//		pidController.setContinuous();
 	}
 	
 	public void teleopDrive(double speed, double turnSpeed) {
@@ -90,6 +88,5 @@ public class DriveTrainSubsystem extends Subsystem {
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new DriveRobot());
 	}
 }

@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5630.robot.subsystems;
 
 import org.usfirst.frc.team5630.robot.RobotMap;
-import org.usfirst.frc.team5630.robot.commands.LiftTeleop;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -33,11 +32,11 @@ public class LiftSubsystem extends Subsystem {
 	}
 	
 	public void moveLift (double speed) {
-		//lift.set(speed);
+		lift.set(speed);
 	}
 	 
 	 public void stop () {
-		 //lift.set(0);
+		 lift.set(0);
 	 }
 	
 	public void initDefaultCommand() {

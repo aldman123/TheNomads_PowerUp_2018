@@ -4,7 +4,6 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author Alexander Aldridge
@@ -39,7 +38,7 @@ public class NavXSubsystem extends Subsystem {
     
     public void navXResetAngle() {
     	this.targetAngle = 0;
-    	//navx.reset();
+    	navx.reset();
     }
     
     public void setTargetAngle(double angle) {

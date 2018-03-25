@@ -17,7 +17,6 @@ public class LimitSwitchSubsystem extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
     
     //When pushed, it should have a value of 3 or 4
