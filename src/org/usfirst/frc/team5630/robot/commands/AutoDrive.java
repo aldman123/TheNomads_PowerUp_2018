@@ -59,9 +59,5 @@ public class AutoDrive extends Command {
     	pidController.disable();
     	Robot.driveTrainSubsystem.stop();
     }
-    
-    public double getFinalDistance() {
-    	return distance;
-    }
-    
+
 }

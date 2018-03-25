@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5630.robot.commands;
 
+import org.usfirst.frc.team5630.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -11,9 +13,17 @@ public class RobotDance extends CommandGroup {
 	
 	public RobotDance() {
 		addSequential(new AutoTurn(-90));
-		addSequential(new AutoTurn(45));
-		addSequential(new AutoTurn(-10));
-		addSequential(new AutoTurn(55));
+		addSequential(new AutoTurn(90));
+		
+		for (int i = 0; i < 4; i++) {
+			addSequential(new AutoDrive(2, RobotMap.speedMedium));
+			addSequential(new AutoTurn(90));
+		}
+		
+		for (int i = 0; i < 4; i++) {
+			addSequential(new AutoTurn(180));
+		}
+		
 	}
 	
 	public void start() {
