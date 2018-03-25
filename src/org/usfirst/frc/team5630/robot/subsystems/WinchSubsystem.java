@@ -9,34 +9,24 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * @author Alexander Aldridge
- * It really should be two seperate subsystems.
- * TODO: Split these up
+ * A subsystem for controlling the winch for the climber
  */
-public class ClimberSubsystem extends Subsystem {
+public class WinchSubsystem extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	WPI_TalonSRX srx_climberArm, srx_winchA, srx_winchB;
+	WPI_TalonSRX srx_winchA, srx_winchB;
 	SpeedControllerGroup winch;
 	
 	public void init() {
-		srx_climberArm = new WPI_TalonSRX(RobotMap.climberArm);
 		srx_winchA = new WPI_TalonSRX(RobotMap.winchA);
 		srx_winchB = new WPI_TalonSRX(RobotMap.winchB);
 		srx_winchB.setInverted(true);
 		winch = new SpeedControllerGroup(srx_winchA, srx_winchB);
 	}
-	
-	public void turnClimberArm(double speed) {
-		srx_climberArm.set(speed);
-	}
-	
+
 	public void turnWinch(double speed) {
 		winch.set(speed);
-	}
-	
-	public void stopClimberArm() {
-		srx_climberArm.stopMotor();
 	}
 	
 	public void stopWinch() {

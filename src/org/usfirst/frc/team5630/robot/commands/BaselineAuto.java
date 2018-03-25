@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class BaselineAuto extends CommandGroup {
 	
 	public BaselineAuto() {
-		addSequential(new AutoDrive(3, RobotMap.speedFast));
+		addSequential(new AutoDrive(8, RobotMap.speedFast));
 	}
 	
 	public void start() {

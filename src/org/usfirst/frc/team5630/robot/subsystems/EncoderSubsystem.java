@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class EncoderSubsystem extends Subsystem {
 	
-	private Encoder leftSide = new Encoder(RobotMap.encoderLeftA, RobotMap.encoderLeftB, false);
+	private Encoder leftSide = new Encoder(RobotMap.encoderLeftA, RobotMap.encoderLeftB);
 	private Encoder rightSide = new Encoder(RobotMap.encoderRightA, RobotMap.encoderRightB, true);
 	
 	public EncoderSubsystem() {
