@@ -1,6 +1,10 @@
-package org.usfirst.frc.team5630.robot.commands;
+package org.usfirst.frc.team5630.robot.commandGroups;
 
 import org.usfirst.frc.team5630.robot.RobotMap;
+import org.usfirst.frc.team5630.robot.commands.AutoDrive;
+import org.usfirst.frc.team5630.robot.commands.AutoDrive_UntilColor;
+import org.usfirst.frc.team5630.robot.commands.AutoPlaceBlock;
+import org.usfirst.frc.team5630.robot.commands.AutoTurn;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -8,25 +12,24 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  * @author Alexander Aldridge
  * The autonomous command group that we use when
- * the robot is placed on the right.
+ * the robot is placed on the left.
  */
-public class RightAutonomous extends CommandGroup {
-	
-	char gameData;
-    public RightAutonomous() {
+public class LeftAutonomous extends CommandGroup {
+
+    public LeftAutonomous() {
     }
     
     public void start() {
-    	gameData = DriverStation.getInstance().getGameSpecificMessage().charAt(0);
-    	if (gameData == 'R') {
+    	if ((DriverStation.getInstance().getGameSpecificMessage()).charAt(0) == 'L') {
     		//Distance is in feet, and speed is in percent.
+    		
     		//Go forwards past the auto line
     		addSequential(new AutoDrive(10, RobotMap.speedFast));
     		addSequential(new AutoDrive(2, RobotMap.speedMedium));
     		
     		//Turn right and then hit the wall
-    		addSequential(new AutoTurn(90));
-    		//addSequential(new AutoDrive(1.5, RobotMap.speedSuperSlow));	//TODO fix this guessed value
+    		addSequential(new AutoTurn(-90));
+    		//addSequential(new AutoDrive(1.5, RobotMap.speedSuperSlow)); //TODO fix this guessed value
     		addSequential(new AutoPlaceBlock());
     		
 		} else {
@@ -35,9 +38,9 @@ public class RightAutonomous extends CommandGroup {
 			addSequential(new AutoDrive(15, RobotMap.speedFast));
 			addSequential(new AutoDrive_UntilColor(11, RobotMap.speedSlow));
 			
-			//Reverse and then turn left
+			//Reverse and then turn right
 			addSequential(new AutoDrive(-3, RobotMap.speedMedium));
-			addSequential(new AutoTurn(90));
+			addSequential(new AutoTurn(-90));
 			
 			//Go past two red/blue lines
 			addSequential(new AutoDrive_UntilColor(16, RobotMap.speedFast));
@@ -46,15 +49,14 @@ public class RightAutonomous extends CommandGroup {
 			
 			//Go Forwards, Turn, and Go Forwards a little
 			addSequential(new AutoDrive(2, RobotMap.speedMedium));
-			addSequential(new AutoTurn(90));
+			addSequential(new AutoTurn(-90));
 			addSequential(new AutoDrive(4, RobotMap.speedSlow));
 			
 			//Turn and then hit the wall
-			addSequential(new AutoTurn(90));
+			addSequential(new AutoTurn(-90));
 			//addSequential(new AutoDrive(2, RobotMap.speedSuperSlow));	//TODO fix this guessed value
 			
 			addSequential(new AutoPlaceBlock());
 		}
-    	super.start();
     }
 }

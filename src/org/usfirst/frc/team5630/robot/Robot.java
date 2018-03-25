@@ -9,6 +9,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team5630.robot.commandGroups.BaselineAuto;
+import org.usfirst.frc.team5630.robot.commandGroups.CenterAutonomous;
+import org.usfirst.frc.team5630.robot.commandGroups.LeftAutonomous;
+import org.usfirst.frc.team5630.robot.commandGroups.RightAutonomous;
+import org.usfirst.frc.team5630.robot.commandGroups.RobotDance;
 import org.usfirst.frc.team5630.robot.commands.*;
 import org.usfirst.frc.team5630.robot.subsystems.*;
 
@@ -19,17 +24,18 @@ import org.usfirst.frc.team5630.robot.subsystems.*;
 
 public class Robot extends IterativeRobot {
 
-	public static final DriveTrainSubsystem driveTrainSubsystem = new DriveTrainSubsystem();
-	public static final ClimberArmSubsystem climberSubsystem = new ClimberArmSubsystem();
-	public static final WinchSubsystem winchSubsystem = new WinchSubsystem();
-	public static final LiftSubsystem liftSubsystem = new LiftSubsystem();
-	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+	public final DriveTrainSubsystem driveTrainSubsystem = new DriveTrainSubsystem();
+	public final ClimberArmSubsystem climberSubsystem = new ClimberArmSubsystem();
+	public final WinchSubsystem winchSubsystem = new WinchSubsystem();
+	public final LiftSubsystem liftSubsystem = new LiftSubsystem();
+	public final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 	
-	public static final NavXSubsystem navXSubsystem = new NavXSubsystem();
-	public static final BrightnessSensorSubsystem colorSensorSubsystem = new BrightnessSensorSubsystem();
-	public static final EncoderSubsystem encoderSubsystem = new EncoderSubsystem();
-	public static final LimitSwitchSubsystem limitSwitchSubsystem = new LimitSwitchSubsystem();
-
+	public final NavXSubsystem navXSubsystem = new NavXSubsystem();
+	public final BrightnessSensorSubsystem colorSensorSubsystem = new BrightnessSensorSubsystem();
+	public final EncoderSubsystem encoderSubsystem = new EncoderSubsystem();
+	public final LimitSwitchSubsystem limitSwitchSubsystem = new LimitSwitchSubsystem();
+	public final UltrasonicSubsystem ultrasonicSubsystem = new UltrasonicSubsystem();
+	
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -51,9 +57,9 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		chooser.addObject("RightAutonomous", new RightAutonomous());
 		chooser.addObject("LeftAutonomous", new LeftAutonomous());
-		chooser.addObject("Center Autonomous", new CenterAutonomous());
+		chooser.addDefault("Center Autonomous", new CenterAutonomous());
 		chooser.addObject("Dance", new RobotDance());
-		chooser.addDefault("Eight Feet", new BaselineAuto());
+		chooser.addObject("Eight Feet", new BaselineAuto());
 		SmartDashboard.putData("Auto Selector", chooser);
 
 	}
@@ -130,13 +136,13 @@ public class Robot extends IterativeRobot {
 		
 		Scheduler.getInstance().add(new RaiseClimber());
 		Scheduler.getInstance().add(new DriveRobot());
-		oi.start8Opperator.whileHeld(new TurnWinch());			//Start button
+		oi.startOpperator.whileHeld(new TurnWinch());
 		
-		oi.buttonBOpperator.whileHeld(new InTake());			//B Button
-		oi.buttonAOpperator.whileHeld(new OutTake());			//A Button
+		oi.buttonBOpperator.whileHeld(new InTake());
+		oi.buttonAOpperator.whileHeld(new OutTake());
 		
-		oi.leftBumperOpperator.whenPressed(new LiftTeleop(-1));	//Left bumper
-		oi.rightBumperOpperator.whenPressed(new LiftTeleop(1));		//Right bumper
+		oi.leftBumperOpperator.whenPressed(new LiftTeleop(-1));
+		oi.rightBumperOpperator.whenPressed(new LiftTeleop(1));
 
 	}
 

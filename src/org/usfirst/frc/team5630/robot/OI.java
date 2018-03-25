@@ -64,7 +64,7 @@ public class OI {
 			leftBumperOpperator = new JoystickButton(stickDriver, 5),
 			rightBumperOpperator = new JoystickButton(stickDriver, 6),
 			selectOpperator = new JoystickButton(stickDriver, 7),
-			start8Opperator = new JoystickButton(stickDriver, 8);
+			startOpperator = new JoystickButton(stickDriver, 8);
 	
 	public Joystick getJoystickOpperator() {
 		return stickOpperator;
