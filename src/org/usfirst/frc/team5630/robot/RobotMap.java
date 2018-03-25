@@ -71,11 +71,21 @@ public class RobotMap {
 	final public static double robotWidth = 32 / 12;	//In feet = 2.66
 	final public static double outTakeTime = 3;			//In seconds
 	
+	//Encoder Inputs. TODO fix these ASAP
+	final public static int encoderLeftA = 0;
+	final public static int encoderLeftB = 1;
+	final public static int encoderRightA = 0;
+	final public static int encoderRightB = 1;
+	
+	
 	/**
 	 * At the competition, we will trial and error this number, until the robot drives
 	 * exactly eight feet. This will allow us to have precise measurements in autonomous.
 	 */
-	final public static double eightFeet = 8;
+	
+	//Partially calculated in cimcoder subsystem
+	//This is for the last little bit of accuracy
+	final private static double eightFeet = 8;
 	final public static double feet = eightFeet / 8;
 	
 	

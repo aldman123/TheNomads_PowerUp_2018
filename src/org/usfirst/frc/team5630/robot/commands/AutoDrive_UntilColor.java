@@ -7,10 +7,7 @@ import org.usfirst.frc.team5630.robot.Robot;
  * Drives the robot forwards in a straight line until
  *  the brightness sensor hits a line
  */
-public class AutoDrive_UntilColor extends AutoDrive {
-	
-	private double distance;
-	
+public class AutoDrive_UntilColor extends AutoDrive {	
 	/**
 	 * Drives the robot forwards until the brightness sensor is activated
 	 * @param maxDistance The maximum distance to travel in feet 
@@ -33,7 +30,7 @@ public class AutoDrive_UntilColor extends AutoDrive {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.colorSensorSubsystem.isActivated() || distance >= super.getFinalDistance();
+    	return Robot.colorSensorSubsystem.isActivated() || super.isFinished();
     }
 
     // Called once after isFinished returns true

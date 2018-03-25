@@ -19,12 +19,13 @@ import org.usfirst.frc.team5630.robot.subsystems.*;
 
 public class Robot extends IterativeRobot {
 
-	public static NavXSubsystem navXSubsystem = new NavXSubsystem();
-	public static DriveTrainSubsystem driveTrainSubsystem = new DriveTrainSubsystem();
+	public static final NavXSubsystem navXSubsystem = new NavXSubsystem();
+	public static final DriveTrainSubsystem driveTrainSubsystem = new DriveTrainSubsystem();
 	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 	public static final BrightnessSensorSubsystem colorSensorSubsystem = new BrightnessSensorSubsystem();
 	public static final LiftSubsystem liftSubsystem = new LiftSubsystem();
 	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+	public static final EncoderSubsystem encoderSubsystem = new EncoderSubsystem();
 
 	public static final LimitSwitchSubsystem limitSwitchSubsystem = new LimitSwitchSubsystem();
 

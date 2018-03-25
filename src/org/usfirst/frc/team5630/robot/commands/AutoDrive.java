@@ -23,13 +23,13 @@ public class AutoDrive extends Command {
     public AutoDrive(double distance, double speed) {
     	requires(Robot.driveTrainSubsystem);
     	requires(Robot.navXSubsystem);
-    	
     	this.distance = distance * RobotMap.feet;
     	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.encoderSubsystem.reset();
     	Robot.navXSubsystem.navXResetAngle();
     	
     	pidController.setSetpoint(Robot.navXSubsystem.getTargetAngle());	//At what angle?
@@ -44,8 +44,7 @@ public class AutoDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	//TODO Add simcoders
-    	return false;
+    	return this.distance >= Robot.encoderSubsystem.getAverageDistance();
     }
 
     // Called once after isFinished returns true
