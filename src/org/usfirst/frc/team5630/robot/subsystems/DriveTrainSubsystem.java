@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /*
@@ -83,6 +84,20 @@ public class DriveTrainSubsystem extends Subsystem {
 
 	public void setForwardSpeed(double forwardSpeed) {
 		this.forwardSpeed = forwardSpeed;
+	}
+	
+	public void setAutoMode(boolean inAuto) {
+		if (inAuto) {
+			srx_leftA.setNeutralMode(NeutralMode.Brake);
+			srx_leftB.setNeutralMode(NeutralMode.Brake);
+			srx_rightA.setNeutralMode(NeutralMode.Brake);
+			srx_rightB.setNeutralMode(NeutralMode.Brake);
+		} else {
+			srx_leftA.setNeutralMode(NeutralMode.Coast);
+			srx_leftB.setNeutralMode(NeutralMode.Coast);
+			srx_rightA.setNeutralMode(NeutralMode.Coast);
+			srx_rightB.setNeutralMode(NeutralMode.Coast);
+		}
 	}
 
 	public void initDefaultCommand() {

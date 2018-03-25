@@ -93,6 +93,8 @@ public class Robot extends IterativeRobot {
 			autonomousCommand = new CenterAutonomous();
 		}
 		
+		driveTrainSubsystem.setAutoMode(true);
+		
 		autonomousCommand.start();
 		
 		navXSubsystem.navXResetAngle();
@@ -118,20 +120,23 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null) {
 			autonomousCommand.cancel();
 		}
+		
 		Scheduler.getInstance().removeAll();
 		Scheduler.getInstance().enable();
 		driveTrainSubsystem.getPidController().disable();
 		
 
-		Scheduler.getInstance().add(new TurnClimberArm());
+		driveTrainSubsystem.setAutoMode(false);
+		
+		Scheduler.getInstance().add(new RaiseClimber());
 		Scheduler.getInstance().add(new DriveRobot());
-		oi.button8Opperator.whileHeld(new TurnWinch());			//Start button
+		oi.start8Opperator.whileHeld(new TurnWinch());			//Start button
 		
-		oi.button2Opperator.whileHeld(new InTake());				//B Button
-		oi.button1Opperator.whileHeld(new OutTake());				//A Button
+		oi.buttonBOpperator.whileHeld(new InTake());			//B Button
+		oi.buttonAOpperator.whileHeld(new OutTake());			//A Button
 		
-		oi.button5Opperator.whenPressed(new LiftTeleop(-1));		//Left bumper
-		oi.button6Opperator.whenPressed(new LiftTeleop(1));		//Right bumper
+		oi.leftBumperOpperator.whenPressed(new LiftTeleop(-1));	//Left bumper
+		oi.rightBumperOpperator.whenPressed(new LiftTeleop(1));		//Right bumper
 
 	}
 

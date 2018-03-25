@@ -48,25 +48,23 @@ public class OI {
 	Joystick stickOpperator = new Joystick(1);
 	
 	//TODO Get rid of most of these
-	public Button	button1Driver = new JoystickButton(stickDriver, 1),
-			button2Driver = new JoystickButton(stickDriver, 2),
-			button3Driver = new JoystickButton(stickDriver, 3),
-			button4Driver = new JoystickButton(stickDriver, 4),
-			button5Driver = new JoystickButton(stickDriver, 5),
-			button6Driver = new JoystickButton(stickDriver, 6),
-			button7Driver = new JoystickButton(stickDriver, 7),
-			button8Driver = new JoystickButton(stickDriver, 8),
-			button1Opperator = new JoystickButton(stickDriver, 1),
-			button2Opperator = new JoystickButton(stickDriver, 2),
-			button3Opperator = new JoystickButton(stickDriver, 3),
-			button4Opperator = new JoystickButton(stickDriver, 4),
-			button5Opperator = new JoystickButton(stickDriver, 5),
-			button6Opperator = new JoystickButton(stickDriver, 6),
-			button7Opperator = new JoystickButton(stickDriver, 7),
-			button8Opperator = new JoystickButton(stickDriver, 8);
-	
-	public OI() {
-	}
+	public Button
+			buttonADriver = new JoystickButton(stickDriver, 1),
+			buttonBDriver = new JoystickButton(stickDriver, 2),
+			buttonXDriver = new JoystickButton(stickDriver, 3),
+			buttonYDriver = new JoystickButton(stickDriver, 4),
+			leftBumperDriver = new JoystickButton(stickDriver, 5),
+			rightBumperDriver = new JoystickButton(stickDriver, 6),
+			selectDriver = new JoystickButton(stickDriver, 7),
+			startDriver = new JoystickButton(stickDriver, 8),
+			buttonAOpperator = new JoystickButton(stickDriver, 1),
+			buttonBOpperator = new JoystickButton(stickDriver, 2),
+			buttonXOpperator = new JoystickButton(stickDriver, 3),
+			buttonYOpperator = new JoystickButton(stickDriver, 4),
+			leftBumperOpperator = new JoystickButton(stickDriver, 5),
+			rightBumperOpperator = new JoystickButton(stickDriver, 6),
+			selectOpperator = new JoystickButton(stickDriver, 7),
+			start8Opperator = new JoystickButton(stickDriver, 8);
 	
 	public Joystick getJoystickOpperator() {
 		return stickOpperator;

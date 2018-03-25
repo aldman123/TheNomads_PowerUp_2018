@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
  * This command rotates the Climber Arm based
  * upon the opperator's joystick input
  */
-public class TurnClimberArm extends Command {
+public class RaiseClimber extends Command {
 
-	public TurnClimberArm() {
+	public RaiseClimber() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.climberSubsystem);
@@ -26,8 +26,7 @@ public class TurnClimberArm extends Command {
 	protected void execute() {
 		Robot.climberSubsystem.turnClimberArm(
 				Robot.oi.getJoystickOpperator().getRawAxis(RobotMap.raiseArmAxis)
-				-(Robot.oi.getJoystickOpperator().getRawAxis(RobotMap.lowerArmAxis) / 3)
-				);
+				-(Robot.oi.getJoystickOpperator().getRawAxis(RobotMap.lowerArmAxis) / 3));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
