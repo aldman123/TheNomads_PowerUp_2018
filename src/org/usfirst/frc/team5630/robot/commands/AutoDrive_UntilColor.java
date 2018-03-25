@@ -1,11 +1,6 @@
 package org.usfirst.frc.team5630.robot.commands;
 
 import org.usfirst.frc.team5630.robot.Robot;
-import org.usfirst.frc.team5630.robot.RobotMap;
-
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * @author Alexander Aldridge
@@ -38,8 +33,6 @@ public class AutoDrive_UntilColor extends AutoDrive {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	distance = Robot.navXSubsystem.getNavXDistanceForwards();
-    	
     	return Robot.colorSensorSubsystem.isActivated() || distance >= super.getFinalDistance();
     }
 

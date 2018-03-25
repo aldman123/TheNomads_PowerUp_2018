@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class NavXSubsystem extends Subsystem {
 	private AHRS navx;
 	
-	private int resets = 0;
 	private double targetAngle;
 	
 	public NavXSubsystem() {
@@ -27,13 +26,7 @@ public class NavXSubsystem extends Subsystem {
 	
     public void initDefaultCommand() {
     }
-    
-    public double getNavXDistanceForwards() {
-    	SmartDashboard.putNumber("NavX X", navx.getVelocityX());
-    	SmartDashboard.putNumber("NavX Y", navx.getVelocityY());
-    	SmartDashboard.putNumber("NavX Z", navx.getVelocityZ());
-    	return navx.getDisplacementY();
-    }
+
     
     /**
      * WARNING: The navX's angle may drift an average of 1 degree a minute!
@@ -41,16 +34,12 @@ public class NavXSubsystem extends Subsystem {
      * @return The navX's current angle
      */
     public double getNavXAngle() {
-    	return this.navx.getAngle() % 360;
-    }
-    
-    public void navXReset() {
-    	this.navx.resetDisplacement();
+    	return navx.getAngle() % 360;
     }
     
     public void navXResetAngle() {
     	this.targetAngle = 0;
-    	navx.reset();
+    	//navx.reset();
     }
     
     public void setTargetAngle(double angle) {

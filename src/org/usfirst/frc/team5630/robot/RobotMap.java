@@ -57,10 +57,10 @@ public class RobotMap {
 	final public static DigitalInput ultrasonicIn = new DigitalInput(0);
 	
 	//Robot Speeds (Percent Power)
-	final public static double speedFast = 0.50;
-	final public static double speedMedium = 0.45;
-	final public static double speedSlow = 0.15;
-	final public static double speedSuperSlow = 0.05;
+	final public static double speedFast = 0.75;
+	final public static double speedMedium = 0.60;
+	final public static double speedSlow = 0.55;
+	final public static double speedSuperSlow = 0.40;
 	final public static double climbingSpeed = 0.50;
 	final public static double liftSpeed = 0.15;
 	final public static double intakeSpeed = 0.50;
@@ -75,7 +75,7 @@ public class RobotMap {
 	 * At the competition, we will trial and error this number, until the robot drives
 	 * exactly eight feet. This will allow us to have precise measurements in autonomous.
 	 */
-	final public static double eightFeet = 0.1;
+	final public static double eightFeet = 8;
 	final public static double feet = eightFeet / 8;
 	
 	

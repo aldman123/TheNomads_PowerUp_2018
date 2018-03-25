@@ -13,9 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class BaselineAuto extends CommandGroup {
 	
 	public BaselineAuto() {
-		addSequential(new AutoTurn(-45));
-		addSequential(new AutoTurn(90));
-		addSequential(new AutoTurn(-45));
+		addSequential(new AutoDrive(3, RobotMap.speedFast));
 	}
 	
 	public void start() {

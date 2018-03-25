@@ -19,7 +19,6 @@ import org.usfirst.frc.team5630.robot.subsystems.*;
 
 public class Robot extends IterativeRobot {
 
-//	public static final DriveTrainTeleopSubsystem driveTrainTeleop = new DriveTrainTeleopSubsystem();
 	public static NavXSubsystem navXSubsystem = new NavXSubsystem();
 	public static DriveTrainSubsystem driveTrainSubsystem = new DriveTrainSubsystem();
 	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
@@ -95,7 +94,6 @@ public class Robot extends IterativeRobot {
 		autonomousCommand.start();
 		
 		navXSubsystem.navXResetAngle();
-		navXSubsystem.navXReset();
 		
 	}
 
@@ -105,7 +103,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-
+    	
 
 	}
 
@@ -123,16 +121,15 @@ public class Robot extends IterativeRobot {
 		driveTrainSubsystem.getPidController().disable();
 		
 
-		navXSubsystem.navXReset();
-		//Scheduler.getInstance().add(new TurnClimberArm());
+		Scheduler.getInstance().add(new TurnClimberArm());
 		Scheduler.getInstance().add(new DriveRobot());
-		//oi.button8Opperator.whileHeld(new TurnWinch());			//Start button
+		oi.button8Opperator.whileHeld(new TurnWinch());			//Start button
 		
-		//oi.button2Opperator.whileHeld(new InTake());				//B Button
-		//oi.button1Opperator.whileHeld(new OutTake());				//A Button
+		oi.button2Opperator.whileHeld(new InTake());				//B Button
+		oi.button1Opperator.whileHeld(new OutTake());				//A Button
 		
-		//oi.button5Opperator.whenPressed(new LiftTeleop(-1));		//Left bumper
-		//oi.button6Opperator.whenPressed(new LiftTeleop(1));		//Right bumper
+		oi.button5Opperator.whenPressed(new LiftTeleop(-1));		//Left bumper
+		oi.button6Opperator.whenPressed(new LiftTeleop(1));		//Right bumper
 
 	}
 

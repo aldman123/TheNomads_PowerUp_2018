@@ -30,7 +30,7 @@ public class AutoDrive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.navXSubsystem.navXReset();
+    	Robot.navXSubsystem.navXResetAngle();
     	
     	pidController.setSetpoint(Robot.navXSubsystem.getTargetAngle());	//At what angle?
     	Robot.driveTrainSubsystem.setForwardSpeed(speed);					//How fast forwards?
@@ -44,8 +44,8 @@ public class AutoDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	
-    	return distance >= Robot.navXSubsystem.getNavXDistanceForwards();
+    	//TODO Add simcoders
+    	return false;
     }
 
     // Called once after isFinished returns true
