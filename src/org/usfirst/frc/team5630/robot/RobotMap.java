@@ -16,21 +16,23 @@ import edu.wpi.first.wpilibj.DigitalOutput;
  */
 public class RobotMap {
 	
-	//PWM Inputs
-	final public static int intakeMotorRight = 0;
-	final public static int intakeMotorLeft = 1;
 	
-	final public static int liftMotorLeft = 2;
-	final public static int liftMotorRight = 3;
 	
 	//SRX Inputs
 	final public static int leftMotorA = 1;
 	final public static int leftMotorB = 2;
 	final public static int rightMotorA = 3;
 	final public static int rightMotorB = 4;
+	
 	final public static int climberArm = 5;
 	final public static int winchA = 6;
 	final public static int winchB = 7;
+	
+	final public static int intakeMotorRight = 23;
+	final public static int intakeMotorLeft = 22;
+	
+	final public static int liftMotorLeft = 20;
+	final public static int liftMotorRight = 21;
 	
 	//Joystick Inputs
 	final public static int joystickDriver = 0;
@@ -39,7 +41,8 @@ public class RobotMap {
 	final public static int lowerArmAxis = 2;	//Left trigger
 	
 	//Analog Inputs
-	final public static int colorSensor = 0;
+	final public static int colorSensorA = 5;
+	final public static int colorSensorB = 6;
 	final public static int limitSwitchTop = 1;
 	final public static int limitSwitchBottom = 2;
 	
@@ -54,13 +57,13 @@ public class RobotMap {
 	final public static DigitalInput ultrasonicIn = new DigitalInput(0);
 	
 	//Robot Speeds (Percent Power)
-	final public static double speedFast = 0.7;
-	final public static double speedMedium = 0.5;
-	final public static double speedSlow = 0.25;
-	final public static double speedSuperSlow = 0.15;
-	final public static double climbingSpeed = 0.5;
-	final public static double liftSpeed = 0.25;
-	final public static double intakeSpeed = 0.5;
+	final public static double speedFast = 0.75;
+	final public static double speedMedium = 0.60;
+	final public static double speedSlow = 0.55;
+	final public static double speedSuperSlow = 0.40;
+	final public static double climbingSpeed = 0.50;
+	final public static double liftSpeed = 0.15;
+	final public static double intakeSpeed = 0.50;
 
 	
 	//Measurements
@@ -72,7 +75,7 @@ public class RobotMap {
 	 * At the competition, we will trial and error this number, until the robot drives
 	 * exactly eight feet. This will allow us to have precise measurements in autonomous.
 	 */
-	final public static double eightFeet = 3.14159268;
+	final public static double eightFeet = 8;
 	final public static double feet = eightFeet / 8;
 	
 	

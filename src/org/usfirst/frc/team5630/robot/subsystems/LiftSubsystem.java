@@ -33,15 +33,14 @@ public class LiftSubsystem extends Subsystem {
 	}
 	
 	public void moveLift (double speed) {
-		lift.set(speed);
+		//lift.set(speed);
 	}
 	 
 	 public void stop () {
-		 lift.set(0);
+		 //lift.set(0);
 	 }
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new LiftTeleop(0));
 	}
 }

@@ -1,26 +1,32 @@
 package org.usfirst.frc.team5630.robot.subsystems;
 
-import org.usfirst.frc.team5630.robot.commands.AutoDrive;
-
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author Alexander Aldridge
  * This subsystem controls the navX
  */
 public class NavXSubsystem extends Subsystem {
-	private AHRS navx = new AHRS(SPI.Port.kMXP);
+	private AHRS navx;
+	
+	private double targetAngle;
+	
+	public NavXSubsystem() {
+		navx = new AHRS(SPI.Port.kMXP);
+		navx.enableLogging(true);
+		navx.resetDisplacement();
+		navx.reset();
+		targetAngle = 0;
+		
+	}
 	
     public void initDefaultCommand() {
-    	setDefaultCommand(new AutoDrive(0, 0));
     }
-    
-    public double getNavXDistanceForwards() {
-    	return navx.getDisplacementY();
-    }
+
     
     /**
      * WARNING: The navX's angle may drift an average of 1 degree a minute!
@@ -28,16 +34,24 @@ public class NavXSubsystem extends Subsystem {
      * @return The navX's current angle
      */
     public double getNavXAngle() {
-    	return navx.getAngle();
+    	return navx.getAngle() % 360;
     }
     
-    public void navXReset() {
-    	navx.reset();
-    	navx.resetDisplacement();
+    public void navXResetAngle() {
+    	this.targetAngle = 0;
+    	//navx.reset();
+    }
+    
+    public void setTargetAngle(double angle) {
+    	this.targetAngle = ( angle + targetAngle ) % 360;
+    }
+    
+    public double getTargetAngle() {
+    	return this.targetAngle;
     }
     
     public AHRS getNavX() {
-    	return navx;
+    	return this.navx;
     }
     
 }

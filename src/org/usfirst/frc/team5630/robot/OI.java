@@ -1,9 +1,4 @@
-package org.usfirst.frc.team5630.robot;
-
-import org.usfirst.frc.team5630.robot.commands.LiftTeleop;
-import org.usfirst.frc.team5630.robot.commands.TurnWinch;
-import org.usfirst.frc.team5630.robot.commands.InTake;
-import org.usfirst.frc.team5630.robot.commands.OutTake;
+	package org.usfirst.frc.team5630.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -53,7 +48,7 @@ public class OI {
 	Joystick stickOpperator = new Joystick(1);
 	
 	//TODO Get rid of most of these
-	Button	button1Driver = new JoystickButton(stickDriver, 1),
+	public Button	button1Driver = new JoystickButton(stickDriver, 1),
 			button2Driver = new JoystickButton(stickDriver, 2),
 			button3Driver = new JoystickButton(stickDriver, 3),
 			button4Driver = new JoystickButton(stickDriver, 4),
@@ -71,13 +66,6 @@ public class OI {
 			button8Opperator = new JoystickButton(stickDriver, 8);
 	
 	public OI() {
-		button8Opperator.whileHeld(new TurnWinch());		//Start button
-
-		button2Opperator.whileHeld(new InTake());			//B Button
-		button1Opperator.whileHeld(new OutTake());			//A Button
-		
-		button5Opperator.whenPressed(new LiftTeleop(-1));	//Left bumper
-		button6Opperator.whenPressed(new LiftTeleop(1));	//Right bumper
 	}
 	
 	public Joystick getJoystickOpperator() {

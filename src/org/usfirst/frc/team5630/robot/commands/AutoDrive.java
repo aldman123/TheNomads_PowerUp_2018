@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoDrive extends Command {
 	
 	private double distance, speed;
-	PIDController pidController = Robot.driveTrainAuto.getPidController();
+	PIDController pidController = Robot.driveTrainSubsystem.getPidController();
 	
 	/**
 	 * Drives the robot forwards until it reaches the distance in feet
@@ -21,7 +21,7 @@ public class AutoDrive extends Command {
 	 * @param speed from -1.0 to 1.0
 	 */
     public AutoDrive(double distance, double speed) {
-    	requires(Robot.driveTrainAuto);
+    	requires(Robot.driveTrainSubsystem);
     	requires(Robot.navXSubsystem);
     	
     	this.distance = distance * RobotMap.feet;
@@ -30,11 +30,11 @@ public class AutoDrive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.navXSubsystem.navXReset();
+    	Robot.navXSubsystem.navXResetAngle();
     	
-    	pidController.setSetpoint(0); //At what angle?
-    	Robot.driveTrainAuto.setForwardSpeed(speed); //How fast forwards?
-    	pidController.setAbsoluteTolerance(3); //How percise should you be? (degrees)
+    	pidController.setSetpoint(Robot.navXSubsystem.getTargetAngle());	//At what angle?
+    	Robot.driveTrainSubsystem.setForwardSpeed(speed);					//How fast forwards?
+    	pidController.setAbsoluteTolerance(3); 								//How percise should you be? (degrees)
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -44,19 +44,25 @@ public class AutoDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return distance >= Robot.navXSubsystem.getNavXDistanceForwards();
+    	//TODO Add simcoders
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	pidController.disable();
-    	Robot.driveTrainAuto.stop();
+    	Robot.driveTrainSubsystem.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	pidController.disable();
-    	Robot.driveTrainAuto.stop();
+    	Robot.driveTrainSubsystem.stop();
     }
+    
+    public double getFinalDistance() {
+    	return distance;
+    }
+    
 }

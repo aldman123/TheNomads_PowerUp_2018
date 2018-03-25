@@ -2,7 +2,6 @@
 package org.usfirst.frc.team5630.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
@@ -20,10 +19,9 @@ import org.usfirst.frc.team5630.robot.subsystems.*;
 
 public class Robot extends IterativeRobot {
 
-	public static final DriveTrainTeleopSubsystem driveTrainTeleop = new DriveTrainTeleopSubsystem();
-	public static final DriveTrainAutoSubsystem driveTrainAuto = new DriveTrainAutoSubsystem();
+	public static NavXSubsystem navXSubsystem = new NavXSubsystem();
+	public static DriveTrainSubsystem driveTrainSubsystem = new DriveTrainSubsystem();
 	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
-	public static final NavXSubsystem navXSubsystem = new NavXSubsystem();
 	public static final BrightnessSensorSubsystem colorSensorSubsystem = new BrightnessSensorSubsystem();
 	public static final LiftSubsystem liftSubsystem = new LiftSubsystem();
 	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
@@ -37,7 +35,7 @@ public class Robot extends IterativeRobot {
 
 	Joystick stickDriver, stickOperator;
 
-	double robot_xSpeed, robot_ySpeed;
+	double robot_ySpeed,robot_xSpeed; // Make a change to this (switched values)
 
 	String gameData;
 
@@ -51,7 +49,9 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		chooser.addObject("RightAutonomous", new RightAutonomous());
 		chooser.addObject("LeftAutonomous", new LeftAutonomous());
-		chooser.addDefault("Center Autonomous", new CenterAutonomous());
+		chooser.addObject("Center Autonomous", new CenterAutonomous());
+		chooser.addObject("Dance", new RobotDance());
+		chooser.addDefault("Eight Feet", new BaselineAuto());
 		SmartDashboard.putData("Auto Selector", chooser);
 
 	}
@@ -68,7 +68,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
 	}
 
 	/**
@@ -91,7 +90,11 @@ public class Robot extends IterativeRobot {
 		} else {
 			autonomousCommand = new CenterAutonomous();
 		}
+		
 		autonomousCommand.start();
+		
+		navXSubsystem.navXResetAngle();
+		
 	}
 
 	/**
@@ -100,7 +103,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-
+    	
 
 	}
 
@@ -110,11 +113,23 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		autonomousCommand.cancel();
+		if (autonomousCommand != null) {
+			autonomousCommand.cancel();
+		}
+		Scheduler.getInstance().removeAll();
+		Scheduler.getInstance().enable();
+		driveTrainSubsystem.getPidController().disable();
+		
 
-		navXSubsystem.navXReset();
 		Scheduler.getInstance().add(new TurnClimberArm());
 		Scheduler.getInstance().add(new DriveRobot());
+		oi.button8Opperator.whileHeld(new TurnWinch());			//Start button
+		
+		oi.button2Opperator.whileHeld(new InTake());				//B Button
+		oi.button1Opperator.whileHeld(new OutTake());				//A Button
+		
+		oi.button5Opperator.whenPressed(new LiftTeleop(-1));		//Left bumper
+		oi.button6Opperator.whenPressed(new LiftTeleop(1));		//Right bumper
 
 	}
 
@@ -124,6 +139,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
 	}
 
 	/**
