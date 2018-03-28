@@ -28,11 +28,11 @@ public class RobotMap {
 	final public static int winchA = 6;
 	final public static int winchB = 7;
 	
-	final public static int intakeMotorRight = 23;
-	final public static int intakeMotorLeft = 22;
+	final public static int intakeMotorRight = 8;
+	final public static int intakeMotorLeft = 9;
 	
-	final public static int liftMotorLeft = 20;
-	final public static int liftMotorRight = 21;
+	final public static int liftMotorLeft = 10;
+	final public static int liftMotorRight = 11;
 	
 	//Joystick Inputs
 	final public static int joystickDriver = 0;
@@ -43,8 +43,10 @@ public class RobotMap {
 	//Analog Inputs
 	final public static int colorSensorA = 5;
 	final public static int colorSensorB = 6;
-	final public static int limitSwitchTop = 1;
-	final public static int limitSwitchBottom = 2;
+	final public static int limitSwitchTopLift = 1;
+	final public static int limitSwitchBottomLift = 2;
+	final public static int limitSwitchTopClimber = 3;
+	final public static int limitSwitchBottomClimber = 4;
 	
 	//TODO: Test this out on the real field
 	final public static double colorSensorThreshhold = 3;	//Carpet should read more than this
@@ -74,8 +76,8 @@ public class RobotMap {
 	//Encoder Inputs. TODO fix these ASAP
 	final public static int encoderLeftA = 0;
 	final public static int encoderLeftB = 1;
-	final public static int encoderRightA = 0;
-	final public static int encoderRightB = 1;
+	final public static int encoderRightA = 2;
+	final public static int encoderRightB = 3;
 	
 	
 	/**

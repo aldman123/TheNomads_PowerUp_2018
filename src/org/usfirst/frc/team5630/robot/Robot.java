@@ -24,17 +24,17 @@ import org.usfirst.frc.team5630.robot.subsystems.*;
 
 public class Robot extends IterativeRobot {
 
-	public final DriveTrainSubsystem driveTrainSubsystem = new DriveTrainSubsystem();
-	public final ClimberArmSubsystem climberSubsystem = new ClimberArmSubsystem();
-	public final WinchSubsystem winchSubsystem = new WinchSubsystem();
-	public final LiftSubsystem liftSubsystem = new LiftSubsystem();
-	public final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+	public final static NavXSubsystem navXSubsystem = new NavXSubsystem(); //NavX goes first
+	public final static BrightnessSensorSubsystem colorSensorSubsystem = new BrightnessSensorSubsystem();
+	public final static EncoderSubsystem encoderSubsystem = new EncoderSubsystem();
+	public final static LimitSwitchSubsystem limitSwitchSubsystem = new LimitSwitchSubsystem();
+	public final static UltrasonicSubsystem ultrasonicSubsystem = new UltrasonicSubsystem();
 	
-	public final NavXSubsystem navXSubsystem = new NavXSubsystem();
-	public final BrightnessSensorSubsystem colorSensorSubsystem = new BrightnessSensorSubsystem();
-	public final EncoderSubsystem encoderSubsystem = new EncoderSubsystem();
-	public final LimitSwitchSubsystem limitSwitchSubsystem = new LimitSwitchSubsystem();
-	public final UltrasonicSubsystem ultrasonicSubsystem = new UltrasonicSubsystem();
+	public final static DriveTrainSubsystem driveTrainSubsystem = new DriveTrainSubsystem();
+	public final static ClimberArmSubsystem climberSubsystem = new ClimberArmSubsystem();
+	public final static WinchSubsystem winchSubsystem = new WinchSubsystem();
+	public final static LiftSubsystem liftSubsystem = new LiftSubsystem();
+	public final static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 	
 	public static OI oi;
 
@@ -160,5 +160,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		SmartDashboard.putNumber("Ultrasonic", ultrasonicSubsystem.getDistance());
 	}
 }

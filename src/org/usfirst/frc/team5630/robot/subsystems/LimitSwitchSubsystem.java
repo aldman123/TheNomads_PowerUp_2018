@@ -12,8 +12,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class LimitSwitchSubsystem extends Subsystem {
 
-    AnalogInput limitSwitchTop = new AnalogInput(RobotMap.limitSwitchTop);
-    AnalogInput limitSwitchBottom = new AnalogInput(RobotMap.limitSwitchBottom);
+	AnalogInput limitSwitchTopLift = new AnalogInput(RobotMap.limitSwitchTopLift);
+    AnalogInput limitSwitchBottomLift = new AnalogInput(RobotMap.limitSwitchBottomLift);
+    AnalogInput limitSwitchTopClimber = new AnalogInput(RobotMap.limitSwitchTopClimber);
+    AnalogInput limitSwitchBottomClimber = new AnalogInput(RobotMap.limitSwitchBottomClimber);
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -21,14 +23,22 @@ public class LimitSwitchSubsystem extends Subsystem {
     
     //When pushed, it should have a value of 3 or 4
     //When it's released, it should have a value of ~210
-    public boolean isTopPushed() {
-    	return limitSwitchTop.getValue() < 50;
+    public boolean isTopLiftPushed() {
+    	return limitSwitchTopLift.getValue() < 50;
     }
     
     //When pushed, it should have a value of 3 or 4
     //When it's released, it should have a value of ~210
-    public boolean isBottomPushed() {
-    	return limitSwitchBottom.getValue() < 50;
+    public boolean isBottomLiftPushed() {
+    	return limitSwitchBottomLift.getValue() < 50;
+    }
+    
+    public boolean isBottomClimberPushed() {
+    	return limitSwitchBottomClimber.getValue() < 50;
+    }
+    
+    public boolean isTopClimberPushed() {
+    	return limitSwitchTopClimber.getValue() < 50;
     }
     
 }

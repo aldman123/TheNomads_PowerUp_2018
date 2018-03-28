@@ -12,11 +12,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class UltrasonicSubsystem extends Subsystem {
 	
 	I2C ultrasonic = new I2C(I2C.Port.kOnboard, 6); //Device address is definetly 6 -Minh
-	ByteBuffer input;
+	ByteBuffer input = ByteBuffer.allocate(32);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
 	public int getDistance() {
+		input.clear();
 		int output;
 		if (ultrasonic.readOnly(input, 8)) {
 			output = input.getInt();

@@ -4,7 +4,6 @@ import org.usfirst.frc.team5630.robot.Robot;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author Alexander Aldridge
@@ -34,10 +33,6 @@ public class AutoTurn extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	pidController.enable(); //GO!
-    	
-    	SmartDashboard.putNumber("Current Angle", Robot.navXSubsystem.getNavXAngle());
-    	SmartDashboard.putNumber("Target Angle", Robot.navXSubsystem.getTargetAngle());
-
     	
     }
 

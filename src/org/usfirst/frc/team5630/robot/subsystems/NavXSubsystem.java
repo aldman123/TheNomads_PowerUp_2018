@@ -50,7 +50,7 @@ public class NavXSubsystem extends Subsystem {
     }
     
     public AHRS getNavX() {
-    	return this.navx;
+    	return navx;
     }
     
 }
