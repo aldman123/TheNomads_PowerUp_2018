@@ -29,7 +29,7 @@ public class AutoDrive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.encoderSubsystem.reset();
+    	Robot.driveTrainSubsystem.resetDistance();
     	Robot.navXSubsystem.navXResetAngle();
     	
     	pidController.setSetpoint(Robot.navXSubsystem.getTargetAngle());	//At what angle?
@@ -40,11 +40,12 @@ public class AutoDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	pidController.enable(); //GO!
+    	Robot.driveTrainSubsystem.updateDistance();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return this.distance >= Robot.encoderSubsystem.getAverageDistance();
+    	return this.distance >= Robot.driveTrainSubsystem.getDistance();
     }
 
     // Called once after isFinished returns true

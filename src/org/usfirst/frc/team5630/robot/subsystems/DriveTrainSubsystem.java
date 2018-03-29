@@ -36,12 +36,16 @@ public class DriveTrainSubsystem extends Subsystem {
 	double forwardSpeed = 0.0;
 	
 	private int direction = 1;
+	private double leftDistance = 0;
+	private double rightDistance = 0;
 	
 	public DriveTrainSubsystem() {
-		srx_leftA = new WPI_TalonSRX(RobotMap.leftMotorA);
+		srx_leftA = new WPI_TalonSRX(RobotMap.leftMotorA); //Cimcoder
 		srx_leftB = new WPI_TalonSRX(RobotMap.leftMotorB);
-		srx_rightA = new WPI_TalonSRX(RobotMap.rightMotorA);
+		srx_rightA = new WPI_TalonSRX(RobotMap.rightMotorA); //Cimcoder
 		srx_rightB = new WPI_TalonSRX(RobotMap.rightMotorB);
+		
+		resetDistance();
 		
 		m_left = new SpeedControllerGroup(srx_leftA, srx_leftB);
 		m_right = new SpeedControllerGroup(srx_rightA, srx_rightB);
@@ -60,6 +64,23 @@ public class DriveTrainSubsystem extends Subsystem {
 		pidController = new PIDController(0.1, 0.000, 0, Robot.navXSubsystem.getNavX(), pidOutput);
 		pidController.setOutputRange(-0.6, 0.6);
 	}
+	
+	public void updateDistance() {
+		rightDistance += srx_rightA.getSelectedSensorPosition(0);
+		leftDistance += srx_leftA.getSelectedSensorPosition(0);
+		srx_leftA.setSelectedSensorPosition(0, 0, 0);
+		srx_rightA.setSelectedSensorPosition(0, 0, 0);
+	}
+	
+	public void resetDistance() {
+		srx_leftA.setSelectedSensorPosition(0, 0, 0);
+		srx_rightA.setSelectedSensorPosition(0, 0, 0);
+	}
+	
+	public double getDistance() {
+		return (rightDistance + leftDistance) / 2;
+	}
+	
 	
 	public void teleopDrive(double speed, double turnSpeed) {
 		robotDrive.arcadeDrive(-turnSpeed, speed * direction);
