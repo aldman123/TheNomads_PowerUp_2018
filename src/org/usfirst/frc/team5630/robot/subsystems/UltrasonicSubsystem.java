@@ -15,7 +15,8 @@ public class UltrasonicSubsystem extends Subsystem {
 	ByteBuffer input = ByteBuffer.allocate(32);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	
+	//According to arduino, they have something called requestForm(address, bytes requested)
+	//Maybe you need to add it in order to receive data -Minh
 	public int getDistance() {
 		input.clear();
 		int output;

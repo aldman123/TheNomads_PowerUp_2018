@@ -35,6 +35,8 @@ public class DriveTrainSubsystem extends Subsystem {
 	
 	double forwardSpeed = 0.0;
 	
+	private int direction = 1;
+	
 	public DriveTrainSubsystem() {
 		srx_leftA = new WPI_TalonSRX(RobotMap.leftMotorA);
 		srx_leftB = new WPI_TalonSRX(RobotMap.leftMotorB);
@@ -60,8 +62,12 @@ public class DriveTrainSubsystem extends Subsystem {
 	}
 	
 	public void teleopDrive(double speed, double turnSpeed) {
-		robotDrive.arcadeDrive(-turnSpeed, speed);
+		robotDrive.arcadeDrive(-turnSpeed, speed * direction);
 		
+	}
+	
+	public void changeDirection() {
+		direction *= -1;
 	}
 	
 	public void stop() {

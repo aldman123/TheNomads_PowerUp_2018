@@ -138,6 +138,8 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().add(new DriveRobot());
 		oi.startOpperator.whileHeld(new TurnWinch());
 		
+		oi.buttonADriver.whenReleased(new swapDriveDirection());
+		
 		oi.buttonBOpperator.whileHeld(new InTake());
 		oi.buttonAOpperator.whileHeld(new OutTake());
 		
