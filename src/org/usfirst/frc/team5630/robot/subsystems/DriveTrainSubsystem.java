@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -45,6 +46,9 @@ public class DriveTrainSubsystem extends Subsystem {
 		srx_rightA = new WPI_TalonSRX(RobotMap.rightMotorA); //Cimcoder
 		srx_rightB = new WPI_TalonSRX(RobotMap.rightMotorB);
 		
+		srx_leftA.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		srx_rightA.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		
 		resetDistance();
 		
 		m_left = new SpeedControllerGroup(srx_leftA, srx_leftB);
@@ -65,19 +69,14 @@ public class DriveTrainSubsystem extends Subsystem {
 		pidController.setOutputRange(-0.6, 0.6);
 	}
 	
-	public void updateDistance() {
-		rightDistance += srx_rightA.getSelectedSensorPosition(0);
-		leftDistance += srx_leftA.getSelectedSensorPosition(0);
-		srx_leftA.setSelectedSensorPosition(0, 0, 0);
-		srx_rightA.setSelectedSensorPosition(0, 0, 0);
-	}
-	
 	public void resetDistance() {
 		srx_leftA.setSelectedSensorPosition(0, 0, 0);
 		srx_rightA.setSelectedSensorPosition(0, 0, 0);
 	}
 	
 	public double getDistance() {
+		rightDistance = srx_rightA.getSelectedSensorPosition(0);
+		leftDistance = srx_leftA.getSelectedSensorPosition(0);
 		return (rightDistance + leftDistance) / 2;
 	}
 	

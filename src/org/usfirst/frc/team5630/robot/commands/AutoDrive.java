@@ -41,7 +41,6 @@ public class AutoDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	pidController.enable(); //GO!
-    	Robot.driveTrainSubsystem.updateDistance();
     	SmartDashboard.putString("AutoDrive", "" + distance);
     }
 
