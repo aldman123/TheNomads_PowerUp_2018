@@ -24,7 +24,7 @@ public class AutoDrive extends Command {
     public AutoDrive(double distance, double speed) {
     	requires(Robot.driveTrainSubsystem);
     	requires(Robot.navXSubsystem);
-    	this.distance = distance * RobotMap.feet;
+    	this.distance = Math.abs(distance * RobotMap.feet);
     	this.speed = speed;
     }
 
@@ -46,6 +46,7 @@ public class AutoDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	SmartDashboard.putNumber("Distance Travelled", Robot.driveTrainSubsystem.getDistance());
     	return distance >= Robot.driveTrainSubsystem.getDistance();
     }
 

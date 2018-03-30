@@ -57,6 +57,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Eight Feet", new BaselineAuto());
 		chooser.addObject("Right Simple", new RightAutoSimple());
 		chooser.addObject("Left Simple", new LeftAutoSimple());
+		chooser.addObject("BackUp", new CrossAutoLine());
 		SmartDashboard.putData("Auto Selector", chooser);
 
 	}
@@ -100,8 +101,6 @@ public class Robot extends IterativeRobot {
 		
 		autonomousSection = "Init";
 		
-		autonomousCommand.start();
-		
 		navXSubsystem.navXResetAngle();
 		
 	}
@@ -111,6 +110,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		Scheduler shcd = Scheduler.getInstance();
 		Scheduler.getInstance().run();
 		SmartDashboard.putString("Autonomous Section", autonomousSection);
     	

@@ -16,9 +16,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftAutonomous extends CommandGroup {
 
     public LeftAutonomous() {
-    }
-    
-    public void start() {
     	if ((DriverStation.getInstance().getGameSpecificMessage()).charAt(0) == 'L') {
     		//Distance is in feet, and speed is in percent.
     		

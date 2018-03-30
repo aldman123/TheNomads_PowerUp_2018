@@ -17,9 +17,6 @@ public class RightAutonomous extends CommandGroup {
 	
 	char gameData;
     public RightAutonomous() {
-    }
-    
-    public void start() {
     	gameData = DriverStation.getInstance().getGameSpecificMessage().charAt(0);
     	if (gameData == 'R') {
     		//Distance is in feet, and speed is in percent.

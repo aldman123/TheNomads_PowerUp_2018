@@ -12,11 +12,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  * the robot is placed in the center.
  */
 public class CenterAutonomous extends CommandGroup {
-
-	public CenterAutonomous() {
-	}
 	
-	public void start() {
+	public CenterAutonomous() {
 		if ((DriverStation.getInstance().getGameSpecificMessage()).charAt(0) == 'L') {
 
 			/* 
@@ -37,7 +34,5 @@ public class CenterAutonomous extends CommandGroup {
 			addSequential(new AutoDrive(4 - RobotMap.robotLength, RobotMap.speedSlow)); //Allocates for robot size
 			addSequential(new AutoPlaceBlock());
 		}
-		
-		super.start();
 	}
 }

@@ -15,9 +15,4 @@ public class BaselineAuto extends CommandGroup {
 	public BaselineAuto() {
 		addSequential(new AutoDrive(8, RobotMap.speedFast));
 	}
-	
-	public void start() {
-		
-		super.start();
-	}
 }
