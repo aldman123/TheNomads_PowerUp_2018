@@ -1,7 +1,8 @@
 package org.usfirst.frc.team5630.robot.commandGroups;
 
 import org.usfirst.frc.team5630.robot.RobotMap;
-import org.usfirst.frc.team5630.robot.commands.AutoDrive_WithoutEncoders;
+import org.usfirst.frc.team5630.robot.commands.AutoDrive;
+import org.usfirst.frc.team5630.robot.commands.CorssTheAutoLineCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -28,6 +29,6 @@ public class CrossAutoLine extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new AutoDrive_WithoutEncoders(500, RobotMap.speedMedium));
+    	addSequential(new AutoDrive(12, RobotMap.speedMedium));
     }
 }

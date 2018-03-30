@@ -19,13 +19,13 @@ public class CenterAutonomous extends CommandGroup {
 	}
 	public void start() {
 		
-		while (DriverStation.getInstance().getGameSpecificMessage().length() < 1){
-    		SmartDashboard.putString("Game Data Status", "NO DATA");
-    	}
-    	gameData = DriverStation.getInstance().getGameSpecificMessage().charAt(0);
-    	SmartDashboard.putString("Game Data Satus", gameData + "");
+//		while (DriverStation.getInstance().getGameSpecificMessage().length() < 1){
+//    		SmartDashboard.putString("Game Data Status", "NO DATA");
+//    	}
+//    	gameData = DriverStation.getInstance().getGameSpecificMessage().charAt(0);
+//    	SmartDashboard.putString("Game Data Satus", gameData + "");
 		
-		if (gameData == 'L') {
+		//if (gameData == 'L') {
 
 			/* 
 			 * Distance is in feet, and speed is in percent.
@@ -33,17 +33,16 @@ public class CenterAutonomous extends CommandGroup {
 			 * Switch is 14 feet away
 			 */
 			
-			addSequential(new AutoDrive(12 - RobotMap.robotLength, RobotMap.speedMedium)); 
+			addSequential(new AutoDrive(14 - RobotMap.robotLength, RobotMap.speedMedium)); 
 			//DO NOT PLACE THE CUBE
-		}
-		else {
+		//} else {
 
 			//Distance is in feet, and speed is in percent.
 			//AutoLine is 10 feet away from Alliance Station
 			//Switch is 14 feet away
-			addSequential(new AutoDrive(10, RobotMap.speedMedium)); 
-			addSequential(new AutoDrive(4 - RobotMap.robotLength, RobotMap.speedSlow)); //Allocates for robot size
-			addSequential(new AutoPlaceBlock());
-		}
+			//addSequential(new AutoDrive(10, RobotMap.speedMedium)); 
+			//addSequential(new AutoDrive(4 - RobotMap.robotLength, RobotMap.speedSlow)); //Allocates for robot size
+			//addSequential(new AutoPlaceBlock());
+		//}
 	}
 }

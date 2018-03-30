@@ -11,20 +11,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Alexander Aldridge
  * Drives the robot forwards in a straight line
  */
-public class AutoDrive extends Command {
+public class AutoDrive_Time extends Command {
 	
-	private double distance, speed;
+	private double time, startTime, speed;
 	PIDController pidController = Robot.driveTrainSubsystem.getPidController();
 	
 	/**
 	 * Drives the robot forwards until it reaches the distance in feet
-	 * @param distance to drive
+	 * @param time to drive in milis
 	 * @param speed from -1.0 to 1.0
 	 */
-    public AutoDrive(double distance, double speed) {
+    public AutoDrive_Time(double time, double speed) {
     	requires(Robot.driveTrainSubsystem);
     	requires(Robot.navXSubsystem);
-    	this.distance = Math.abs(distance * RobotMap.feet);
+    	this.time = time;
     	this.speed = speed;
     }
 
@@ -34,6 +34,8 @@ public class AutoDrive extends Command {
     	Robot.navXSubsystem.navXResetAngle();
     	Robot.navXSubsystem.setTargetAngle(0);
     	
+    	startTime = System.currentTimeMillis();
+    	
     	pidController.setSetpoint(Robot.navXSubsystem.getTargetAngle());	//At what angle?
     	Robot.driveTrainSubsystem.setForwardSpeed(speed);					//How fast forwards?
     	pidController.setAbsoluteTolerance(3);								//How percise should you be? (degrees)
@@ -42,13 +44,12 @@ public class AutoDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	pidController.enable(); //GO!
-    	SmartDashboard.putString("AutoDrive", "" + distance);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	SmartDashboard.putNumber("Distance Travelled", Robot.driveTrainSubsystem.getDistance());
-    	return distance >= Robot.driveTrainSubsystem.getDistance();
+    	return time >= System.currentTimeMillis() - startTime;
     }
 
     // Called once after isFinished returns true

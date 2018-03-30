@@ -37,11 +37,11 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
-	Joystick stickDriver, stickOperator;
+	//Joystick stickDriver, stickOperator;
 
 	double robot_ySpeed,robot_xSpeed; // Make a change to this (switched values)
 
-	long startTime;
+	long startTime = 0;
 	String gameData, autonomousSection;
 
 	/**
@@ -51,12 +51,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		CameraServer.getInstance().startAutomaticCapture();
-		chooser.addObject("RightAutonomous", new RightAutonomous());
-		chooser.addObject("LeftAutonomous", new LeftAutonomous());
+//		chooser.addObject("RightAutonomous", new RightAutonomous());
+//		chooser.addObject("LeftAutonomous", new LeftAutonomous());
 		chooser.addDefault("Center Autonomous", new CenterAutonomous());
-		chooser.addObject("Right Simple", new RightAutoSimple());
-		chooser.addObject("Left Simple", new LeftAutoSimple());
-		chooser.addDefault("BackUp", new CrossAutoLine());
+//		chooser.addObject("Right Simple", new RightAutoSimple());
+//		chooser.addObject("Left Simple", new LeftAutoSimple());
+		chooser.addObject("BackUp", new CrossAutoLine());
 		SmartDashboard.putData("Auto Selector", chooser);
 
 	}
@@ -88,19 +88,19 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
-
-		// schedule the autonomous command (example)
-		if (autonomousCommand != null) {
-		} else {
-			autonomousCommand = new CenterAutonomous();
-		}
-		
-		driveTrainSubsystem.setAutoMode(true);
-		
-		autonomousSection = "Init";
-		
-		navXSubsystem.navXResetAngle();
+//		autonomousCommand = chooser.getSelected();
+//
+//		// schedule the autonomous command (example)
+//		if (autonomousCommand != null) {
+//		} else {
+//			autonomousCommand = new CenterAutonomous();
+//		}
+//		
+//		driveTrainSubsystem.setAutoMode(true);
+//		
+//		autonomousSection = "Init";
+//		
+//		navXSubsystem.navXResetAngle();
 		
 		startTime = System.currentTimeMillis();
 		
@@ -111,15 +111,15 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		Scheduler shcd = Scheduler.getInstance();
-		Scheduler.getInstance().run();
-		SmartDashboard.putString("Autonomous Section", autonomousSection);
-//		double time = System.currentTimeMillis();
-//		if (time - startTime <= 5000) {
-//			driveTrainSubsystem.teleopDrive(0.6, 0);
-//		} else {
-//			driveTrainSubsystem.teleopDrive(0, 0);
-//		}
+//		Scheduler shcd = Scheduler.getInstance();
+//		Scheduler.getInstance().run();
+//		SmartDashboard.putString("Autonomous Section", autonomousSection);
+		SmartDashboard.putNumber("Time", System.currentTimeMillis() - startTime);
+		if (System.currentTimeMillis() - startTime <= 5500) {
+			driveTrainSubsystem.teleopDrive(0.5, 0.15);
+		} else {
+			driveTrainSubsystem.teleopDrive(0, 0);
+		}
 		
 		
     	
