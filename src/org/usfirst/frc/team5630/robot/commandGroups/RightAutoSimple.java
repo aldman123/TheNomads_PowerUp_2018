@@ -7,6 +7,7 @@ import org.usfirst.frc.team5630.robot.commands.AutoTurn;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author Alexander Aldridge
@@ -20,7 +21,11 @@ public class RightAutoSimple extends CommandGroup {
     }
     
     public void start() {
+    	while (DriverStation.getInstance().getGameSpecificMessage().length() < 1){
+    		SmartDashboard.putString("Game Data Status", "NO DATA");
+    	}
     	gameData = DriverStation.getInstance().getGameSpecificMessage().charAt(0);
+    	SmartDashboard.putString("Game Data Satus", gameData + "");
     	//Distance is in feet, and speed is in percent.
     	//Go forwards past the auto line
     	addSequential(new AutoDrive(10, RobotMap.speedFast));

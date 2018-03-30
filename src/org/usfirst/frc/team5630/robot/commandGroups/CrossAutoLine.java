@@ -28,6 +28,6 @@ public class CrossAutoLine extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new AutoDrive_WithoutEncoders(5, RobotMap.speedMedium));
+    	addSequential(new AutoDrive_WithoutEncoders(500, RobotMap.speedMedium));
     }
 }

@@ -77,7 +77,7 @@ public class DriveTrainSubsystem extends Subsystem {
 	public double getDistance() {
 		rightDistance = srx_rightA.getSelectedSensorPosition(0);
 		leftDistance = srx_leftA.getSelectedSensorPosition(0);
-		return (rightDistance + leftDistance) / 2;
+		return (rightDistance + leftDistance) / 2 * (100.0/1024.0) * (6 * Math.PI) / 12;
 	}
 	
 	

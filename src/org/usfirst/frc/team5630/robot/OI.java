@@ -44,7 +44,7 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 
-	Joystick stickDriver = new Joystick(2);
+	Joystick stickDriver = new Joystick(0);
 	Joystick stickOpperator = new Joystick(1);
 	
 	//TODO Get rid of most of these

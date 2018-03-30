@@ -5,6 +5,7 @@ import org.usfirst.frc.team5630.robot.commands.AutoDrive;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author Alexander Aldridge
@@ -13,8 +14,18 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class CenterAutonomous extends CommandGroup {
 	
+	char gameData;
 	public CenterAutonomous() {
-		if ((DriverStation.getInstance().getGameSpecificMessage()).charAt(0) == 'L') {
+	}
+	public void start() {
+		
+		while (DriverStation.getInstance().getGameSpecificMessage().length() < 1){
+    		SmartDashboard.putString("Game Data Status", "NO DATA");
+    	}
+    	gameData = DriverStation.getInstance().getGameSpecificMessage().charAt(0);
+    	SmartDashboard.putString("Game Data Satus", gameData + "");
+		
+		if (gameData == 'L') {
 
 			/* 
 			 * Distance is in feet, and speed is in percent.

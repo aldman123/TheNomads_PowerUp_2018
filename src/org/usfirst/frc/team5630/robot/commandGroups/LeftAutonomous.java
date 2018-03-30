@@ -7,6 +7,7 @@ import org.usfirst.frc.team5630.robot.commands.AutoTurn;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author Alexander Aldridge
@@ -14,9 +15,20 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  * the robot is placed on the left.
  */
 public class LeftAutonomous extends CommandGroup {
-
+	
+	char gameData;
     public LeftAutonomous() {
-    	if ((DriverStation.getInstance().getGameSpecificMessage()).charAt(0) == 'L') {
+    }
+    public void start() {
+    	
+    	while (DriverStation.getInstance().getGameSpecificMessage().length() < 1){
+    		SmartDashboard.putString("Game Data Status", "NO DATA");
+    	}
+    	gameData = DriverStation.getInstance().getGameSpecificMessage().charAt(0);
+    	SmartDashboard.putString("Game Data Satus", gameData + "");
+    	
+    	
+    	if (gameData == 'L') {
     		//Distance is in feet, and speed is in percent.
     		
     		//Go forwards past the auto line
@@ -54,5 +66,7 @@ public class LeftAutonomous extends CommandGroup {
 			addSequential(new AutoDrive(3, RobotMap.speedMedium));
 			addSequential(new AutoPlaceBlock());
 		}
+    	
+    	super.start();
     }
 }

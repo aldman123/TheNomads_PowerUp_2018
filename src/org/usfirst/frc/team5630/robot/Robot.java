@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5630.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
@@ -31,7 +32,7 @@ public class Robot extends IterativeRobot {
 	public final static LiftSubsystem liftSubsystem = new LiftSubsystem();
 	public final static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 	
-	public static OI oi;
+	public static OI oi = new OI();
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -40,6 +41,7 @@ public class Robot extends IterativeRobot {
 
 	double robot_ySpeed,robot_xSpeed; // Make a change to this (switched values)
 
+	long startTime;
 	String gameData, autonomousSection;
 
 	/**
@@ -49,15 +51,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		CameraServer.getInstance().startAutomaticCapture();
-		oi = new OI();
 		chooser.addObject("RightAutonomous", new RightAutonomous());
 		chooser.addObject("LeftAutonomous", new LeftAutonomous());
 		chooser.addDefault("Center Autonomous", new CenterAutonomous());
-		chooser.addObject("Dance", new RobotDance());
-		chooser.addObject("Eight Feet", new BaselineAuto());
 		chooser.addObject("Right Simple", new RightAutoSimple());
 		chooser.addObject("Left Simple", new LeftAutoSimple());
-		chooser.addObject("BackUp", new CrossAutoLine());
+		chooser.addDefault("BackUp", new CrossAutoLine());
 		SmartDashboard.putData("Auto Selector", chooser);
 
 	}
@@ -103,6 +102,8 @@ public class Robot extends IterativeRobot {
 		
 		navXSubsystem.navXResetAngle();
 		
+		startTime = System.currentTimeMillis();
+		
 	}
 
 	/**
@@ -113,6 +114,14 @@ public class Robot extends IterativeRobot {
 		Scheduler shcd = Scheduler.getInstance();
 		Scheduler.getInstance().run();
 		SmartDashboard.putString("Autonomous Section", autonomousSection);
+//		double time = System.currentTimeMillis();
+//		if (time - startTime <= 5000) {
+//			driveTrainSubsystem.teleopDrive(0.6, 0);
+//		} else {
+//			driveTrainSubsystem.teleopDrive(0, 0);
+//		}
+		
+		
     	
 
 	}
