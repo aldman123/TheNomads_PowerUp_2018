@@ -4,6 +4,7 @@ import org.usfirst.frc.team5630.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author Alexander Aldridge
@@ -39,6 +40,11 @@ public class LimitSwitchSubsystem extends Subsystem {
     
     public boolean isTopClimberPushed() {
     	return limitSwitchTopClimber.getValue() < 50;
+    }
+    
+    public void debug() {
+    	SmartDashboard.putNumber("Top Limit Switch", limitSwitchTopLift.getValue());
+    	SmartDashboard.putNumber("Bottom Limit Switch", limitSwitchBottomLift.getValue());
     }
     
 }

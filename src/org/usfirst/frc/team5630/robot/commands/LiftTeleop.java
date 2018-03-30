@@ -35,12 +35,12 @@ public class LiftTeleop extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (this.direction == 1) {
+    	if (this.direction < 0) {
     		return Robot.limitSwitchSubsystem.isTopLiftPushed();
-    	} else if (this.direction == -1) {
+    	} else if (this.direction > 0) {
     		return Robot.limitSwitchSubsystem.isBottomLiftPushed();
     	} else {
-    		return false;
+    		return true;
     	}
         
     }

@@ -44,7 +44,7 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 
-	Joystick stickDriver = new Joystick(0);
+	Joystick stickDriver = new Joystick(2);
 	Joystick stickOpperator = new Joystick(1);
 	
 	//TODO Get rid of most of these
@@ -57,14 +57,14 @@ public class OI {
 			rightBumperDriver = new JoystickButton(stickDriver, 6),
 			selectDriver = new JoystickButton(stickDriver, 7),
 			startDriver = new JoystickButton(stickDriver, 8),
-			buttonAOpperator = new JoystickButton(stickDriver, 1),
-			buttonBOpperator = new JoystickButton(stickDriver, 2),
-			buttonXOpperator = new JoystickButton(stickDriver, 3),
-			buttonYOpperator = new JoystickButton(stickDriver, 4),
-			leftBumperOpperator = new JoystickButton(stickDriver, 5),
-			rightBumperOpperator = new JoystickButton(stickDriver, 6),
-			selectOpperator = new JoystickButton(stickDriver, 7),
-			startOpperator = new JoystickButton(stickDriver, 8);
+			buttonAOpperator = new JoystickButton(stickOpperator, 1),
+			buttonBOpperator = new JoystickButton(stickOpperator, 2),
+			buttonXOpperator = new JoystickButton(stickOpperator, 3),
+			buttonYOpperator = new JoystickButton(stickOpperator, 4),
+			leftBumperOpperator = new JoystickButton(stickOpperator, 5),
+			rightBumperOpperator = new JoystickButton(stickOpperator, 6),
+			selectOpperator = new JoystickButton(stickOpperator, 7),
+			startOpperator = new JoystickButton(stickOpperator, 8);
 	
 	public Joystick getJoystickOpperator() {
 		return stickOpperator;

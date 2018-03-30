@@ -6,7 +6,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  *@author Caelan Hennig
@@ -17,17 +16,11 @@ public class IntakeSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	SpeedControllerGroup intake;
-	WPI_TalonSRX srx_left, srx_right;
-	DifferentialDrive robotDrive;
+	WPI_TalonSRX srx_left = new WPI_TalonSRX(RobotMap.intakeMotorLeft);
+	WPI_TalonSRX srx_right = new WPI_TalonSRX(RobotMap.intakeMotorRight);
+	SpeedControllerGroup intake = new SpeedControllerGroup(srx_left, srx_right);
 
 	public void init() {
-		srx_left = new WPI_TalonSRX(RobotMap.intakeMotorLeft);
-		srx_right = new WPI_TalonSRX(RobotMap.intakeMotorRight);
-		
-		intake = new SpeedControllerGroup(srx_left, srx_right);
-		
-		robotDrive.setSafetyEnabled(true);
 	}
 	
 	public void inTake(double speed) {

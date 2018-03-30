@@ -30,8 +30,8 @@ public class DriveRobot extends Command {
 	@Override
 	protected void execute() {
 		Robot.driveTrainSubsystem.teleopDrive(
-				Robot.oi.getJoystickDriver().getRawAxis(4), //Left Joystick to turn 5
-				Robot.oi.getJoystickDriver().getRawAxis(1)	//Right Joystick to go forwards 0
+				Robot.oi.getJoystickDriver().getRawAxis(1), //Left Joystick to turn 5
+				Robot.oi.getJoystickDriver().getRawAxis(4)	//Right Joystick to go forwards 0
 				);
 	}
 

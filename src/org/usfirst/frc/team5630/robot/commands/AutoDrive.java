@@ -5,6 +5,7 @@ import org.usfirst.frc.team5630.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author Alexander Aldridge
@@ -41,11 +42,12 @@ public class AutoDrive extends Command {
     protected void execute() {
     	pidController.enable(); //GO!
     	Robot.driveTrainSubsystem.updateDistance();
+    	SmartDashboard.putString("AutoDrive", "" + distance);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return this.distance >= Robot.driveTrainSubsystem.getDistance();
+    	return distance >= Robot.driveTrainSubsystem.getDistance();
     }
 
     // Called once after isFinished returns true

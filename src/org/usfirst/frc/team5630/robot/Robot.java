@@ -9,11 +9,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5630.robot.commandGroups.BaselineAuto;
-import org.usfirst.frc.team5630.robot.commandGroups.CenterAutonomous;
-import org.usfirst.frc.team5630.robot.commandGroups.LeftAutonomous;
-import org.usfirst.frc.team5630.robot.commandGroups.RightAutonomous;
-import org.usfirst.frc.team5630.robot.commandGroups.RobotDance;
+import org.usfirst.frc.team5630.robot.commandGroups.*;
 import org.usfirst.frc.team5630.robot.commands.*;
 import org.usfirst.frc.team5630.robot.subsystems.*;
 
@@ -26,7 +22,6 @@ public class Robot extends IterativeRobot {
 
 	public final static NavXSubsystem navXSubsystem = new NavXSubsystem(); //NavX goes first
 	public final static BrightnessSensorSubsystem colorSensorSubsystem = new BrightnessSensorSubsystem();
-	public final static EncoderSubsystem encoderSubsystem = new EncoderSubsystem();
 	public final static LimitSwitchSubsystem limitSwitchSubsystem = new LimitSwitchSubsystem();
 	public final static UltrasonicSubsystem ultrasonicSubsystem = new UltrasonicSubsystem();
 	
@@ -45,7 +40,7 @@ public class Robot extends IterativeRobot {
 
 	double robot_ySpeed,robot_xSpeed; // Make a change to this (switched values)
 
-	String gameData;
+	String gameData, autonomousSection;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -60,6 +55,8 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Center Autonomous", new CenterAutonomous());
 		chooser.addObject("Dance", new RobotDance());
 		chooser.addObject("Eight Feet", new BaselineAuto());
+		chooser.addObject("Right Simple", new RightAutoSimple());
+		chooser.addObject("Left Simple", new LeftAutoSimple());
 		SmartDashboard.putData("Auto Selector", chooser);
 
 	}
@@ -101,6 +98,8 @@ public class Robot extends IterativeRobot {
 		
 		driveTrainSubsystem.setAutoMode(true);
 		
+		autonomousSection = "Init";
+		
 		autonomousCommand.start();
 		
 		navXSubsystem.navXResetAngle();
@@ -113,6 +112,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putString("Autonomous Section", autonomousSection);
     	
 
 	}
@@ -134,9 +134,9 @@ public class Robot extends IterativeRobot {
 
 		driveTrainSubsystem.setAutoMode(false);
 		
-		Scheduler.getInstance().add(new RaiseClimber());
+		//Scheduler.getInstance().add(new RaiseClimber());
 		Scheduler.getInstance().add(new DriveRobot());
-		oi.startOpperator.whileHeld(new TurnWinch());
+		//oi.startOpperator.whileHeld(new TurnWinch());
 		
 		oi.buttonADriver.whenReleased(new swapDriveDirection());
 		
@@ -145,7 +145,7 @@ public class Robot extends IterativeRobot {
 		
 		oi.leftBumperOpperator.whenPressed(new LiftTeleop(-1));
 		oi.rightBumperOpperator.whenPressed(new LiftTeleop(1));
-
+		
 	}
 
 	/**
@@ -154,6 +154,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		limitSwitchSubsystem.debug();
 		
 	}
 
@@ -162,6 +163,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		SmartDashboard.putNumber("Ultrasonic", ultrasonicSubsystem.getDistance());
+		
 	}
+	
+	public void setAutonomousSection(String section) {
+		autonomousSection = section;
+	}
+	
 }

@@ -24,9 +24,9 @@ public class RobotMap {
 	final public static int rightMotorA = 11;
 	final public static int rightMotorB = 10;
 	
-	final public static int climberArm = 0;
-	final public static int winchA = 0;
-	final public static int winchB = 0;
+	final public static int climberArm = 3;
+	final public static int winchA = 4;
+	final public static int winchB = 5;
 	
 	final public static int intakeMotorRight = 8;
 	final public static int intakeMotorLeft = 9;
@@ -43,7 +43,7 @@ public class RobotMap {
 	//Analog Inputs
 	final public static int colorSensorA = 5;//right
 	final public static int colorSensorB = 6;//left
-	final public static int limitSwitchTopLift = 0;
+	final public static int limitSwitchTopLift = 7;
 	final public static int limitSwitchBottomLift = 4;
 	final public static int limitSwitchTopClimber = 1;//Not done
 	final public static int limitSwitchBottomClimber = 2;//Not done
@@ -64,13 +64,13 @@ public class RobotMap {
 	final public static double speedSlow = 0.55;
 	final public static double speedSuperSlow = 0.40;
 	final public static double climbingSpeed = 0.50;
-	final public static double liftSpeed = 0.15;
+	final public static double liftSpeed = 0.25;
 	final public static double intakeSpeed = 0.50;
 
 	
 	//Measurements
-	final public static double robotLength = 33 / 12;	//In feet = 2.75
-	final public static double robotWidth = 32 / 12;	//In feet = 2.66
+	final public static double robotLength = 35.5 / 12;	//In feet
+	final public static double robotWidth = 34 / 12;	//In feet
 	final public static double outTakeTime = 3;			//In seconds
 	
 	//Encoder Inputs. TODO fix these ASAP

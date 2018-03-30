@@ -83,7 +83,7 @@ public class DriveTrainSubsystem extends Subsystem {
 	
 	
 	public void teleopDrive(double speed, double turnSpeed) {
-		robotDrive.arcadeDrive(-turnSpeed, speed * direction);
+		robotDrive.arcadeDrive(speed * direction, turnSpeed);
 		
 	}
 	
