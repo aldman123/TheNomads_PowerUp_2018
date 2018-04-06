@@ -49,7 +49,7 @@ public class DriveTrainSubsystem extends Subsystem {
 		srx_leftA.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		srx_rightA.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		
-		resetDistance();
+		resetEncoderDistance();
 		
 		m_left = new SpeedControllerGroup(srx_leftA, srx_leftB);
 		m_right = new SpeedControllerGroup(srx_rightA, srx_rightB);
@@ -69,15 +69,21 @@ public class DriveTrainSubsystem extends Subsystem {
 		pidController.setOutputRange(-0.6, 0.6);
 	}
 	
-	public void resetDistance() {
+	public void resetEncoderDistance() {
 		srx_leftA.setSelectedSensorPosition(0, 0, 0);
 		srx_rightA.setSelectedSensorPosition(0, 0, 0);
 	}
 	
-	public double getDistance() {
+	public double getDistanceRight() {
 		rightDistance = srx_rightA.getSelectedSensorPosition(0);
+		//return leftDistance;
+		return Math.abs(rightDistance);
+	}
+	
+	public double getDistanceLeft() {
 		leftDistance = srx_leftA.getSelectedSensorPosition(0);
-		return (rightDistance + leftDistance) / 2 * (100.0/1024.0) * (6 * Math.PI) / 12;
+		//return leftDistance;
+		return Math.abs(leftDistance);
 	}
 	
 	

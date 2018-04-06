@@ -73,4 +73,12 @@ public class OI {
 	public Joystick getJoystickDriver() {
 		return stickDriver;
 	}
+	
+	public int getOpperatorPOV() {
+		return stickOpperator.getPOV();
+	}
+	
+	public int getDriverPOV() {
+		return stickDriver.getPOV();
+	}
 }

@@ -37,7 +37,6 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
-	//Joystick stickDriver, stickOperator;
 
 	double robot_ySpeed,robot_xSpeed; // Make a change to this (switched values)
 
@@ -50,14 +49,20 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		CameraServer.getInstance().startAutomaticCapture();
-//		chooser.addObject("RightAutonomous", new RightAutonomous());
-//		chooser.addObject("LeftAutonomous", new LeftAutonomous());
+		new Thread(() -> {
+			CameraServer.getInstance().startAutomaticCapture();
+		}).start();
+		
+		
+		chooser.addObject("RightAutonomous", new RightAutonomous());
+		chooser.addObject("LeftAutonomous", new LeftAutonomous());
 		chooser.addDefault("Center Autonomous", new CenterAutonomous());
-//		chooser.addObject("Right Simple", new RightAutoSimple());
-//		chooser.addObject("Left Simple", new LeftAutoSimple());
+		chooser.addObject("Right Simple", new RightAutoSimple());
+		chooser.addObject("Left Simple", new LeftAutoSimple());
 		chooser.addObject("BackUp", new CrossAutoLine());
 		SmartDashboard.putData("Auto Selector", chooser);
+		
+		driveTrainSubsystem.resetEncoderDistance();
 
 	}
 
@@ -88,19 +93,22 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-//		autonomousCommand = chooser.getSelected();
-//
-//		// schedule the autonomous command (example)
-//		if (autonomousCommand != null) {
-//		} else {
-//			autonomousCommand = new CenterAutonomous();
-//		}
-//		
-//		driveTrainSubsystem.setAutoMode(true);
-//		
-//		autonomousSection = "Init";
-//		
-//		navXSubsystem.navXResetAngle();
+		autonomousCommand = chooser.getSelected();
+
+		// schedule the autonomous command (example)
+		if (autonomousCommand != null) {
+		} else {
+			autonomousCommand = new CenterAutonomous();
+		}
+		
+		driveTrainSubsystem.setAutoMode(true);
+		
+		autonomousSection = "Init";
+		
+		autonomousCommand.start();
+		
+		navXSubsystem.navXResetAngle();
+		driveTrainSubsystem.resetEncoderDistance();
 		
 		startTime = System.currentTimeMillis();
 		
@@ -111,9 +119,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-//		Scheduler shcd = Scheduler.getInstance();
+		Scheduler shcd = Scheduler.getInstance();
 //		Scheduler.getInstance().run();
 //		SmartDashboard.putString("Autonomous Section", autonomousSection);
+		SmartDashboard.putNumber("Encoder Distance", driveTrainSubsystem.getDistanceRight());
 		SmartDashboard.putNumber("Time", System.currentTimeMillis() - startTime);
 		if (System.currentTimeMillis() - startTime <= 5500) {
 			driveTrainSubsystem.teleopDrive(0.5, 0.15);
@@ -137,13 +146,14 @@ public class Robot extends IterativeRobot {
 		}
 		
 		Scheduler.getInstance().removeAll();
-		Scheduler.getInstance().enable();
+//		Scheduler.getInstance().enable();
 		driveTrainSubsystem.getPidController().disable();
 		
 
 		driveTrainSubsystem.setAutoMode(false);
+		driveTrainSubsystem.resetEncoderDistance();
 		
-		//Scheduler.getInstance().add(new RaiseClimber());
+		Scheduler.getInstance().add(new RaiseClimber());
 		Scheduler.getInstance().add(new DriveRobot());
 		//oi.startOpperator.whileHeld(new TurnWinch());
 		
@@ -152,8 +162,11 @@ public class Robot extends IterativeRobot {
 		oi.buttonBOpperator.whileHeld(new InTake());
 		oi.buttonAOpperator.whileHeld(new OutTake());
 		
-		oi.leftBumperOpperator.whenPressed(new LiftTeleop(-1));
-		oi.rightBumperOpperator.whenPressed(new LiftTeleop(1));
+//		oi.leftBumperOpperator.whenPressed(new LiftTeleop(-1));
+//		oi.rightBumperOpperator.whenPressed(new LiftTeleop(1));
+		
+		SmartDashboard.putBoolean("Opp A", oi.buttonAOpperator.get());
+		SmartDashboard.putBoolean("Driver A", oi.buttonADriver.get());
 		
 	}
 
@@ -163,7 +176,18 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		limitSwitchSubsystem.debug();
+		//limitSwitchSubsystem.debug();
+		SmartDashboard.putNumber("Encoder", driveTrainSubsystem.getDistanceRight());
+		
+		SmartDashboard.putBoolean("Opp A", oi.buttonAOpperator.get());
+		SmartDashboard.putBoolean("Driver A", oi.buttonADriver.get());
+		
+		if (oi.getOpperatorPOV() == 180.0) {
+			Scheduler.getInstance().add(new LiftTeleop(1));
+		} else if (oi.getOpperatorPOV() == 0.0) {
+			Scheduler.getInstance().add(new LiftTeleop(-1));
+		}
+		
 		
 	}
 

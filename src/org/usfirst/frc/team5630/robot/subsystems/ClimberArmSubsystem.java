@@ -15,10 +15,10 @@ public class ClimberArmSubsystem extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	WPI_TalonSRX srx_climberArm;
+	WPI_TalonSRX srx_climberArm = new WPI_TalonSRX(RobotMap.climberArm);
 	
 	public void init() {
-		srx_climberArm = new WPI_TalonSRX(RobotMap.climberArm);
+		
 		srx_climberArm.setNeutralMode(NeutralMode.Brake);
 	}
 	

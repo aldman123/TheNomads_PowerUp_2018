@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class CenterAutonomous extends CommandGroup {
 	
-	char gameData;
+	char gameData = 'E';
 	public CenterAutonomous() {
 	}
 	public void start() {
@@ -33,7 +33,7 @@ public class CenterAutonomous extends CommandGroup {
 			 * Switch is 14 feet away
 			 */
 			
-			addSequential(new AutoDrive(14 - RobotMap.robotLength, RobotMap.speedMedium)); 
+			addSequential(new AutoDrive(4, RobotMap.speedMedium)); 
 			//DO NOT PLACE THE CUBE
 		//} else {
 

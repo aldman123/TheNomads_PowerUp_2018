@@ -26,7 +26,8 @@ public class RaiseClimber extends Command {
 	protected void execute() {
 		Robot.climberSubsystem.turnClimberArm(
 				Robot.oi.getJoystickOpperator().getRawAxis(RobotMap.raiseArmAxis)
-				-(Robot.oi.getJoystickOpperator().getRawAxis(RobotMap.lowerArmAxis) / 3));
+				- Robot.oi.getJoystickOpperator().getRawAxis(RobotMap.lowerArmAxis)
+				);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

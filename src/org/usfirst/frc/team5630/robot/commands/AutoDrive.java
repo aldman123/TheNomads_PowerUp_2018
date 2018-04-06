@@ -24,13 +24,13 @@ public class AutoDrive extends Command {
     public AutoDrive(double distance, double speed) {
     	requires(Robot.driveTrainSubsystem);
     	requires(Robot.navXSubsystem);
-    	this.distance = Math.abs(distance * RobotMap.feet);
+    	this.distance = distance * RobotMap.feet;
     	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrainSubsystem.resetDistance();
+    	Robot.driveTrainSubsystem.resetEncoderDistance();
     	Robot.navXSubsystem.navXResetAngle();
     	Robot.navXSubsystem.setTargetAngle(0);
     	
@@ -42,13 +42,13 @@ public class AutoDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	pidController.enable(); //GO!
-    	SmartDashboard.putString("AutoDrive", "" + distance);
+    	SmartDashboard.putNumber("AutoDrive", distance);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	SmartDashboard.putNumber("Distance Travelled", Robot.driveTrainSubsystem.getDistance());
-    	return distance >= Robot.driveTrainSubsystem.getDistance();
+    	SmartDashboard.putNumber("Distance Travelled", Robot.driveTrainSubsystem.getDistanceRight());
+    	return distance >= Robot.driveTrainSubsystem.getDistanceRight();
     }
 
     // Called once after isFinished returns true

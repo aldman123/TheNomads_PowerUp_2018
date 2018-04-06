@@ -24,9 +24,9 @@ public class RobotMap {
 	final public static int rightMotorA = 11;
 	final public static int rightMotorB = 10;
 	
-	final public static int climberArm = 3;
-	final public static int winchA = 4;
-	final public static int winchB = 5;
+	final public static int climberArm = 5;
+	final public static int winchA = 3;
+	final public static int winchB = 4;
 	
 	final public static int intakeMotorRight = 8;
 	final public static int intakeMotorLeft = 9;
@@ -64,7 +64,7 @@ public class RobotMap {
 	final public static double speedSlow = 0.55;
 	final public static double speedSuperSlow = 0.40;
 	final public static double climbingSpeed = 0.50;
-	final public static double liftSpeed = 0.25;
+	final public static double liftSpeed = 0.35;
 	final public static double intakeSpeed = 0.8;
 
 	
@@ -85,8 +85,10 @@ public class RobotMap {
 	
 	//Partially calculated in cimcoder subsystem
 	//This is for the last little bit of accuracy
+	final public static double encoderConstant = 4200.0 / 100.0 / 12.0;
+	
 	final private static double eightFeet = 8;
-	final public static double feet = eightFeet / 8;
+	final public static double feet =  encoderConstant;
 	
 	
 	
