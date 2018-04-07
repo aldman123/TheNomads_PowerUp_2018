@@ -16,19 +16,19 @@ public class WinchSubsystem extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	WPI_TalonSRX srx_winchA, srx_winchB;
-	SpeedControllerGroup winch;
+	WPI_TalonSRX srx_winchA = new WPI_TalonSRX(RobotMap.winchA);
+	WPI_TalonSRX srx_winchB = new WPI_TalonSRX(RobotMap.winchB);
+	SpeedControllerGroup winch = new SpeedControllerGroup(srx_winchA, srx_winchB);
 	
 	public void init() {
-		srx_winchA = new WPI_TalonSRX(RobotMap.winchA);
-		srx_winchB = new WPI_TalonSRX(RobotMap.winchB);
-		srx_winchA.setNeutralMode(NeutralMode.Brake);
-		srx_winchB.setNeutralMode(NeutralMode.Brake);
-		srx_winchB.setInverted(true);
-		winch = new SpeedControllerGroup(srx_winchA, srx_winchB);
+		
 	}
 
 	public void turnWinch(double speed) {
+		srx_winchA.setNeutralMode(NeutralMode.Brake);
+		srx_winchB.setNeutralMode(NeutralMode.Brake);
+		srx_winchB.setInverted(false);
+		srx_winchA.setInverted(false);
 		winch.set(speed);
 	}
 	

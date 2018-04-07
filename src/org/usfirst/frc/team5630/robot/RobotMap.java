@@ -63,9 +63,9 @@ public class RobotMap {
 	final public static double speedMedium = 0.70;
 	final public static double speedSlow = 0.55;
 	final public static double speedSuperSlow = 0.40;
-	final public static double climbingSpeed = 0.50;
+	final public static double climbingSpeed = 0.25;
 	final public static double liftSpeed = 0.35;
-	final public static double intakeSpeed = 0.8;
+	final public static double intakeSpeed = 0.5;
 
 	
 	//Measurements

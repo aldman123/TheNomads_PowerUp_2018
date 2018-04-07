@@ -155,7 +155,7 @@ public class Robot extends IterativeRobot {
 		
 		Scheduler.getInstance().add(new RaiseClimber());
 		Scheduler.getInstance().add(new DriveRobot());
-		//oi.startOpperator.whileHeld(new TurnWinch());
+		oi.startOpperator.whileHeld(new TurnWinch());
 		
 		oi.buttonADriver.whenReleased(new swapDriveDirection());
 		
