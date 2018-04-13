@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team5630.robot;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -49,9 +50,12 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		new Thread(() -> {
-			CameraServer.getInstance().startAutomaticCapture();
-		}).start();
+		int qualX = 320;
+		int qualY = 240;
+		int FPS = 25;
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		camera.setFPS(FPS);
+		camera.setResolution(qualX, qualY);
 		
 		
 		chooser.addObject("RightAutonomous", new RightAutonomous());
@@ -153,17 +157,15 @@ public class Robot extends IterativeRobot {
 		driveTrainSubsystem.setAutoMode(false);
 		driveTrainSubsystem.resetEncoderDistance();
 		
-		Scheduler.getInstance().add(new RaiseClimber());
+//		Scheduler.getInstance().add(new RaiseClimber());
 		Scheduler.getInstance().add(new DriveRobot());
-		oi.startOpperator.whileHeld(new TurnWinch());
+		Scheduler.getInstance().add(new LiftTeleop());
+//		oi.startOpperator.whileHeld(new TurnWinch());
 		
 		oi.buttonADriver.whenReleased(new swapDriveDirection());
 		
 		oi.buttonBOpperator.whileHeld(new InTake());
 		oi.buttonAOpperator.whileHeld(new OutTake());
-		
-//		oi.leftBumperOpperator.whenPressed(new LiftTeleop(-1));
-//		oi.rightBumperOpperator.whenPressed(new LiftTeleop(1));
 		
 		SmartDashboard.putBoolean("Opp A", oi.buttonAOpperator.get());
 		SmartDashboard.putBoolean("Driver A", oi.buttonADriver.get());
@@ -182,12 +184,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Opp A", oi.buttonAOpperator.get());
 		SmartDashboard.putBoolean("Driver A", oi.buttonADriver.get());
 		
-		if (oi.getOpperatorPOV() == 180.0) {
-			Scheduler.getInstance().add(new LiftTeleop(1));
-		} else if (oi.getOpperatorPOV() == 0.0) {
-			Scheduler.getInstance().add(new LiftTeleop(-1));
-		}
 		
+		SmartDashboard.putBoolean("Top Limit Switch", limitSwitchSubsystem.isTopLiftPushed());
+		SmartDashboard.putBoolean("Bottom Limit Switch", limitSwitchSubsystem.isBottomLiftPushed());
 		
 	}
 
