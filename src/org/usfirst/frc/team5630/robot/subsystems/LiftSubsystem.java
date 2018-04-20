@@ -1,15 +1,12 @@
 package org.usfirst.frc.team5630.robot.subsystems;
 
-import org.opencv.video.SparsePyrLKOpticalFlow;
 import org.usfirst.frc.team5630.robot.Robot;
 import org.usfirst.frc.team5630.robot.RobotMap;
-import org.usfirst.frc.team5630.robot.commands.LiftTeleop;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -63,7 +60,7 @@ public class LiftSubsystem extends Subsystem {
 		}
 		
 		
-		lift.set(speedRun);
+		lift.set(-speedRun);
 	}
 	 
 	 public void stop () {

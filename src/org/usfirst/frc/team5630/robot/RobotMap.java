@@ -29,7 +29,7 @@ public class RobotMap {
 	final public static int winchB = 4;
 	
 	final public static int intakeMotorRight = 8;
-	final public static int intakeMotorLeft = 9;
+	final public static int intakeMotorLeft = 9;`
 	
 	final public static int liftMotorLeft = 6;
 	final public static int liftMotorRight = 7;

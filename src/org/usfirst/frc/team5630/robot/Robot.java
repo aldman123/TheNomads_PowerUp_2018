@@ -3,9 +3,7 @@ package org.usfirst.frc.team5630.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -129,7 +127,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Encoder Distance", driveTrainSubsystem.getDistanceRight());
 		SmartDashboard.putNumber("Time", System.currentTimeMillis() - startTime);
 		if (System.currentTimeMillis() - startTime <= 5500) {
-			driveTrainSubsystem.teleopDrive(0.5, 0.15);
+			driveTrainSubsystem.teleopDrive(0.5, 0);
 		} else {
 			driveTrainSubsystem.teleopDrive(0, 0);
 		}
