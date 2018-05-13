@@ -15,9 +15,7 @@ public class LimitSwitchSubsystem extends Subsystem {
 
 	AnalogInput limitSwitchTopLift = new AnalogInput(RobotMap.limitSwitchTopLift);
     AnalogInput limitSwitchBottomLift = new AnalogInput(RobotMap.limitSwitchBottomLift);
-    AnalogInput limitSwitchTopClimber = new AnalogInput(RobotMap.limitSwitchTopClimber);
-    AnalogInput limitSwitchBottomClimber = new AnalogInput(RobotMap.limitSwitchBottomClimber);
-	
+   
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
     }
@@ -32,14 +30,6 @@ public class LimitSwitchSubsystem extends Subsystem {
     //When it's released, it should have a value of ~210
     public boolean isBottomLiftPushed() {
     	return limitSwitchBottomLift.getValue() < 50;
-    }
-    
-    public boolean isBottomClimberPushed() {
-    	return limitSwitchBottomClimber.getValue() < 50;
-    }
-    
-    public boolean isTopClimberPushed() {
-    	return limitSwitchTopClimber.getValue() < 50;
     }
     
     public void debug() {

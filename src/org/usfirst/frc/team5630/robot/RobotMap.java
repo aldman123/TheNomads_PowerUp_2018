@@ -1,3 +1,5 @@
+
+
 package org.usfirst.frc.team5630.robot;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -29,7 +31,7 @@ public class RobotMap {
 	final public static int winchB = 4;
 	
 	final public static int intakeMotorRight = 8;
-	final public static int intakeMotorLeft = 9;`
+	final public static int intakeMotorLeft = 9;
 	
 	final public static int liftMotorLeft = 6;
 	final public static int liftMotorRight = 7;
@@ -45,8 +47,6 @@ public class RobotMap {
 	final public static int colorSensorB = 6;//left
 	final public static int limitSwitchTopLift = 7;
 	final public static int limitSwitchBottomLift = 4;
-	final public static int limitSwitchTopClimber = 1;//Not done
-	final public static int limitSwitchBottomClimber = 2;//Not done
 	
 	//TODO: Test this out on the real field
 	final public static double colorSensorThreshhold = 3;	//Carpet should read more than this

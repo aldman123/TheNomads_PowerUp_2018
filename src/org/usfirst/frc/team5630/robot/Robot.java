@@ -56,12 +56,7 @@ public class Robot extends IterativeRobot {
 		camera.setResolution(qualX, qualY);
 		
 		
-		chooser.addObject("RightAutonomous", new RightAutonomous());
-		chooser.addObject("LeftAutonomous", new LeftAutonomous());
 		chooser.addDefault("Center Autonomous", new CenterAutonomous());
-		chooser.addObject("Right Simple", new RightAutoSimple());
-		chooser.addObject("Left Simple", new LeftAutoSimple());
-		chooser.addObject("BackUp", new CrossAutoLine());
 		SmartDashboard.putData("Auto Selector", chooser);
 		
 		driveTrainSubsystem.resetEncoderDistance();
@@ -162,8 +157,17 @@ public class Robot extends IterativeRobot {
 		
 		oi.buttonADriver.whenReleased(new swapDriveDirection());
 		
-		oi.buttonBOpperator.whileHeld(new InTake());
-		oi.buttonAOpperator.whileHeld(new OutTake());
+		oi.buttonAOpperator.whileHeld(new InTake());
+		oi.buttonBOpperator.whileHeld(new OutTake());
+		
+		if (oi.getJoystickOpperator().getRawAxis(2) > 0.6) {
+			Scheduler.getInstance().add(new InTake());
+		} else if (oi.getJoystickOpperator().getRawAxis(3) > 0.6) {
+			Scheduler.getInstance().add(new OutTake());
+		}
+		
+		SmartDashboard.putNumber("Opp Axis 3", oi.getJoystickOpperator().getRawAxis(3));
+		SmartDashboard.putNumber("Opp Axis 2", oi.getJoystickOpperator().getRawAxis(2));
 		
 		SmartDashboard.putBoolean("Opp A", oi.buttonAOpperator.get());
 		SmartDashboard.putBoolean("Driver A", oi.buttonADriver.get());
@@ -193,6 +197,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		SmartDashboard.putBoolean("Top Limit", limitSwitchSubsystem.isTopLiftPushed());
+		SmartDashboard.putBoolean("Bottom Limit", limitSwitchSubsystem.isBottomLiftPushed());
 		
 	}
 	

@@ -32,10 +32,6 @@ public class LiftSubsystem extends Subsystem {
 		lift = new SpeedControllerGroup(srx_left, srx_right);
 	}
 	
-	public void moveLift (double speed) {
-		lift.set(speed);
-	}
-	
 	public void runLift() {
 		double speedRun;
 		speedRun = 1;
@@ -50,9 +46,9 @@ public class LiftSubsystem extends Subsystem {
 		
 		boolean stop = false;
 		if (speedRun < 0) {
-    		stop = Robot.limitSwitchSubsystem.isTopLiftPushed();
+    		stop = Robot.limitSwitchSubsystem.isBottomLiftPushed();
     	} else if (speedRun > 0) {
-    		stop =  Robot.limitSwitchSubsystem.isBottomLiftPushed();
+    		stop =  Robot.limitSwitchSubsystem.isTopLiftPushed();
     	}
 		
 		if (stop) {
@@ -60,7 +56,7 @@ public class LiftSubsystem extends Subsystem {
 		}
 		
 		
-		lift.set(-speedRun);
+		lift.set(-speedRun * 0.6);
 	}
 	 
 	 public void stop () {
